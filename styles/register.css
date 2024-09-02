@@ -1,0 +1,165 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    background-image: url("../images/backgroundimg2.jpg");
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.register-box{
+    background-color: #1D1C1C;
+    height: 60%;
+   width: 33%;
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+   box-shadow: 0px 1px 10px #a3a1a188;
+   border-radius: 20px;
+  gap: 20px;
+   
+}
+.rol-nav {
+    width: 64%;
+    background-color: #8273735c;
+    filter: blur(0.5);
+    box-shadow: 0px 1px 5px #4d4b4ba6;
+    margin: 0px auto;
+    padding: 7px;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 34px;
+}
+.rol-cont{
+    display: flex;
+    gap: 20px;
+  
+
+}
+.rol-cont a{
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+}
+.rol-cont a span{
+    padding: 8px 10px;
+    border-radius: 27px;
+}
+#student-span{
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+
+}
+
+.row1{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 35%;
+}
+.inputs input{
+height: 40px;
+background-color: #4e4c4c5a;
+border: none;
+border-radius: 6px;
+padding: 0px 10px;
+font-size: 15px;
+color: white;
+font-weight: 400;
+}
+.inputs input:focus{
+    outline: none;
+    border: 3px solid #4d4d4d;
+    
+}
+.gender-field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: 300;
+    font-size: 1em;
+    margin-top: 10px;
+    
+}
+.gender-field input[type=radio]{
+background-color: #706f6f5a;
+accent-color: gray;
+appearance: none;
+border-radius: 50%;
+height: 20px;
+width: 10px;
+cursor: pointer;
+}
+.gender-field input[type=radio]:focus{
+    border:1px solid white;
+}
+.row2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+.row2 input{
+    padding: 0px 5px;
+    width: 28%;
+    
+}
+.row2 input:last-child{
+    width: 15%;
+}
+.row3{
+    width: 100%;
+    height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+margin-top: 20px;
+
+}
+.sbmt-btn{
+    width: 55%;
+    padding: 10px;
+    
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.row3 a{
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    width: 20%;
+    text-align: center;
+}
+.row3 a:hover{
+    border-bottom: 2px solid white;
+}
