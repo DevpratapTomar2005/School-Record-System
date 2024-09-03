@@ -12,16 +12,16 @@
             <div class="rol-nav">
             
                     <a href="/admin-register"><span >ADMIN</span></a>
-                    <a href="/techer-register"><span>TEACHER</span></a>
-                    <a href="/student-register"><span id="student-span">STUDENT</span></a>
+                    <a href="/teacher-register"><span id="teacher-span">TEACHER</span></a>
+                    <a href="/student-register"><span>STUDENT</span></a>
                 
             </div>
             <div class="inputs">
-                <form action="/student-rgister" method="POST">
+                <form action="/teacher-register" method="POST">
                     <div class="row1">
                     <div class="col">
                         <input type="text" id="firstname" name="firstname" required placeholder="First name*"/>
-                        <input type="number"  id="rollnum" name="rollnum" required placeholder="Roll No.*" />
+                        <input type="number"  id="teacherid" name="teacherid" required placeholder="Id*" />
                         <input type="tel" id="phonenumber" name="phonenumber" required placeholder="Contact No.*"/>
                     </div>
                     <div class="col">
@@ -38,11 +38,11 @@
                     <div class="row2">
                         <input type="password" id="password" name="password" required placeholder="Password*"/>
                         <input type="password" id="confirm-password" name="confirmpassword" required placeholder="Confirm Password"/>
-                        <input type="number" id="student-class" name="studentclass" required placeholder="Class*"/>
+                        <input type="text" id="teachersubject" name="teachersubject" required placeholder="Subject*"/>
                     </div>
                     <div class="row3">
                         <button type="submit" class="sbmt-btn">Register</button>
-                        <a href="/student-login">Login</a>
+                        <a href="/teacher-login">Login</a>
 
                     </div>
                 </form>

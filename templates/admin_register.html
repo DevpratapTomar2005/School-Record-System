@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="stylesheet" href="../styles/utility.css">
+</head>
+<body>
+    
+        <div class="register-box">
+            <div class="rol-nav gap3">
+            
+                    <a href="/admin-register" ><span id="admin-span">ADMIN</span></a>
+                    <a href="/teacher-register" ><span >TEACHER</span></a>
+                    <a href="/student-register" ><span>STUDENT</span></a>
+                
+            </div>
+            <div class="inputs">
+                <form action="/admin-register" method="POST">
+                    <div class="flex width flex-colm gap ">
+                   
+                        
+                        <input type="text" id="schoolname" name="schoolname" required placeholder="School Name*"/>
+                        <input type="email"  id="schoolemail" name="teacherid" required placeholder="School Email Id*" />
+                        <input type="tel" id="phonenumber" name="phonenumber" required placeholder="Contact No.*"/>
+                    </div>
+                    <div class="flex width gap margintop flex-colm">
+                        <input type="password" id="password" name="password" required placeholder="Password*"/>
+                        <input type="password" id="confirm-password" name="confirmpassword" required placeholder="Confirm Password"/>
+                        
+                    </div>
+                    <div class="row3">
+                        <button type="submit" class="sbmt-btn">Register</button>
+                        <a href="/admin-login">Login</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+</body>
+</html>

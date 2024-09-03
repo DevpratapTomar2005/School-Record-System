@@ -9,7 +9,7 @@
 }
 
 body{
-    background-image: url("../images/backgroundimg2.jpg");
+    background-image: url("../images/backgroundimg.jpg");
     background-size: cover;
     background-position: center center;
     display: flex;
@@ -21,46 +21,51 @@ body{
 
 .register-box{
     background-color: #1D1C1C;
-    height: 60%;
-   width: 33%;
+    height: fit-content;
+   max-width: 33%;
+   min-width: 300px;
    display: flex;
    flex-direction: column;
    padding: 10px;
-   box-shadow: 0px 1px 10px #a3a1a188;
+   box-shadow: 0px 0px 7px #a3a1a188;
    border-radius: 20px;
   gap: 20px;
    
 }
 .rol-nav {
     width: 64%;
+    min-width: 250px;
     background-color: #8273735c;
-    filter: blur(0.5);
     box-shadow: 0px 1px 5px #4d4b4ba6;
     margin: 0px auto;
     padding: 7px;
-    height: 8%;
+    height: 31px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-radius: 34px;
+    gap: 19px;
 }
-.rol-cont{
-    display: flex;
-    gap: 20px;
-  
 
-}
-.rol-cont a{
+.rol-nav a{
     color: white;
     text-decoration: none;
     font-size: 1em;
     font-weight: bold;
 }
-.rol-cont a span{
+.rol-nav a span{
     padding: 8px 10px;
     border-radius: 27px;
 }
 #student-span{
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+
+}
+#teacher-span{
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+
+}
+#admin-span{
     background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
 
 }
@@ -69,12 +74,14 @@ body{
     display: flex;
     justify-content: center;
     gap: 40px;
+   
 }
 .col{
     display: flex;
-    flex-direction: column;
+   flex-direction: column;
     gap: 20px;
     width: 35%;
+
 }
 .inputs input{
 height: 40px;
@@ -120,6 +127,7 @@ cursor: pointer;
     align-items: center;
     gap: 5px;
     margin-top: 20px;
+    
 }
 .row2 input{
     padding: 0px 5px;
@@ -162,4 +170,21 @@ margin-top: 20px;
 }
 .row3 a:hover{
     border-bottom: 2px solid white;
+}
+
+@media only screen and (max-width: 1152px){
+    
+    .rol-nav a{
+        font-size: 0.8em;
+    }
+    .rol-nav a span{
+        padding: 10px 10px;
+    }
+    .inputs input{
+        font-size: 13px;
+    }
+    .gender-field{
+        font-size: 0.9em;
+        gap: 6px;
+    }
 }

@@ -1,0 +1,21 @@
+.width{
+    width: 100;
+}
+.flex{
+    display: flex;
+}
+.flex-colm{
+    flex-direction: column;
+}
+.gap{
+    gap:10px;
+}
+.gap3{
+    gap:3px;
+}
+.margintop{
+    margin-top: 10px;
+}
+.font{
+    font-size: 10px;
+}
