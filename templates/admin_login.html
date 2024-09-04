@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+    <div class="login-box">
+        <div class="rol-nav">
+            
+            <a href="/admin-login"><span id="admin-span">ADMIN</span></a>
+            <a href="/teacher-login" ><span >TEACHER</span></a>
+            <a href="/student-login"><span >STUDENT</span></a>
+        
+    </div>
+    <div class="inputs">
+        <form action="/admin-login" method="POST">
+            <div class="row1">
+
+                <div class="col">
+                    <input type="text" id="schoolname" name="schoolname" required placeholder="School Name"/>
+                    <input type="email"  id="schoolemail" name="schoolemail" required placeholder="School Email" />
+                    <input type="password" id="password" name="password" required placeholder="Password"/>
+                </div>
+            </div>
+            <div class="row2">
+                <button type="submit" class="sbmt-btn">Login</button>
+                <a href="/admin-register">Register</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
