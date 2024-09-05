@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+.main-container{
+    max-width: 90%;
+    height: fit-content;
+    border: 2px solid red;
+    margin:10px auto;
+}
+.userinfo{
+    max-width:100%;
+    height: 50%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 58px;
+    border-radius: 18px;
+   
+    
+}
+.std-bg{
+    background-color: #cffefe5b;
+}
+.teach-bg{
+    background-color: #FDD8F3;
+}
+.adm-bg{
+    background-color: #E3FF74;
+}
+.img-cont {
+height:260px;
+width: 260px;
+background-image: url("/images/userimg.png");
+background-position: center center;
+background-size: contain;
+background-repeat: no-repeat;
+
+}
+.info{
+   
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+}
+.info button{
+    background-color: #2539eb;
+    color: white;
+    border: none;
+    width: fit-content;
+    padding: 15px 12px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px gray;
+    font-weight: bolder;
+}
+.info button:hover{
+    background-color: #4c5df5;
+}
+.info h1{
+    color: #7f0b8a;
+}
+.info h3{
+    color: #1c2cb8;
+}
+.options{
+    max-width: 90%;
+    margin:10px auto;
+    border: 2px solid blue;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    
+}
+.opt-cards{
+    position: relative;
+}
+
+.opt-cards img{
+    height: 230px;
+    width: 200px;
+    border-radius: 22px;
+    box-shadow: 0px 1px 6px gray;
+    
+    
+}
+
+.opt-btn span{
+    display: block;
+
+}
+.opt-btn{
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+    color: white;
+    display: none;
+    border: none;
+    font-size: 17px;
+    font-weight: 600;
+   border-radius: 25px;
+    padding: 2px 20px;
+    position: absolute;
+  left: 41px;
+  bottom: -50px;
+   z-index: 10;
+   box-shadow: 0px 1px 5px gray;
+  cursor: pointer;
+  
+  
+}
+.card:hover .opt-btn{
+    display: inline-block;
+    transform: translateY(-66px);
+    transition: transform 1s ease-out;
+}
+.card:hover{
+    transform: scale(130%);
+    transition: transform 0.05s ease-out;
+    z-index: 5;
+    
+}
+.card:hover img{
+    box-shadow: 0px 3px 5px gray;
+    border: 2px solid black;
+}
+
