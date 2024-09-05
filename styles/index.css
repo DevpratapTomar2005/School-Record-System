@@ -7,7 +7,7 @@
 .main-container{
     max-width: 90%;
     height: fit-content;
-    border: 2px solid red;
+    
     margin:10px auto;
 }
 .userinfo{
@@ -49,7 +49,7 @@ background-repeat: no-repeat;
    
 }
 .info button{
-    background-color: #2539eb;
+    
     color: white;
     border: none;
     width: fit-content;
@@ -58,24 +58,17 @@ background-repeat: no-repeat;
     box-shadow: 0px 2px 5px gray;
     font-weight: bolder;
 }
-.info button:hover{
-    background-color: #4c5df5;
-}
-.info h1{
-    color: #7f0b8a;
-}
-.info h3{
-    color: #1c2cb8;
-}
+
+
 .options{
     max-width: 90%;
-    margin:10px auto;
-    border: 2px solid blue;
+    margin: 30px auto;
+   
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    
+    gap: 20px;
     
 }
 .opt-cards{
@@ -119,13 +112,60 @@ background-repeat: no-repeat;
     transition: transform 1s ease-out;
 }
 .card:hover{
-    transform: scale(130%);
+    transform: scale(105%);
     transition: transform 0.05s ease-out;
     z-index: 5;
     
 }
 .card:hover img{
-    box-shadow: 0px 3px 5px gray;
+    
     border: 2px solid black;
 }
 
+@media only screen and (max-width: 1200px){
+   
+    .opt-btn{
+        display: inline-block;
+        left: 41px;
+        bottom: 15px;
+    }
+    .card:hover .opt-btn{
+        display: inline-block;
+        transform: translateY(0px);
+        
+    }
+    .card:hover{
+        transform: scale(100%);
+       
+        z-index: 0;
+        
+    }
+    .card:hover img{
+        
+        border:none;
+    }
+
+}
+@media only screen and (max-width: 785px){
+.options{
+    margin-top: 50px;
+    justify-content: center;
+    max-width: 60%;
+   
+}
+
+}
+@media only screen and (max-width: 725px){
+.userinfo{
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+}
+
+.info h1{
+    font-size: 27px;
+}
+.options{
+    justify-content: center;
+}
+
+}

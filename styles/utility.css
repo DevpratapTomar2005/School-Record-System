@@ -19,3 +19,49 @@
 .font{
     font-size: 10px;
 }
+.btn-std{
+    background-color: #1e30d9;
+}
+.btn-std:hover{
+    background-color: #4c5df5;
+}
+.btn-teach{
+  background-color: #BD0CCC;
+}
+.btn-teach:hover{
+  background-color: #ce1bde;
+}
+.btn-admin{
+background-color: #166004;
+}
+.btn-admin:hover{
+background-color: #1e7209;
+}
+.h1-color-teach{
+color: #0516B5;
+}
+.h2-color-teach{
+color: #780982;
+}
+.h1-color-std{
+    color: #7f0b8a;
+}
+.h2-color-std{
+    color: #1c2cb8;
+}
+
+.h1-color-admin{
+color: #166004;
+}
+.h2-color-admin{
+color: #23A003;
+}
+.border-std{
+    border: 2px solid #1e30d9;
+}
+.border-teach{
+    border: 2px solid #BD0CCC;
+}
+.border-admin{
+    border: 2px solid #166004;
+}
