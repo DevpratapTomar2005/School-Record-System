@@ -65,3 +65,9 @@ color: #23A003;
 .border-admin{
     border: 2px solid #166004;
 }
+.disp-none{
+    display: none;
+}
+.disp-inline{
+    display: inline;
+}
