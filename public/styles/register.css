@@ -110,9 +110,10 @@ font-weight: 400;
     
 }
 .gender-field input[type=radio]{
+    appearance: none;
 background-color: #706f6f5a;
-accent-color: gray;
-appearance: none;
+
+
 border-radius: 50%;
 height: 20px;
 width: 10px;
@@ -120,6 +121,7 @@ cursor: pointer;
 }
 .gender-field input[type=radio]:focus{
     border:1px solid white;
+    background-color: #fffdfd4d;
 }
 .row2{
     display: flex;
