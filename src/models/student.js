@@ -4,12 +4,12 @@ const Schema=mongoose.Schema;
 const studentSchema=new Schema({
     firstname:{
         type: String,
-        required: [true,'firstname is required']
+        required: true
 
     },
     lastname:{
         type:String,
-        required: [true,'firstname is required']
+        required:true
 
     },
     rollnum:{
