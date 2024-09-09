@@ -46,11 +46,11 @@ app.post('/student-register', async function (req, res) {
     try {
         if (password === confirmPassword) {
             const studentRegister = new Student({
-                firstname: firstname,
-                lastname: lastname,
+                firstname: firstname.toLowerCase(),
+                lastname: lastname.toLowerCase(),
                 rollnum: rollnum,
                 contactnum: phonenumber,
-                schoolname: schoolname,
+                schoolname: schoolname.toLowerCase(),
                 gender: gender,
                 password: password,
                 class: studentClass
@@ -80,14 +80,14 @@ app.post('/teacher-register', async function (req, res) {
     try {
         if (password === confirmPassword) {
             const teacherRegister = new Teacher({
-                firstname: firstname,
-                lastname: lastname,
+                firstname: firstname.toLowerCase(),
+                lastname: lastname.toLowerCase(),
                 emailid: teacherEmail,
                 contactnum: phonenumber,
-                schoolname: schoolname,
+                schoolname: schoolname.toLowerCase(),
                 gender: gender,
                 password: password,
-                subject: teacherSubject
+                subject: teacherSubject.toLowerCase()
             })
             let registeredTeacher = await teacherRegister.save()
             console.log(registeredTeacher)
@@ -102,20 +102,20 @@ app.post('/teacher-register', async function (req, res) {
 })
 app.post('/admin-register', async function (req, res) {
 
-    const schoolEmail = req.body.schoolemail;
-    const phonenumber = req.body.phonenumber;
-    const schoolname = req.body.schoolname;
-
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmpassword;
-
+    
     try {
+        const schoolEmail = req.body.schoolemail;
+        const phonenumber = req.body.phonenumber;
+        const schoolname = req.body.schoolname;
+    
+        const password = req.body.password;
+        const confirmPassword = req.body.confirmpassword;
         if (password === confirmPassword) {
             const adminRegister = new Admin({
 
                 emailid: schoolEmail,
                 contactnum: phonenumber,
-                schoolname: schoolname,
+                schoolname: schoolname.toLowerCase(),
                 password: password
 
             })
@@ -127,10 +127,62 @@ app.post('/admin-register', async function (req, res) {
         }
 
     } catch (error) {
-        res.send(`Error occured:${error} `)
+        res.status(400).send(`Error occured:${error} `)    
     }
 })
-
+app.post('/student-login',async (req,res) => {
+    try {
+        
+        const studentClass=req.body.studentclass
+        const rollnum=req.body.rollnum
+        const password=req.body.password
+        let studentData=await Student.findOne({rollnum:rollnum, class:studentClass})
+        if(password===studentData.password){
+            console.log(`Student Data: ${studentData}`)
+        }
+        else{
+            res.send('Invalid Credentials')
+        }
+    } catch (error) {
+        res.status(400).send(`Error occured:${error} `)
+    }
+})
+app.post('/teacher-login',async (req,res) => {
+    try {
+        
+        const teacherName=req.body.teachername
+        const teacherEmail=req.body.teacheremail
+        const password=req.body.password
+        let teacherFullname=teacherName.split(' ')
+        let teacherData=await Teacher.findOne({ firstname:teacherFullname[0].toLowerCase(), lastname:teacherFullname[teacherFullname.length-1].toLowerCase(), emailid:teacherEmail})
+        if(password===teacherData.password){
+            console.log(`teacher Data: ${teacherData}`)
+        }
+        else{
+            res.send('Invalid Credentials')
+        }
+    } catch (error) {
+        res.status(400).send(`Error occured:${error} `)
+    }
+})
+app.post('/admin-login',async (req,res) => {
+    try {
+        
+        const schoolName=req.body.schoolname
+        const schoolEmail=req.body.schoolemail
+        const password=req.body.password
+        
+        let adminData=await Admin.findOne({schoolname:schoolName.toLowerCase(), emailid:schoolEmail })
+        if(password===adminData.password){
+            console.log(`admin Data: ${adminData}`)
+        }
+        else{
+            res.send('Invalid Credentials')
+        }
+    } catch (error) {
+        res.status(400).send(`Error occured:${error} `)
+    }
+})
 
 app.listen(port, () => {
     console.log(`server listening on PORT: ${port}`)
