@@ -12,11 +12,11 @@
     <div class="main-container">
         <div class="userinfo std-bg border-std">
             <div class="info">
-                <h1 class="h1-color-std">Devpratap Tomar</h1>
-                <h3 class="h2-color-std">Class: 3</h3>
-                <h3 class="h2-color-std">8128161967</h3>
-                <h3 class="h2-color-std">Roll No.: 23</h3>
-                <h3 class="h2-color-std">Anant School Of Excellence</h3>
+                <h1 class="h1-color-std"><%= studentData.firstname.charAt(0).toUpperCase() + studentData.firstname.slice(1)+ " " + studentData.lastname.charAt(0).toUpperCase() + studentData.lastname.slice(1)%></h1>
+                <h3 class="h2-color-std">Class: <%= studentData.class %></h3>
+                <h3 class="h2-color-std"><%= studentData.contactnum %></h3>
+                <h3 class="h2-color-std">Roll No.: <%= studentData.rollnum %></h3>
+                <h3 class="h2-color-std"><%= studentData.schoolname.charAt(0).toUpperCase() + studentData.schoolname.slice(1) %></h3>
                 <form action="/upload-student-profile" method="post" enctype="multipart/form-data">
                     <label for="profileInput" class="btn-std ">Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >

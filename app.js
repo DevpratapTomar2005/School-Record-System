@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/schoolManagement');
 const Admin = require('./src/models/admin.js')
 const Teacher = require('./src/models/teacher.js')
-const Student = require('./src/models/student.js')
+const Student = require('./src/models/student.js');
+
 const port = 3000
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname ,'public/views'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.get('/', function (req, res) {
@@ -55,8 +57,13 @@ app.post('/student-register', async function (req, res) {
                 password: password,
                 class: studentClass
             })
-            let registeredStudent = await studentRegister.save()
-            console.log(registeredStudent)
+            let studentData= await studentRegister.save();
+
+          
+            res.render('student_index',{
+                studentData
+            })
+          
         }
         else {
             res.send("Ivalid Credentials")
@@ -66,6 +73,7 @@ app.post('/student-register', async function (req, res) {
         res.send(`Error occured:${error} `)
     }
 })
+
 
 app.post('/teacher-register', async function (req, res) {
     const firstname = req.body.firstname;
@@ -89,8 +97,8 @@ app.post('/teacher-register', async function (req, res) {
                 password: password,
                 subject: teacherSubject.toLowerCase()
             })
-            let registeredTeacher = await teacherRegister.save()
-            console.log(registeredTeacher)
+            let teacherData = await teacherRegister.save()
+            res.render('teacher_index',{teacherData})
         }
         else {
             res.send("Ivalid Credentials")
@@ -119,8 +127,8 @@ app.post('/admin-register', async function (req, res) {
                 password: password
 
             })
-            let registeredAdmin = await adminRegister.save()
-            console.log(registeredAdmin)
+            let adminData= await adminRegister.save()
+            res.render('admin_index',{adminData})
         }
         else {
             res.send("Ivalid Credentials")
@@ -138,12 +146,17 @@ app.post('/student-login',async (req,res) => {
         const password=req.body.password
         let studentData=await Student.findOne({rollnum:rollnum, class:studentClass})
         if(password===studentData.password){
-            console.log(`Student Data: ${studentData}`)
+            
+            res.render('student_index',{
+               studentData
+            })
+          
         }
         else{
             res.send('Invalid Credentials')
         }
     } catch (error) {
+        console.error(error)
         res.status(400).send(`Error occured:${error} `)
     }
 })
@@ -156,7 +169,7 @@ app.post('/teacher-login',async (req,res) => {
         let teacherFullname=teacherName.split(' ')
         let teacherData=await Teacher.findOne({ firstname:teacherFullname[0].toLowerCase(), lastname:teacherFullname[teacherFullname.length-1].toLowerCase(), emailid:teacherEmail})
         if(password===teacherData.password){
-            console.log(`teacher Data: ${teacherData}`)
+            res.render('teacher_index',{teacherData})
         }
         else{
             res.send('Invalid Credentials')
@@ -174,7 +187,7 @@ app.post('/admin-login',async (req,res) => {
         
         let adminData=await Admin.findOne({schoolname:schoolName.toLowerCase(), emailid:schoolEmail })
         if(password===adminData.password){
-            console.log(`admin Data: ${adminData}`)
+            res.render('admin_index',{adminData})
         }
         else{
             res.send('Invalid Credentials')

@@ -13,10 +13,10 @@
     <div class="main-container">
         <div class="userinfo adm-bg border-admin">
             <div class="info">
-                <h1 class="h1-color-admin">Anant School Of Excellence</h1>
+                <h1 class="h1-color-admin"><%= adminData.schoolname.charAt(0).toUpperCase() + adminData.schoolname.slice(1) %></h1>
 
-                <h3 class="h2-color-admin">+918128161967</h3>
-                <h3 class="h2-color-admin">anant.school@gmail.com</h3>
+                <h3 class="h2-color-admin"><%= adminData.contactnum %></h3>
+                <h3 class="h2-color-admin"><%= adminData.emailid %></h3></h3>
 
 
                 <form action="/upload-teacher-profile" method="post" enctype="multipart/form-data">
