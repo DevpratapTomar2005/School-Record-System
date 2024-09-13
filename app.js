@@ -40,12 +40,12 @@ const studentRoutes = require("./src/routes/student.routes.js");
 const teacherRoutes = require("./src/routes/teacher.routes.js");
 const adminRoutes = require("./src/routes/admin.routes.js");
 
-app.use('/', studentRoutes);
-app.use('/', teacherRoutes);
-app.use('/', adminRoutes);
-app.use('/', adminRoutes);
-app.use('/', studentRoutes);
-app.use('/', teacherRoutes);
+app.use('/student', studentRoutes);
+app.use('/teacher', teacherRoutes);
+app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
+app.use('/student', studentRoutes);
+app.use('/teacher', teacherRoutes);
 
 
 
