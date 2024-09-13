@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/public/templates', 'student_register.html'))
+    res.sendFile(path.join(__dirname, '/public/templates', 'student_login.html'))
 })
 app.get('/teacher-register', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/templates', 'teacher_register.html'))
