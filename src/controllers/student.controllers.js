@@ -1,9 +1,20 @@
 
-
-
 const Student = require('../models/student.js');
+const {generateAccessToken,generateRefreshToken}=require('../utils/generateTokens.js')
+const generateAccessAndRefreshToken= async (studentId)=>{
+  try {
+     const student= await Student.findById(studentId)
+     const accessToken= generateAccessToken(student);
+     const refreshToken=  generateRefreshToken(student);
+     
+     student.refreshToken=refreshToken;
+      await student.save({validateBeforeSave:false});
+      return {accessToken,refreshToken};
+  } catch (error) {
+    res.status(400).send('Some thing went wrong while generating tokens')
+  }
 
-
+}
 
 const studentRegister= async (req,res)=>{
     try {
@@ -58,19 +69,36 @@ const studentLogin= async (req,res)=>{
         const rollnum = req.body.rollnum
         const password = req.body.password
         const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass, password})
+        
         if(!studentData){
             res.send('Invalid Credentials')
         }
+        const {accessToken,refreshToken}=await generateAccessAndRefreshToken(studentData._id)
         
-         res.render('student_index', {studentData})
+        const options={
+            httpOnly:true,
+            secure:true
+        }
+        res.status(200).cookie("accessToken",accessToken,options).cookie('refreshToken',refreshToken,options).redirect('/');
      
     } catch (error) {
         console.error(error)
         res.status(400).send(`Error:${error} `)
     }
+
 };
+const studentIndex=async (req,res)=>{
+    try {
+        const studentInfo= await Student.findById(req.user._id).select('-password -refreshToken');
+        res.status(201).render('student_index',{studentInfo})
+    } catch (error) {
+        throw error;
+    }
+
+}
 
 module.exports={
     studentRegister,
-    studentLogin
+    studentLogin,
+    studentIndex
 }

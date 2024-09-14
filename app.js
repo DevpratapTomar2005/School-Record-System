@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/schoolManagement');
-
+const cookieParser=require('cookie-parser')
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -11,12 +11,10 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public/views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser())
 
+//register and login page navigation routes 
 
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/public/templates', 'student_login.html'))
-})
 app.get('/teacher-register', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/templates', 'teacher_register.html'))
 })
@@ -40,12 +38,11 @@ const studentRoutes = require("./src/routes/student.routes.js");
 const teacherRoutes = require("./src/routes/teacher.routes.js");
 const adminRoutes = require("./src/routes/admin.routes.js");
 
+app.use('/', studentRoutes);
 app.use('/student', studentRoutes);
 app.use('/teacher', teacherRoutes);
 app.use('/admin', adminRoutes);
-app.use('/admin', adminRoutes);
-app.use('/student', studentRoutes);
-app.use('/teacher', teacherRoutes);
+
 
 
 
