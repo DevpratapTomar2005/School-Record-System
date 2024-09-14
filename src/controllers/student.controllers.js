@@ -38,7 +38,7 @@ const studentRegister= async (req,res)=>{
             }
         }
         else{
-            res.send("password and confirm password doesn't match")
+            res.send("Invalid Credential!!")
         }
 
          
@@ -57,19 +57,13 @@ const studentLogin= async (req,res)=>{
         const studentClass = req.body.studentclass
         const rollnum = req.body.rollnum
         const password = req.body.password
-        const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass})
+        const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass, password})
         if(!studentData){
-            return res.redirect('/student-register')
-        }
-        
-        if(password===studentData.password){
-
-            res.render('student_index', {studentData})
-        }
-        else{
             res.send('Invalid Credentials')
         }
-   
+        
+         res.render('student_index', {studentData})
+     
     } catch (error) {
         console.error(error)
         res.status(400).send(`Error:${error} `)
