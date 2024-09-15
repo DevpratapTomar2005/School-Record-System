@@ -1,6 +1,7 @@
 
 const Student = require('../models/student.js');
 const {generateAccessToken,generateRefreshToken}=require('../utils/generateTokens.js')
+const jwt=require('jsonwebtoken')
 const generateAccessAndRefreshToken= async (studentId)=>{
   try {
      const student= await Student.findById(studentId)
@@ -112,9 +113,39 @@ const studentLogout= async (req,res)=>{
         throw error;
     }
 }
+
+const refreshAccessToken=async (req,res)=>{
+    const oldRefreshToken=req.cookies?.refreshToken
+   try {
+     if(!oldRefreshToken){
+         res.status(401).redirect('/student-login')
+     }
+     const verifiedOldToken=jwt.verify(oldRefreshToken,'mynameisdev')
+ 
+     const student= await Student.findById(verifiedOldToken?._id)
+     if(!student){
+         res.status(401).send('Invalid Refresh Token!')
+     }
+ 
+     if(oldRefreshToken!==student?.refreshToken)
+     {
+         res.status(404).redirect('/student-login')
+     }
+     const {newAccessToken,newRefreshToken}= await generateAccessAndRefreshToken(student._id)
+     const options={
+         httpOnly:true,
+         secure:true
+     }
+     res.status(200).cookie('accessToken',newAccessToken,options).cookie('refreshToken',newRefreshToken,options)
+   } catch (error) {
+        throw error;
+   }
+
+}
 module.exports={
     studentRegister,
     studentLogin,
     studentIndex,
-    studentLogout
+    studentLogout,
+    refreshAccessToken
 }
