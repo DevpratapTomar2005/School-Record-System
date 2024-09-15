@@ -89,16 +89,32 @@ const studentLogin= async (req,res)=>{
 };
 const studentIndex=async (req,res)=>{
     try {
+        
         const studentInfo= await Student.findById(req.user._id).select('-password -refreshToken');
         res.status(201).render('student_index',{studentInfo})
+
     } catch (error) {
         throw error;
     }
 
 }
 
+const studentLogout= async (req,res)=>{
+    try {
+      
+        await Student.findByIdAndUpdate(req.user._id,{$set:{refreshToken:undefined}},{new:true}).select('-password')
+        const options={
+            httpOnly:true,
+            secure:true
+        }
+      return  res.status(201).clearCookie("accessToken",options).clearCookie("refreshToken",options).redirect('/student-login')
+    } catch (error) {
+        throw error;
+    }
+}
 module.exports={
     studentRegister,
     studentLogin,
-    studentIndex
+    studentIndex,
+    studentLogout
 }
