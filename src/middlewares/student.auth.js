@@ -4,10 +4,10 @@ const Student=require('../models/student.js');
 const verifyStudent= async (req,res,next)=>{
     const token=req.cookies?.accessToken;
    
+    if(!token){
+         res.status(401).redirect('/student-login')
+     }
  try {
-      if(!token){
-           res.status(401).redirect('/student-login')
-       }
        const verifiedToken= jwt.verify(token,'mynameisdev')
        
       
@@ -19,6 +19,10 @@ const verifyStudent= async (req,res,next)=>{
        next();
  } catch (error) {
     console.log(error)
+    if(error.name==='TokenExpiredError'){
+        return res.redirect('/student/refreshtoken')
+    }
+    res.status(400).send('Internal Server Error')
     
  }
 }
