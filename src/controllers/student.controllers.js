@@ -122,7 +122,8 @@ const studentLogout = async (req, res) => {
 
 const refreshAccessToken = async (req, res) => {
     const oldRefreshToken = req.cookies?.refreshToken
-
+const destUrl=req.query.destUrl
+console.log('dest2:',destUrl)
     try {
         if (!oldRefreshToken) {
             res.status(401).redirect('/student-login')
@@ -144,7 +145,8 @@ const refreshAccessToken = async (req, res) => {
             httpOnly: true,
             secure: true
         }
-        res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/')
+       
+        res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`${destUrl}`)
     } catch (error) {
         res.status(400).send(error)
     }

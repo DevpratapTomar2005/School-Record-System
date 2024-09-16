@@ -20,7 +20,9 @@ const verifyStudent= async (req,res,next)=>{
  } catch (error) {
     
     if(error.name==='TokenExpiredError'){
-        return res.redirect('/student/refreshtoken')
+        const destUrl=req.originalUrl
+        console.log('dest1:',destUrl)
+        return res.redirect(`/student/refreshtoken?destUrl=${destUrl}`)
     }
    return  res.status(400).send('Internal Server Error')
     
