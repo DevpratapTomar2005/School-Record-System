@@ -1,7 +1,20 @@
 
 
 const Teacher = require('../models/teacher.js')
-const teacherRegister= async (req,res)=>{
+const { generateAccessToken, generateRefreshToken } = require('../utils/generateTeacherTokens.js')
+const generateAccessAndRefreshTokens = async (user) => {
+    try {
+        const accessToken = generateAccessToken(user)
+        const refreshToken = generateRefreshToken(user)
+        user.refreshToken = refreshToken;
+        await user.save({ validateBeforeSave: false })
+        console.log(accessToken, user)
+        return { accessToken, refreshToken }
+    } catch (error) {
+        return res.status(400).send('something went wrong while generating tokens!')
+    }
+}
+const teacherRegister = async (req, res) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const teacherEmail = req.body.teacheremail;
@@ -13,8 +26,8 @@ const teacherRegister= async (req,res)=>{
     const teacherSubject = req.body.teachersubject;
     try {
         if (password === confirmPassword) {
-            const teacherExists= await Teacher.findOne({firstname,lastname,emailid:teacherEmail})
-            if(!teacherExists){
+            const teacherExists = await Teacher.findOne({ firstname, lastname, emailid: teacherEmail, schoolname, subject: teacherSubject })
+            if (!teacherExists) {
 
                 const teacherData = await Teacher.create({
                     firstname: firstname.toLowerCase(),
@@ -26,10 +39,10 @@ const teacherRegister= async (req,res)=>{
                     password: password,
                     subject: teacherSubject.toLowerCase()
                 });
-                
+
                 res.render('teacher_index', { teacherData })
             }
-            else{
+            else {
                 return res.redirect('/teacher-login')
             }
         }
@@ -43,7 +56,7 @@ const teacherRegister= async (req,res)=>{
 }
 
 
-const teacherLogin= async (req,res)=>{
+const teacherLogin = async (req, res) => {
     try {
 
         const teacherName = req.body.teachername
@@ -52,7 +65,8 @@ const teacherLogin= async (req,res)=>{
         const teacherFullname = teacherName.split(' ')
         const teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail })
         if (password === teacherData.password) {
-            res.render('teacher_index', { teacherData })
+            const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(teacherData)
+            res.status(200).cookie('accessToken', accessToken, { httpOnly: true, secure: true }).cookie('refreshToken', refreshToken, { httpOnly: true, secure: true }).render('teacher_index',{teacherData})
         }
         else {
             res.send('Invalid Credentials')
@@ -62,7 +76,7 @@ const teacherLogin= async (req,res)=>{
     }
 }
 
-module.exports={
+module.exports = {
     teacherRegister,
     teacherLogin
 }
