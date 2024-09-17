@@ -1,6 +1,6 @@
 
 const Student = require('../models/student.js');
-const { generateAccessToken, generateRefreshToken } = require('../utils/generateTokens.js')
+const { generateAccessToken, generateRefreshToken } = require('../utils/generateStudentTokens.js')
 const jwt = require('jsonwebtoken')
 const generateAccessAndRefreshToken = async (studentId) => {
     try {
@@ -123,7 +123,7 @@ const studentLogout = async (req, res) => {
 const refreshAccessToken = async (req, res) => {
     const oldRefreshToken = req.cookies?.refreshToken
 const destUrl=req.query.destUrl
-console.log('dest2:',destUrl)
+
     try {
         if (!oldRefreshToken) {
             res.status(401).redirect('/student-login')
