@@ -1,8 +1,10 @@
 const express = require('express')
-
+const {verifyAdmin}=require('../middlewares/admin.auth.js')
 const router=express.Router()
 const adminControllers=require('../controllers/admin.controllers.js')
-
+router.get('/',verifyAdmin,adminControllers.adminIndex)
 router.post("/register", adminControllers.adminRegister)
 router.post("/login", adminControllers.adminLogin)
+router.get('/logout',verifyAdmin,adminControllers.adminLogout)
+router.get('/refreshToken',adminControllers.refreshAccessToken)
 module.exports=router;

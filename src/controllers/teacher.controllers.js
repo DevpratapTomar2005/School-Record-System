@@ -41,7 +41,13 @@ const teacherRegister = async (req, res) => {
                     subject: teacherSubject.toLowerCase()
                 });
 
-                res.render('teacher_index', { teacherData })
+                const { accessToken, refreshToken } = await generateAccessAndRefreshToken(studentData._id)
+
+                const options = {
+                    httpOnly: true,
+                    secure: true
+                }
+                return res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/teacher/');
             }
             else {
                 return res.redirect('/teacher-login')
