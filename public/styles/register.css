@@ -111,14 +111,16 @@ font-weight: 400;
 .gender-field input[type=radio]{
    accent-color:#8a88885a ;
 
-
+outline: none;
 
 border-radius: 50%;
 height: 30px;
 width: 30px;
 cursor: pointer;
 }
-
+.gender-field input[type=radio]:focus{
+    outline: none;
+}
 .row2{
     display: flex;
     justify-content: center;

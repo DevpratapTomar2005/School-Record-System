@@ -13,18 +13,25 @@ const teacherRegister= async (req,res)=>{
     const teacherSubject = req.body.teachersubject;
     try {
         if (password === confirmPassword) {
-            const teacherRegister = new Teacher({
-                firstname: firstname.toLowerCase(),
-                lastname: lastname.toLowerCase(),
-                emailid: teacherEmail,
-                contactnum: phonenumber,
-                schoolname: schoolname.toLowerCase(),
-                gender: gender,
-                password: password,
-                subject: teacherSubject.toLowerCase()
-            })
-            let teacherData = await teacherRegister.save()
-            res.render('teacher_index', { teacherData })
+            const teacherExists= await Teacher.findOne({firstname,lastname,emailid:teacherEmail})
+            if(!teacherExists){
+
+                const teacherData = await Teacher.create({
+                    firstname: firstname.toLowerCase(),
+                    lastname: lastname.toLowerCase(),
+                    emailid: teacherEmail,
+                    contactnum: phonenumber,
+                    schoolname: schoolname.toLowerCase(),
+                    gender: gender,
+                    password: password,
+                    subject: teacherSubject.toLowerCase()
+                });
+                
+                res.render('teacher_index', { teacherData })
+            }
+            else{
+                return res.redirect('/teacher-login')
+            }
         }
         else {
             res.send("Ivalid Credentials")
@@ -42,8 +49,8 @@ const teacherLogin= async (req,res)=>{
         const teacherName = req.body.teachername
         const teacherEmail = req.body.teacheremail
         const password = req.body.password
-        let teacherFullname = teacherName.split(' ')
-        let teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail })
+        const teacherFullname = teacherName.split(' ')
+        const teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail })
         if (password === teacherData.password) {
             res.render('teacher_index', { teacherData })
         }
