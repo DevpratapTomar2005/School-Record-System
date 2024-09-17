@@ -23,7 +23,8 @@ const adminSchema=new Schema({
         required:true
     },
  
-   imagepath:String
+   imagepath:{type:String},
+   refreshToken:{type:String}
    
 });
 const admin=mongoose.model('Admin',adminSchema);

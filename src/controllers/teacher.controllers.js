@@ -1,6 +1,7 @@
 
 
 const Teacher = require('../models/teacher.js')
+const jwt=require('jsonwebtoken')
 const { generateAccessToken, generateRefreshToken } = require('../utils/generateTeacherTokens.js')
 const generateAccessAndRefreshTokens = async (user) => {
     try {
@@ -8,7 +9,7 @@ const generateAccessAndRefreshTokens = async (user) => {
         const refreshToken = generateRefreshToken(user)
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false })
-        console.log(accessToken, user)
+       
         return { accessToken, refreshToken }
     } catch (error) {
         return res.status(400).send('something went wrong while generating tokens!')
@@ -66,7 +67,7 @@ const teacherLogin = async (req, res) => {
         const teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail })
         if (password === teacherData.password) {
             const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(teacherData)
-            res.status(200).cookie('accessToken', accessToken, { httpOnly: true, secure: true }).cookie('refreshToken', refreshToken, { httpOnly: true, secure: true }).render('teacher_index',{teacherData})
+            res.status(200).cookie('accessToken', accessToken, { httpOnly: true, secure: true }).cookie('refreshToken', refreshToken, { httpOnly: true, secure: true }).redirect('/teacher/')
         }
         else {
             res.send('Invalid Credentials')
@@ -76,7 +77,66 @@ const teacherLogin = async (req, res) => {
     }
 }
 
+const teacherIndex= async (req,res)=>{
+  try {
+    const teacherInfo= await Teacher.findById(req.user._id).select('-password -refreshToken')
+    res.status(201).render('teacher_index', { teacherInfo })
+    
+  } catch (error) {
+    throw error;
+  }
+}
+const teacherLogout = async (req, res) => {
+    try {
+
+        await Teacher.findByIdAndUpdate(req.user._id, { $set: { refreshToken: undefined } }, { new: true }).select('-password')
+        const options = {
+            httpOnly: true,
+            secure: true
+        }
+        return res.status(201).clearCookie("accessToken", options).clearCookie("refreshToken", options).redirect('/teacher-login')
+    } catch (error) {
+        throw error;
+    }
+}
+const refreshAccessToken = async (req, res) => {
+    const oldRefreshToken = req.cookies?.refreshToken
+const destUrl=req.query.destUrl
+
+    try {
+        if (!oldRefreshToken) {
+            res.status(401).redirect('/teacher-login')
+        }
+
+        const verifiedOldToken = jwt.verify(oldRefreshToken, 'mynameisdev')
+        const teacherRefresh = await Teacher.findById(verifiedOldToken?._id)
+
+        if (!teacherRefresh) {
+            res.status(401).send('Invalid Refresh Token!')
+        }
+
+        if (oldRefreshToken !== teacherRefresh?.refreshToken) {
+            res.status(404).redirect('/teacher-login')
+        }
+        const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(teacherRefresh)
+
+        const options = {
+            httpOnly: true,
+            secure: true
+        }
+        
+       
+        res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`${destUrl}`)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+
+}
+
 module.exports = {
     teacherRegister,
-    teacherLogin
+    teacherLogin,
+    teacherIndex,
+    teacherLogout,
+    refreshAccessToken
 }

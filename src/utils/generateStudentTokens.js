@@ -9,7 +9,7 @@ const generateAccessToken =function (user){
         rollnum: user.rollnum,
         schoolname: user.schoolname,
         studentClass: user.class
-    }, SECRET_KEY, { expiresIn: "30m" })
+    }, SECRET_KEY, { expiresIn: "30s" })
 };
 
 module.exports={generateRefreshToken,generateAccessToken};

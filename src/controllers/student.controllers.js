@@ -49,7 +49,7 @@ const studentRegister = async (req, res) => {
                     httpOnly: true,
                     secure: true
                 }
-                return res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/');
+                return res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/student/');
             }
             else {
                 return res.redirect('/student-login');
@@ -86,7 +86,7 @@ const studentLogin = async (req, res) => {
             httpOnly: true,
             secure: true
         }
-        res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/');
+        res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/student/');
 
     } catch (error) {
         console.error(error)

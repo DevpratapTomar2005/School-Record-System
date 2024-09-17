@@ -41,7 +41,8 @@ const teacherSchema=new Schema({
     type:String,
     required:true
    },
-   imagepath:String
+   imagepath:{type:String},
+   refreshToken:{type:String}
    
 });
 const teacher=mongoose.model('Teacher',teacherSchema);

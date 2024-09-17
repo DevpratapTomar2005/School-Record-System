@@ -14,6 +14,11 @@ try {
     req.user=teacher
     next();
 } catch (error) {
+    if(error.name==='TokenExpiredError'){
+        const destUrl=req.originalUrl
+     
+        return res.redirect(`/teacher/refreshtoken?destUrl=${destUrl}`)
+    }
     return  res.status(400).send('Internal Server Error')
     
 }

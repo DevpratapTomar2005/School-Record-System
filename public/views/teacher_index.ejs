@@ -11,11 +11,11 @@
     <div class="main-container">
         <div class="userinfo teach-bg border-teach">
             <div class="info">
-                <h1 class="h1-color-teach"><%= teacherData.firstname.charAt(0).toUpperCase() + teacherData.firstname.slice(1)+ " " + teacherData.lastname.charAt(0).toUpperCase() + teacherData.lastname.slice(1)%></h1>
-                <h3 class="h2-color-teach"><%= teacherData.subject.charAt(0).toUpperCase() + teacherData.subject.slice(1) %></h3>
-                <h3 class="h2-color-teach"><%= teacherData.contactnum %></h3>
-                <h3 class="h2-color-teach"><%= teacherData.emailid %></h3>
-                <h3 class="h2-color-teach"><%= teacherData.schoolname.charAt(0).toUpperCase() + teacherData.schoolname.slice(1) %></h3>
+                <h1 class="h1-color-teach"><%= teacherInfo.firstname.charAt(0).toUpperCase() + teacherInfo.firstname.slice(1)+ " " + teacherInfo.lastname.charAt(0).toUpperCase() + teacherInfo.lastname.slice(1)%></h1>
+                <h3 class="h2-color-teach"><%= teacherInfo.subject.charAt(0).toUpperCase() + teacherInfo.subject.slice(1) %></h3>
+                <h3 class="h2-color-teach"><%= teacherInfo.contactnum %></h3>
+                <h3 class="h2-color-teach"><%= teacherInfo.emailid %></h3>
+                <h3 class="h2-color-teach"><%= teacherInfo.schoolname.charAt(0).toUpperCase() + teacherInfo.schoolname.slice(1) %></h3>
                 <form action="/upload-teacher-profile" method="post" enctype="multipart/form-data">
                     <label for="profileInput" class="btn-teach">Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >

@@ -9,7 +9,7 @@ const generateAccessToken = (user) => {
         email:user.emailid,
         schoolName:user.schoolname,
         subject:user.subject
-     }, 'mynameisdev', { expiresIn: '30m' })
+     }, 'mynameisdev', { expiresIn: '30s' })
 }
 
 module.exports={generateAccessToken,generateRefreshToken};
