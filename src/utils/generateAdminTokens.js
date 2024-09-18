@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken')
 
-const generateRefreshToken = (user) => {
-    return jwt.sign({ _id: user._id }, 'mynameisdev', { expiresIn: '1d' })
+const generateAdminRefreshToken = (user) => {
+    return jwt.sign({ _id: user._id,role:'Admin' }, 'mynameisdev', { expiresIn: '1d' })
 }
-const generateAccessToken = (user) => {
+const generateAdminAccessToken = (user) => {
     return jwt.sign({ 
         _id: user._id,
         email:user.emailid,
-        schoolName:user.schoolname
+        schoolName:user.schoolname,
+        role:'Admin'
      }, 'mynameisdev', { expiresIn: '30m' })
 }
 
-module.exports={generateAccessToken,generateRefreshToken};
+module.exports={generateAdminAccessToken,generateAdminRefreshToken};

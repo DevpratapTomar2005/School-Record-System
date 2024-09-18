@@ -2,11 +2,11 @@
 
 const Teacher = require('../models/teacher.js')
 const jwt=require('jsonwebtoken')
-const { generateAccessToken, generateRefreshToken } = require('../utils/generateTeacherTokens.js')
+const { generateTeacherAccessToken, generateTeacherRefreshToken } = require('../utils/generateTeacherTokens.js')
 const generateAccessAndRefreshTokens = async (user) => {
     try {
-        const accessToken = generateAccessToken(user)
-        const refreshToken = generateRefreshToken(user)
+        const accessToken = generateTeacherAccessToken(user)
+        const refreshToken = generateTeacherRefreshToken(user)
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false })
        

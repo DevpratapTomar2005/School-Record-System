@@ -1,12 +1,12 @@
 
 const Student = require('../models/student.js');
-const { generateAccessToken, generateRefreshToken } = require('../utils/generateStudentTokens.js')
+const { generateStudentAccessToken, generateStudentRefreshToken } = require('../utils/generateStudentTokens.js')
 const jwt = require('jsonwebtoken')
 const generateAccessAndRefreshToken = async (studentId) => {
     try {
         const student = await Student.findById(studentId)
-        const accessToken = generateAccessToken(student);
-        const refreshToken = generateRefreshToken(student);
+        const accessToken = generateStudentAccessToken(student);
+        const refreshToken = generateStudentRefreshToken(student);
 
         student.refreshToken = refreshToken;
         await student.save({ validateBeforeSave: false });

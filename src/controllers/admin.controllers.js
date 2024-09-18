@@ -2,11 +2,11 @@
 
 const  Admin = require('../models/admin.js')
 const jwt=require('jsonwebtoken')
-const { generateAccessToken, generateRefreshToken } = require('../utils/generateAdminTokens.js')
+const { generateAdminAccessToken, generateAdminRefreshToken } = require('../utils/generateAdminTokens.js')
 const generateAccessAndRefreshTokens = async (user) => {
     try {
-        const accessToken = generateAccessToken(user)
-        const refreshToken = generateRefreshToken(user)
+        const accessToken = generateAdminAccessToken(user)
+        const refreshToken = generateAdminRefreshToken(user)
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false })
        

@@ -1,15 +1,16 @@
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'mynameisdev';
-const generateRefreshToken =function (user){
-    return jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: "1d" });
+const generateStudentRefreshToken =function (user){
+    return jwt.sign({ _id: user._id,  role:'Student' }, SECRET_KEY, { expiresIn: "1d" });
 };
-const generateAccessToken =function (user){
+const generateStudentAccessToken =function (user){
     return jwt.sign({
         _id: user._id,
         rollnum: user.rollnum,
         schoolname: user.schoolname,
-        studentClass: user.class
-    }, SECRET_KEY, { expiresIn: "30m" })
+        studentClass: user.class,
+        role:'Student'
+    }, SECRET_KEY, { expiresIn: "3om" })
 };
 
-module.exports={generateRefreshToken,generateAccessToken};
+module.exports={generateStudentRefreshToken,generateStudentAccessToken};

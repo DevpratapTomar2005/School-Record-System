@@ -12,7 +12,9 @@ app.set('views', path.join(__dirname, 'public/views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
-
+//route for redirecting the user to thier respective index pages automatically when user goes on '/' 
+const homeRoutes=require('./src/routes/home.routes.js')
+app.use('/',homeRoutes)
 //register and login page navigation routes 
 
 app.get('/teacher-register', function (req, res) {
