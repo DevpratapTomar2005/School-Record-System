@@ -8,7 +8,7 @@ body{
     background-color: #1D1C1C;
 }
 .main-container{
-    max-width: 90%;
+    width: 90%;
     height: fit-content;
     
     margin:10px auto;
@@ -24,6 +24,7 @@ body{
     padding: 20px 58px;
     border-radius: 18px;
    color: white;
+   
     
 }
 
@@ -75,7 +76,7 @@ border-radius: 50%;
 
 .options{
     max-width: 90%;
-    margin: 30px auto;
+    margin: 25px auto;
    
     display: flex;
     justify-content: space-evenly;
@@ -91,8 +92,8 @@ border-radius: 50%;
 .opt-cards img{
     height: 230px;
     width: 200px;
-    border-radius: 22px;
-    box-shadow: 0px 1px 6px gray;
+    border-radius: 15px;
+    
     
     
 }
@@ -132,9 +133,19 @@ border-radius: 50%;
 }
 .card:hover img{
     
-    border: 2px solid black;
+    border: 2px solid #2E2E2E;
+    box-shadow: 0px 1px 6px gray;
+    filter:  brightness(88%) contrast(110%);
 }
-
+@media only screen and (min-width: 1500px){
+.userinfo{
+    max-width: 1200px;
+    margin: 0px auto;
+}
+.options{
+    max-width: 1200px;
+}
+}
 @media only screen and (max-width: 1200px){
    
     .opt-btn{
@@ -172,6 +183,7 @@ border-radius: 50%;
 .userinfo{
     justify-content: center;
     flex-wrap: wrap-reverse;
+    gap: 20px;
 }
 
 .info h1{
