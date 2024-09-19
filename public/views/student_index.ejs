@@ -10,17 +10,17 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="userinfo std-bg border-std">
+        <div class="userinfo">
             <div class="info">
-                <h1 class="h1-color-std"><%= studentInfo.firstname.charAt(0).toUpperCase() + studentInfo.firstname.slice(1)+ " " + studentInfo.lastname.charAt(0).toUpperCase() + studentInfo.lastname.slice(1)%></h1>
-                <h3 class="h2-color-std">Class: <%= studentInfo.class %></h3>
-                <h3 class="h2-color-std"><%= studentInfo.contactnum %></h3>
-                <h3 class="h2-color-std">Roll No.: <%= studentInfo.rollnum %></h3>
-                <h3 class="h2-color-std"><%= studentInfo.schoolname.charAt(0).toUpperCase() + studentInfo.schoolname.slice(1) %></h3>
+                <h1 ><%= studentInfo.firstname.charAt(0).toUpperCase() + studentInfo.firstname.slice(1)+ " " + studentInfo.lastname.charAt(0).toUpperCase() + studentInfo.lastname.slice(1)%></h1>
+                <h3 >Class: <%= studentInfo.class %></h3>
+                <h3 > <%= studentInfo.contactnum %></h3>
+                <h3 >Roll No.: <%= studentInfo.rollnum %></h3>
+                <h3 ><%= studentInfo.schoolname.charAt(0).toUpperCase() + studentInfo.schoolname.slice(1) %></h3>
                 <form action="/upload-student-profile" method="post" enctype="multipart/form-data">
-                    <label for="profileInput" class="btn-std ">Upload Profile Image</label>
+                    <label for="profileInput" >Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
-                     <button type="submit" id="changePfp" class="btn-std disp-none ">Upload</button>
+                     <button type="submit" id="changePfp" class="disp-none upload-btn ">Upload</button>
                 </form>
                 <script src="/scripts/pfp-upload.js"></script>
             </div>

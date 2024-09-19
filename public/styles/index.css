@@ -4,6 +4,9 @@
     padding: 0;
     font-family: "Roboto", sans-serif;
 }
+body{
+    background-color: #1D1C1C;
+}
 .main-container{
     max-width: 90%;
     height: fit-content;
@@ -13,25 +16,17 @@
 .userinfo{
     max-width:100%;
     height: 50%;
-    
+    background-color: #2E2E2E; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     padding: 20px 58px;
     border-radius: 18px;
-   
+   color: white;
     
 }
-.std-bg{
-    background-color: #cffefe5b;
-}
-.teach-bg{
-    background-color: #FDD8F3;
-}
-.adm-bg{
-    background-color: #E3FF74;
-}
+
 .img-cont {
 height:260px;
 width: 260px;
@@ -42,11 +37,9 @@ border-radius: 50%;
 .img-cont img{
     height: 100%;
     width: 100%;
-    transition: all 1.5s ease-in-out;
+    
 }
-.img-cont img:hover{
-    transform: rotate3d(0,1,0, 360deg);
-}
+
 .info form{
     display: flex;
     gap: 10px;
@@ -55,10 +48,10 @@ border-radius: 50%;
     
     padding: 15px 12px;
     border-radius: 6px;
-    box-shadow: 0px 2px 5px gray;
-    font-weight: bolder;
-    color: white;
     
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    background-color: white;
 }
 .info{
    
@@ -72,11 +65,11 @@ border-radius: 50%;
     color: white;
     border: none;
     width: fit-content;
-    padding: 15px 12px;
+    padding: 15px;
     border-radius: 6px;
-    box-shadow: 0px 2px 5px gray;
     font-weight: bolder;
     cursor: pointer;
+    
 }
 
 

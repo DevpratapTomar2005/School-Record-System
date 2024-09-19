@@ -9,17 +9,17 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="userinfo teach-bg border-teach">
+        <div class="userinfo">
             <div class="info">
-                <h1 class="h1-color-teach"><%= teacherInfo.firstname.charAt(0).toUpperCase() + teacherInfo.firstname.slice(1)+ " " + teacherInfo.lastname.charAt(0).toUpperCase() + teacherInfo.lastname.slice(1)%></h1>
-                <h3 class="h2-color-teach"><%= teacherInfo.subject.charAt(0).toUpperCase() + teacherInfo.subject.slice(1) %></h3>
-                <h3 class="h2-color-teach"><%= teacherInfo.contactnum %></h3>
-                <h3 class="h2-color-teach"><%= teacherInfo.emailid %></h3>
-                <h3 class="h2-color-teach"><%= teacherInfo.schoolname.charAt(0).toUpperCase() + teacherInfo.schoolname.slice(1) %></h3>
+                <h1 ><%= teacherInfo.firstname.charAt(0).toUpperCase() + teacherInfo.firstname.slice(1)+ " " + teacherInfo.lastname.charAt(0).toUpperCase() + teacherInfo.lastname.slice(1)%></h1>
+                <h3 ><%= teacherInfo.subject.charAt(0).toUpperCase() + teacherInfo.subject.slice(1) %></h3>
+                <h3 ><%= teacherInfo.contactnum %></h3>
+                <h3 ><%= teacherInfo.emailid %></h3>
+                <h3 ><%= teacherInfo.schoolname.charAt(0).toUpperCase() + teacherInfo.schoolname.slice(1) %></h3>
                 <form action="/upload-teacher-profile" method="post" enctype="multipart/form-data">
-                    <label for="profileInput" class="btn-teach">Upload Profile Image</label>
+                    <label for="profileInput" >Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
-                     <button type="submit" id="changePfp" class="btn-teach disp-none">Upload</button>
+                     <button type="submit" id="changePfp" class="-none">Upload</button>
                 </form>
                 <script src="/scripts/pfp-upload.js"></script>
             </div>

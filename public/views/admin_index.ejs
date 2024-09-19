@@ -11,18 +11,18 @@
 
 <body>
     <div class="main-container">
-        <div class="userinfo adm-bg border-admin">
+        <div class="userinfo ">
             <div class="info">
-                <h1 class="h1-color-admin"><%= adminInfo.schoolname.charAt(0).toUpperCase() + adminInfo.schoolname.slice(1) %></h1>
+                <h1 ><%= adminInfo.schoolname.charAt(0).toUpperCase() + adminInfo.schoolname.slice(1) %></h1>
 
-                <h3 class="h2-color-admin"><%= adminInfo.contactnum %></h3>
+                <h3 ><%= adminInfo.contactnum %></h3>
                 <h3 class="h2-color-admin"><%= adminInfo.emailid %></h3></h3>
 
 
                 <form action="/upload-teacher-profile" method="post" enctype="multipart/form-data">
                     <label for="profileInput" class="btn-admin">Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
-                     <button  type="submit" id="changePfp" class="btn-admin disp-none">Upload</button>
+                     <button  type="submit" id="changePfp" class=" disp-none">Upload</button>
                 </form>
                 <script src="/scripts/pfp-upload.js"></script>
             </div>
