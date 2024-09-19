@@ -1,18 +1,19 @@
 
 const Student = require('../models/student.js');
-const { generateStudentAccessToken, generateStudentRefreshToken } = require('../utils/generateStudentTokens.js')
+const { generateStudentRefreshToken, generateStudentAccessToken } = require('../utils/generateStudentTokens.js')
 const jwt = require('jsonwebtoken')
 const generateAccessAndRefreshToken = async (studentId) => {
     try {
         const student = await Student.findById(studentId)
+        
         const accessToken = generateStudentAccessToken(student);
         const refreshToken = generateStudentRefreshToken(student);
-
+        // console.log(accessToken,refreshToken)
         student.refreshToken = refreshToken;
         await student.save({ validateBeforeSave: false });
         return { accessToken, refreshToken };
     } catch (error) {
-        res.status(400).send('Some thing went wrong while generating tokens')
+        throw new Error('Some thing went wrong while generating tokens')
     }
 
 }
@@ -78,7 +79,7 @@ const studentLogin = async (req, res) => {
         const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass, password })
 
         if (!studentData) {
-            res.send('Invalid Credentials')
+          return  res.send('Invalid Credentials')
         }
         const { accessToken, refreshToken } = await generateAccessAndRefreshToken(studentData._id)
 
@@ -86,7 +87,7 @@ const studentLogin = async (req, res) => {
             httpOnly: true,
             secure: true
         }
-        res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/student/');
+     return   res.status(200).cookie("accessToken", accessToken, options).cookie('refreshToken', refreshToken, options).redirect('/student/');
 
     } catch (error) {
         console.error(error)

@@ -10,7 +10,7 @@ const generateStudentAccessToken =function (user){
         schoolname: user.schoolname,
         studentClass: user.class,
         role:'Student'
-    }, SECRET_KEY, { expiresIn: "3om" })
+    }, SECRET_KEY, { expiresIn: "30m" })
 };
 
 module.exports={generateStudentRefreshToken,generateStudentAccessToken};
