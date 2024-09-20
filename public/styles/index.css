@@ -86,14 +86,17 @@ border-radius: 50%;
     
 }
 .opt-cards{
+    background-color: #2E2E2E; 
     position: relative;
+    border-radius: 15px;
 }
 
 .opt-cards img{
-    height: 230px;
-    width: 200px;
+    height: 180px;
+    width: 150px;
     border-radius: 15px;
-    
+    filter: invert(1);
+    padding: 15px;
     
     
 }
@@ -112,7 +115,7 @@ border-radius: 50%;
    border-radius: 25px;
     padding: 2px 20px;
     position: absolute;
-  left: 41px;
+  left: 30px;
   bottom: -50px;
    z-index: 10;
    box-shadow: 0px 1px 5px gray;
@@ -134,8 +137,9 @@ border-radius: 50%;
 .card:hover img{
     
     border: 2px solid #2E2E2E;
+ 
     box-shadow: 0px 1px 6px gray;
-    filter:  brightness(88%) contrast(110%);
+    /* filter:  brightness(88%) contrast(110%); */
 }
 @media only screen and (min-width: 1500px){
 .userinfo{
