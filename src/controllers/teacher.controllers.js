@@ -67,10 +67,11 @@ const teacherLogin = async (req, res) => {
     try {
 
         const teacherName = req.body.teachername
+        const schoolname=req.body.schoolname
         const teacherEmail = req.body.teacheremail
         const password = req.body.password
         const teacherFullname = teacherName.split(' ')
-        const teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail })
+        const teacherData = await Teacher.findOne({ firstname: teacherFullname[0].toLowerCase(), lastname: teacherFullname[teacherFullname.length - 1].toLowerCase(), emailid: teacherEmail ,schoolname:schoolname.toLowerCase()})
         if (password === teacherData.password) {
             const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(teacherData)
             res.status(200).cookie('accessToken', accessToken, { httpOnly: true, secure: true }).cookie('refreshToken', refreshToken, { httpOnly: true, secure: true }).redirect('/teacher/')

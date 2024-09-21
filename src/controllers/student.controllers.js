@@ -72,11 +72,11 @@ const studentRegister = async (req, res) => {
 
 const studentLogin = async (req, res) => {
     try {
-
+        const schoolname=req.body.schoolname
         const studentClass = req.body.studentclass
         const rollnum = req.body.rollnum
         const password = req.body.password
-        const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass, password })
+        const studentData = await Student.findOne({ rollnum: rollnum, class: studentClass, schoolname:schoolname.toLowerCase() ,password })
 
         if (!studentData) {
           return  res.send('Invalid Credentials')

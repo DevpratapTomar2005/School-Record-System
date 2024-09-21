@@ -72,11 +72,24 @@ border-radius: 50%;
     cursor: pointer;
     
 }
-
-
+.info a{
+    text-decoration: none;
+    color: white;
+    border:2px solid white;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+    
+}
+.info a:hover{
+    color:black;
+    background-color: rgb(255, 255, 255);
+}
 .options{
     max-width: 90%;
-    margin: 25px auto;
+    margin: 25px auto 0px auto;
    
     display: flex;
     justify-content: space-evenly;
@@ -138,7 +151,7 @@ border-radius: 50%;
 }
 .card:hover img{
     
-    border: 2px solid #2E2E2E;
+    outline: 2px solid #2E2E2E;
  
     box-shadow: 0px 1px 6px gray;
  
