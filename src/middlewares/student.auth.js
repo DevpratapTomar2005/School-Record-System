@@ -16,6 +16,7 @@ const verifyStudent= async (req,res,next)=>{
           return res.status(401).send("Invalid Token!!")
        }
        req.user=student;
+       
        next();
  } catch (error) {
     

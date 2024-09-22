@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/schoolManagement');
 const cookieParser=require('cookie-parser')
+
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));

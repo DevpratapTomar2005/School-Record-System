@@ -17,7 +17,7 @@
                 <h3 > <%= studentInfo.contactnum %></h3>
                 <h3 >Roll No.: <%= studentInfo.rollnum %></h3>
                 <h3 ><%= studentInfo.schoolname.charAt(0).toUpperCase() + studentInfo.schoolname.slice(1) %></h3>
-                <form action="/upload-student-profile" method="post" enctype="multipart/form-data">
+                <form action="/student/upload-student-profile" method="post" enctype="multipart/form-data">
                     <label for="profileInput" >Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
                      <button type="submit" id="changePfp" class="disp-none upload-btn ">Upload</button>

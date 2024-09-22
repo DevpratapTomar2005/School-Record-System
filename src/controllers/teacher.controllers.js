@@ -12,7 +12,7 @@ const generateAccessAndRefreshTokens = async (user) => {
        
         return { accessToken, refreshToken }
     } catch (error) {
-        return res.status(400).send('something went wrong while generating tokens!')
+        throw new Error("Some thing went wrong while generating tokens");
     }
 }
 const teacherRegister = async (req, res) => {
@@ -44,7 +44,7 @@ const teacherRegister = async (req, res) => {
                     imagepath:imagePath
                 });
 
-                const { accessToken, refreshToken } = await generateAccessAndRefreshToken(teacherData._id)
+                const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(teacherData)
 
                 const options = {
                     httpOnly: true,
@@ -142,11 +142,26 @@ const destUrl=req.query.destUrl
     }
 
 }
-
+const updateProfilePath = async (req, res) => {
+    try {
+      
+      const imagePath=req.file.path
+      const newImagePath=imagePath.replace('public','')
+      await Teacher.findByIdAndUpdate(
+        req.user._id,
+        { $set: { imagepath: newImagePath } },
+        { new: true }
+      ).select("-password -refreshToken");
+      return res.status(201).redirect("/teacher/");
+    } catch (error) {
+      throw new Error("Failed to upload profile!!");
+    }
+  };
 module.exports = {
     teacherRegister,
     teacherLogin,
     teacherIndex,
     teacherLogout,
-    refreshAccessToken
+    refreshAccessToken,
+    updateProfilePath
 }

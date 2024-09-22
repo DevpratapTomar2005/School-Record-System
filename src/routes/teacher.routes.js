@@ -1,13 +1,19 @@
-const express = require('express')
+const express = require("express");
 
-const router=express.Router()
-const teacherControllers=require('../controllers/teacher.controllers.js')
-const { verifyTeacher } = require('../middlewares/teacher.auth.js')
+const router = express.Router();
+const teacherControllers = require("../controllers/teacher.controllers.js");
+const { verifyTeacher } = require("../middlewares/teacher.auth.js");
+const {upload} = require("../middlewares/multer.uploadpfp.js");
 
-
-router.get("/",verifyTeacher ,teacherControllers.teacherIndex)
-router.post("/register", teacherControllers.teacherRegister)
-router.post("/login", teacherControllers.teacherLogin)
-router.get('/logout',verifyTeacher,teacherControllers.teacherLogout)
-router.get('/refreshToken',teacherControllers.refreshAccessToken)
-module.exports=router;
+router.get("/", verifyTeacher, teacherControllers.teacherIndex);
+router.post("/register", teacherControllers.teacherRegister);
+router.post("/login", teacherControllers.teacherLogin);
+router.get("/logout", verifyTeacher, teacherControllers.teacherLogout);
+router.get("/refreshToken", teacherControllers.refreshAccessToken);
+router.post(
+  "/upload-teacher-profile",
+  verifyTeacher,
+  upload.single('userProfile'),
+  teacherControllers.updateProfilePath
+);
+module.exports = router;

@@ -16,7 +16,7 @@
                 <h3 ><%= teacherInfo.contactnum %></h3>
                 <h3 ><%= teacherInfo.emailid %></h3>
                 <h3 ><%= teacherInfo.schoolname.charAt(0).toUpperCase() + teacherInfo.schoolname.slice(1) %></h3>
-                <form action="/upload-teacher-profile" method="post" enctype="multipart/form-data">
+                <form action="/teacher/upload-teacher-profile" method="post" enctype="multipart/form-data">
                     <label for="profileInput" >Upload Profile Image</label>
                     <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
                      <button type="submit" id="changePfp" class="upload-btn disp-none">Upload</button>
