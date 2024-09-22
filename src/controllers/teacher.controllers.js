@@ -25,6 +25,8 @@ const teacherRegister = async (req, res) => {
     const password = req.body.password;
     const confirmPassword = req.body.confirmpassword;
     const teacherSubject = req.body.teachersubject;
+     const imagePath="/images/userimg.png";
+     
     try {
         if (password === confirmPassword) {
             const teacherExists = await Teacher.findOne({ firstname, lastname, emailid: teacherEmail, schoolname, subject: teacherSubject })
@@ -38,10 +40,11 @@ const teacherRegister = async (req, res) => {
                     schoolname: schoolname.toLowerCase(),
                     gender: gender,
                     password: password,
-                    subject: teacherSubject.toLowerCase()
+                    subject: teacherSubject.toLowerCase(),
+                    imagepath:imagePath
                 });
 
-                const { accessToken, refreshToken } = await generateAccessAndRefreshToken(studentData._id)
+                const { accessToken, refreshToken } = await generateAccessAndRefreshToken(teacherData._id)
 
                 const options = {
                     httpOnly: true,

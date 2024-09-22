@@ -8,7 +8,7 @@ const generateAccessAndRefreshToken = async (studentId) => {
         
         const accessToken = generateStudentAccessToken(student);
         const refreshToken = generateStudentRefreshToken(student);
-        // console.log(accessToken,refreshToken)
+        
         student.refreshToken = refreshToken;
         await student.save({ validateBeforeSave: false });
         return { accessToken, refreshToken };
@@ -30,6 +30,7 @@ const studentRegister = async (req, res) => {
         const password = req.body.password;
         const confirmPassword = req.body.confirmpassword;
         const studentClass = req.body.studentclass;
+        const imagePath="/images/userimg.png"
         if (password === confirmPassword) {
 
             const studentExists = await Student.findOne({ rollnum, schoolname: schoolname.toLowerCase(), class: studentClass });
@@ -42,7 +43,8 @@ const studentRegister = async (req, res) => {
                     schoolname: schoolname.toLowerCase(),
                     gender,
                     password,
-                    class: studentClass
+                    class: studentClass,
+                    imagepath:imagePath
                 });
                 const { accessToken, refreshToken } = await generateAccessAndRefreshToken(studentData._id)
 

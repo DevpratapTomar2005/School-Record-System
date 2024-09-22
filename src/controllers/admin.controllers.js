@@ -22,7 +22,7 @@ const adminRegister= async (req,res)=>{
         const schoolEmail = req.body.schoolemail;
         const phonenumber = req.body.phonenumber;
         const schoolname = req.body.schoolname;
-
+        const imagePath="/images/userimg.png";
         const password = req.body.password;
         const confirmPassword = req.body.confirmpassword;
         if (password === confirmPassword) {
@@ -34,8 +34,8 @@ const adminRegister= async (req,res)=>{
                     emailid: schoolEmail,
                     contactnum: phonenumber,
                     schoolname: schoolname.toLowerCase(),
-                    password: password
-    
+                    password: password,
+                    imagepath:imagePath
                 })
                 const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(adminData)
 
