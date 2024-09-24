@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="../styles/mark_attendence.css">
+</head>
+<body>
+    <div class="mark-cont">
+        <form action="" method="post">
+            <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
+            <input type="number" name="studentRollNum" id="studentRollNum" required placeholder="Roll No.">
+            <select name="attendence" id="attendence" required >
+                <option value="Absent">Absent</option>
+                <option value="Present">Present</option>
+            </select>
+            <button type="submit" class="sbmt-btn">Mark Attendence</button>
+        </form>
+    </div>
+</body>
+</html>

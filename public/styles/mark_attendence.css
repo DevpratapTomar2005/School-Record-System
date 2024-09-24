@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+body{
+    background-color: #1D1C1C;
+}
+
+.mark-cont{
+    background-color: #2E2E2E; 
+    padding: 20px;
+    width: 50%;
+    min-width: 590px;
+    margin: 20px auto;
+    border-radius: 6px;
+    
+}
+.mark-cont form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mark-cont input{
+    height: 40px;
+    background-color: #4e4c4c5a;
+    border: none;
+    border-radius: 6px;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    width: 20%;
+    margin: 0px 7px;
+   
+}
+
+.mark-cont input:focus{
+        outline: 3px solid #4d4d4d;
+}
+.mark-cont select {
+    appearance: none;
+    height: 40px;
+    background-color: #4e4c4c5a;
+    border: none;
+    border-radius: 6px;
+    padding: 0px 7px;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    width: 14%;
+    background-image: url(../images/arrow-down-01-stroke-rounded.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    margin: 0px 7px;
+}
+.mark-cont select:focus{
+    outline: 3px solid #4d4d4d;
+}
+
+.mark-cont select option{
+    background-color: #4d4d4d;
+}
+.sbmt-btn{
+    width: 15%;
+    
+    padding:4px 10px;
+    
+    border-radius: 5px;
+    border: none;
+    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 50px;
+}
