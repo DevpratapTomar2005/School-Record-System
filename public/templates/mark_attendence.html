@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../styles/mark_attendence.css">
 </head>
 <body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="">Home</a>
+            <a href="">View Attendence</a>
+            <a href="">Give Homework</a>
+            <a href="">Give Testscores</a>
+        </div>
+    </div>
     <div class="mark-cont">
         <form action="" method="post">
             <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
@@ -17,6 +25,20 @@
             </select>
             <button type="submit" class="sbmt-btn">Mark Attendence</button>
         </form>
+    </div>
+    <div class="updated-attendence-table">
+        <table>
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Roll No.</th>
+                <th>Email Id</th>
+                <th>Class</th>
+                <th>Date</th>
+                <th>Attendence</th>
+            </thead>
+            
+        </table>
     </div>
 </body>
 </html>

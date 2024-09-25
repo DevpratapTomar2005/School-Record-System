@@ -7,13 +7,32 @@
 body{
     background-color: #1D1C1C;
 }
+.nav{
+    background-color: #2E2E2E; 
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0px;
+}
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 5px 0px;
+    transition: all 0.07s ;
+}
+.nav-links a:hover{
+    border-bottom: 2px solid white;
 
+}
 .mark-cont{
     background-color: #2E2E2E; 
     padding: 20px;
     width: 50%;
     min-width: 590px;
-    margin: 20px auto;
+    margin: 40px auto;
     border-radius: 6px;
     
 }
