@@ -10,13 +10,14 @@
     <div class="nav">
         <div class="nav-links">
             <a href="">Home</a>
+            <a href="/teacher/mark-attendence">Mark Attendence</a>
             <a href="">View Attendence</a>
             <a href="">Give Homework</a>
             <a href="">Give Testscores</a>
         </div>
     </div>
     <div class="mark-cont">
-        <form action="" method="post">
+        <form id="attendenceForm">
             <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
             <input type="number" name="studentRollNum" id="studentRollNum" required placeholder="Roll No.">
             <select name="attendence" id="attendence" required >
@@ -50,5 +51,6 @@
             </tr>
         </table>
     </div>
+    <script src="/scripts/mark_attendence.js"></script>
 </body>
 </html>

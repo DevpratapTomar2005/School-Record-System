@@ -114,8 +114,8 @@ font-weight: 400;
 outline: none;
 
 border-radius: 50%;
-height: 30px;
-width: 30px;
+height: 22px;
+width: 53px;
 cursor: pointer;
 }
 .gender-field input[type=radio]:focus{
@@ -131,11 +131,18 @@ cursor: pointer;
 }
 .row2 input{
     padding: 0px 5px;
-    width: 28%;
+    width: 28.5%;
+    min-width: 55px;
+    font-size: 14px;
     
 }
 .row2 input:last-child{
     width: 15%;
+    font-size: 1em;
+}
+.row2 input:first-child{
+    padding-left: 10px;
+    box-sizing: border-box;
 }
 .row3{
     width: 100%;

@@ -45,12 +45,12 @@ const studentSchema = new Schema({
         required: true
     },
     imagepath: {type:String},
-    attendence: {
-        type: Number,
-    },
-    lastmarked: {type:Date},
+   
+    lastmarked: {type:String},
     testscore: {type:Number},
-    refreshToken: {type:String}
+    refreshToken: {type:String},
+    presentdays:{type:Number, default:0},
+    absentdays:{type:Number, default:0}
 });
 
 

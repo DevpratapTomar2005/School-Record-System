@@ -16,4 +16,6 @@ router.post(
   upload.single('userProfile'),
   teacherControllers.updateProfilePath
 );
+router.get('/mark-attendence', verifyTeacher, teacherControllers.markAttendencePage)
+router.post('/mark-attendence', verifyTeacher, teacherControllers.markAttendence)
 module.exports = router;

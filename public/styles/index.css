@@ -142,6 +142,10 @@ border-radius: 50%;
   
   
 }
+.opt-btn a{
+    text-decoration: none;
+    color: white;
+}
 .card:hover .opt-btn{
     display: inline-block;
     
