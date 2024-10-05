@@ -123,6 +123,12 @@ body{
     font-size: 15px;
     text-align: center;
 }
+#studentHomeworkClass{
+    width: 10%;
+}
+#homework{
+    width: 40%;
+}
 
 @media only screen and (max-width: 950px){
     .updated-attendence-table table{
@@ -158,5 +164,8 @@ body{
         }
         .updated-attendence-table td{
             font-size: 11px;
+        }
+        #studentHomeworkClass{
+            width: 15%;
         }
     }

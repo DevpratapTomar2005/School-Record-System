@@ -195,6 +195,22 @@ const updateProfilePath = async (req, res) => {
   }
    
   }
+
+const giveHomeworkPage= (req,res)=>{
+    res.status(201).sendFile(path.join(__dirname ,'../../public/templates', 'give_homework.html'));
+}
+const uploadHomework= async (req,res)=>{
+    const homeworkData=req.body
+   
+    const classStudents= await Student.find({class:homeworkData.studentClass, schoolname:req.user.schoolname}).select('-password -refreshToken -gender -contactnum -imagepath -absentdays -presentdays -lastmarked')
+  const date= new Date().toLocaleDateString('en-IN')
+    classStudents.forEach(async (e) => {
+       e.homeworks.push({subject:req.user.subject, teachername:req.user.firstname+' '+req.user.lastname, date: date, task: homeworkData.homework})
+       await e.save({validateBeforeSave:false})
+    });
+    
+     res.status(201).json({subject: req.user.subject, date: date })
+}
 module.exports = {
     teacherRegister,
     teacherLogin,
@@ -203,5 +219,7 @@ module.exports = {
     refreshAccessToken,
     updateProfilePath,
     markAttendencePage,
-    markAttendence
+    markAttendence,
+    giveHomeworkPage,
+    uploadHomework
 }

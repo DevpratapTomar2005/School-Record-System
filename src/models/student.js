@@ -1,3 +1,4 @@
+const { type } = require("express/lib/response");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -50,7 +51,13 @@ const studentSchema = new Schema({
     testscore: {type:Number},
     refreshToken: {type:String},
     presentdays:{type:Number, default:0},
-    absentdays:{type:Number, default:0}
+    absentdays:{type:Number, default:0},
+    homeworks:[{
+        subject:{type:String},
+        teachername:{type:String},
+        date:{type:String},
+        task:{type:String}
+    }]
 });
 
 

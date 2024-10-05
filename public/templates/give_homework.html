@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="../styles/options.css">
+    <link rel="stylesheet" href="../styles/utility.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="/teacher/">Home</a>
+            <a href="/teacher/mark-attendence">Mark Attendence</a>
+            <a href="">View Attendence</a>
+            <a href="">Give Homework</a>
+            <a href="">Give Testscores</a>
+        </div>
+    </div>
+    <div class="mark-cont">
+        <form id="homeworkForm">
+            <input type="number" name="studentClass" id="studentHomeworkClass" required placeholder="Class" min="1" max="12">
+            <input type="text" name="homework" id="homework" required placeholder="Homework Description">
+            <button type="submit" class="sbmt-btn">Upload Homework</button>
+        </form>
+        
+    </div>
+    
+    <script src="/scripts/give_homework.js"></script>
+   
+</body>
+</html>

@@ -18,4 +18,6 @@ router.post(
 );
 router.get('/mark-attendence', verifyTeacher, teacherControllers.markAttendencePage)
 router.post('/mark-attendence', verifyTeacher, teacherControllers.markAttendence)
+router.get('/give-homework', verifyTeacher, teacherControllers.giveHomeworkPage)
+router.post('/give-homework', verifyTeacher, teacherControllers.uploadHomework)
 module.exports = router;

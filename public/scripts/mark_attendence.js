@@ -20,7 +20,7 @@ const updatedAttendence= await fetch('/teacher/mark-attendence',{
     body:JSON.stringify(studentData)
 })
 const updatedStudent= await updatedAttendence.json()
-console.log(updatedStudent)
+
 
 const attendenceTable=document.querySelector('.updated-attendence-table').firstElementChild
 const row=document.createElement('tr')
