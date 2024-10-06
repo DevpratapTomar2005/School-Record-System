@@ -99,29 +99,37 @@ body{
     cursor: pointer;
     margin-left: 50px;
 }
-.updated-attendence-table table{
+.updated-attendence-table table, .updated-homework-table table{
     border: 2px solid whitesmoke;
     border-collapse: collapse;
    width: 70%;
    margin: 70px auto;
 
 }
-.updated-attendence-table th{
+.updated-attendence-table th,.updated-homework-table th{
    padding: 14px;
    background-color: whitesmoke;
   border-right: 2px solid #1D1C1C;
   color: #1D1C1C;
   font-weight: bold;
+  
 }
-.updated-attendence-table th:last-child{
+.updated-attendence-table th:last-child, .updated-homework-table th:last-child{
     border-right: 2px solid whitesmoke;
 }
-.updated-attendence-table td{
+.updated-attendence-table td, .updated-homework-table td{
    padding: 7px;
     border: 1px solid whitesmoke;
     color: rgb(228, 221, 221);
     font-size: 15px;
     text-align: center;
+}
+.updated-homework-table td:nth-child(3){
+    max-width:calc(100vw - 400px);
+    
+   text-align: left;
+    word-break: break-all;
+   
 }
 #studentHomeworkClass{
     width: 10%;
@@ -131,13 +139,13 @@ body{
 }
 
 @media only screen and (max-width: 950px){
-    .updated-attendence-table table{
+    .updated-attendence-table table,.updated-homework-table table{
         width: 90%;
     }
-    .updated-attendence-table th{
+    .updated-attendence-table th,  .updated-homework-table th{
         font-size: 17px;
     }
-    .updated-attendence-table td{
+    .updated-attendence-table td,  .updated-homework-table td{
         font-size: 16px;
     }
     }
@@ -158,13 +166,14 @@ body{
             font-size: 11px;
             text-align: center;
         }
-        .updated-attendence-table th{
+        .updated-attendence-table th, .updated-homework-table th{
             
-            font-size: 13px;
+            font-size: 10px;
         }
-        .updated-attendence-table td{
-            font-size: 11px;
+        .updated-attendence-table td, .updated-homework-table td{
+            font-size: 10px;
         }
+       
         #studentHomeworkClass{
             width: 15%;
         }

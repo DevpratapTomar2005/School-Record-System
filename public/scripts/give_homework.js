@@ -16,6 +16,16 @@ homeworkForm.addEventListener('submit',async (e)=>{
      body:JSON.stringify(homeworkData)
     });
     const response= await giveHomework.json()
-    console.log(response)
+   
+    const homeworkTable=document.querySelector('.updated-homework-table').firstElementChild
+const row=document.createElement('tr')
+row.innerHTML=`<td>${studentClass}</td>
+<td>${response.subject}</td>
+<td>${homework}</td>
+<td>${response.date}</td>`
 
+homeworkTable.appendChild(row)
+if(document.querySelector('.updated-homework-table').classList.contains('disp-none')){
+    document.querySelector('.updated-homework-table').classList.remove('disp-none')
+}
 })
