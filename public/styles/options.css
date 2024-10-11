@@ -58,6 +58,34 @@ body{
     margin: 0px 7px;
    
 }
+.mark-cont2{
+    background-color: #2E2E2E; 
+    padding: 10px;
+   width: 270px;
+    
+    margin: 40px auto;
+    border-radius: 6px;
+    
+}
+.mark-cont2 form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mark-cont2 input{
+    height: 40px;
+    background-color: #4e4c4c5a;
+    border: none;
+    border-radius: 6px;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    
+ 
+   
+}
 
 .mark-cont input:focus{
         outline: 3px solid #4d4d4d;
@@ -132,10 +160,16 @@ body{
    
 }
 #studentHomeworkClass{
-    width: 10%;
+    width: 50%;
+}
+#studentHomeworkClass2{
+    width: 20%;
 }
 #homework{
     width: 40%;
+}
+.test-sbmt-btn{
+    width: 30%;
 }
 
 @media only screen and (max-width: 950px){
@@ -176,5 +210,8 @@ body{
        
         #studentHomeworkClass{
             width: 15%;
+        }
+        .test-sbmt-btn{
+            width: 25%;
         }
     }
