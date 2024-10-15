@@ -127,14 +127,14 @@ body{
     cursor: pointer;
     margin-left: 50px;
 }
-.updated-attendence-table table, .updated-homework-table table{
+.updated-attendence-table table, .updated-homework-table table, .upload-marks-table table{
     border: 2px solid whitesmoke;
     border-collapse: collapse;
    width: 70%;
    margin: 70px auto;
 
 }
-.updated-attendence-table th,.updated-homework-table th{
+.updated-attendence-table th,.updated-homework-table th, .upload-marks-table th{
    padding: 14px;
    background-color: whitesmoke;
   border-right: 2px solid #1D1C1C;
@@ -142,10 +142,10 @@ body{
   font-weight: bold;
   
 }
-.updated-attendence-table th:last-child, .updated-homework-table th:last-child{
+.updated-attendence-table th:last-child, .updated-homework-table th:last-child, .upload-marks-table th:last-child{
     border-right: 2px solid whitesmoke;
 }
-.updated-attendence-table td, .updated-homework-table td{
+.updated-attendence-table td, .updated-homework-table td, .upload-marks-table td{
    padding: 7px;
     border: 1px solid whitesmoke;
     color: rgb(228, 221, 221);
@@ -171,16 +171,53 @@ body{
 .test-sbmt-btn{
     width: 30%;
 }
-
+.upload-marks-table td select{
+    appearance: none;
+    border: none;
+    background-color: #1D1C1C;
+    padding: 0px 7px;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    width: 100%;
+    background-image: url(../images/arrow-down-01-stroke-rounded.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    
+}
+.upload-marks-table td select:focus{
+outline: none;
+}
+.upload-marks-table table input{
+    
+    background-color: #1D1C1C;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+}
+.upload-marks-table table input:focus{
+    outline: none;
+}
 @media only screen and (max-width: 950px){
-    .updated-attendence-table table,.updated-homework-table table{
+    .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
         width: 90%;
     }
-    .updated-attendence-table th,  .updated-homework-table th{
+    .updated-attendence-table th,  .updated-homework-table th,.upload-marks-table th{
         font-size: 17px;
     }
-    .updated-attendence-table td,  .updated-homework-table td{
+    .updated-attendence-table td,  .updated-homework-table td,.upload-marks-table td{
         font-size: 16px;
+    }
+    .upload-marks-table td select{
+       
+        padding: 0;
+        background-image: none;
+        
+        text-align:center ;
+        
     }
     }
     @media only screen and (max-width: 600px){
@@ -200,11 +237,11 @@ body{
             font-size: 11px;
             text-align: center;
         }
-        .updated-attendence-table th, .updated-homework-table th{
+        .updated-attendence-table th, .updated-homework-table th, .upload-marks-table th{
             
             font-size: 10px;
         }
-        .updated-attendence-table td, .updated-homework-table td{
+        .updated-attendence-table td, .updated-homework-table td, .upload-marks-table td{
             font-size: 10px;
         }
        
@@ -213,5 +250,20 @@ body{
         }
         .test-sbmt-btn{
             width: 25%;
+        }
+        .upload-marks-table td:nth-child(6){
+            padding: 0;
+
+        }
+        .upload-marks-table td select{
+            font-size: 10px;
+           
+            
+        }
+        .upload-marks-table td select option{
+            font-size: 12px;
+        }
+        .upload-marks-table td input{
+            font-size: 10px;
         }
     }
