@@ -211,6 +211,16 @@ const uploadHomework= async (req,res)=>{
     
      res.status(201).json({subject: req.user.subject, date: date })
 }
+const giveTestscorePage= (req,res)=>{
+    res.status(201).sendFile(path.join(__dirname ,'../../public/templates', 'give_testscores.html'));
+}
+const giveStudents= async (req,res)=>{
+    
+const studentData=req.body
+const students=await Student.find({class:studentData.studentClass, schoolname:req.user.schoolname}).select('-password -refreshToken')
+
+res.status(201).json({subject: req.user.subject, students })
+}
 module.exports = {
     teacherRegister,
     teacherLogin,
@@ -221,5 +231,7 @@ module.exports = {
     markAttendencePage,
     markAttendence,
     giveHomeworkPage,
-    uploadHomework
+    uploadHomework,
+    giveStudents,
+    giveTestscorePage
 }

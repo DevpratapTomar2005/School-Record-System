@@ -18,17 +18,17 @@
         </div>
     </div>
     <div class="mark-cont2">
-        <form id="homeworkForm">
-            <input type="number" name="studentClass" id="studentHomeworkClass2" required placeholder="Class" min="1" max="12">
+        <form id="findStudentsForm">
+            <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
             
             <button type="submit" class="sbmt-btn test-sbmt-btn">View Students</button>
         </form>
-        
+        <script src="../scripts/give_testscores.js"></script>
     </div>
-    <div class="upload-marks-table">
+    <div class="upload-marks-table disp-none">
         <form action="">
 
-            <table>
+            <table id="marksTable">
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -39,22 +39,7 @@
                     <th>Total Marks</th>
                     <th>Obtained Marks</th>
                 </tr>
-                <tr>
-                    <td>Dev</td>
-                    <td>tomar</td>
-                    <td>23</td>
-                    <td>10</td>
-                    <td>maths</td>
-                    <td><select name="examNameSelect" id="examNameSelect" required >
-                    <option value="Unit Test-1">Unit Test-1</option>
-                    <option value="Unit Test-2">Unit Test-2</option>
-                    <option value="Term-1">Term-1</option>
-                    <option value="Unit Test-3">Unit Test-3</option>
-                    <option value="Unit Test-4">Unit Test-4</option>
-                    <option value="Term-2">Term-2</option></select></td>
-                    <td><input type="number" name="totalMarks" max="100" min="1" ></td>
-                    <td><input type="number" name="totalMarks" max="100" min="1" ></td>
-                </tr>
+              
             </table>
         </form>
     </div>

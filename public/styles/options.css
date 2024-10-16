@@ -87,7 +87,7 @@ body{
    
 }
 
-.mark-cont input:focus{
+.mark-cont input:focus, .mark-cont2 input:focus{
         outline: 3px solid #4d4d4d;
 }
 .mark-cont select {
@@ -106,7 +106,7 @@ body{
     background-position: right;
     margin: 0px 7px;
 }
-.mark-cont select:focus{
+.mark-cont select:focus,.mark-cont2 select:focus{
     outline: 3px solid #4d4d4d;
 }
 
