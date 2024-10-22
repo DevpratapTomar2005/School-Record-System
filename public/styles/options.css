@@ -131,7 +131,7 @@ body{
     border: 2px solid whitesmoke;
     border-collapse: collapse;
    width: 70%;
-   margin: 70px auto;
+   margin: 30px auto;
 
 }
 .updated-attendence-table th,.updated-homework-table th, .upload-marks-table th{
@@ -171,6 +171,12 @@ body{
 .test-sbmt-btn{
     width: 30%;
 }
+.upload-marks-table form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .upload-marks-table td select{
     appearance: none;
     border: none;
@@ -200,6 +206,17 @@ outline: none;
 }
 .upload-marks-table table input:focus{
     outline: none;
+}
+.submit-marks-button {
+    background: linear-gradient(68deg, rgba(88, 245, 255, 1) 0%, rgba(194, 119, 211, 1) 54%, rgba(255, 137, 111, 1) 100%);
+    color: white;
+    border: none;
+    width: 100px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
