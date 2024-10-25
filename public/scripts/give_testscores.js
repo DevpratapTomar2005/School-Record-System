@@ -19,7 +19,7 @@ findStudentForm.addEventListener('submit',async (e)=>{
         document.querySelector('.upload-marks-table').classList.remove('disp-none')
 
     }
-    const marksTable=document.querySelector('#marksTable')
+    const marksTable=document.querySelector('#marksTable tbody')
     responseStudents.students.forEach(e => {
         const row=document.createElement('tr')
 row.innerHTML=`<td>${e.firstname}</td>
@@ -27,15 +27,36 @@ row.innerHTML=`<td>${e.firstname}</td>
 <td>${e.rollnum}</td>
 <td>${e.class}</td>
 <td>${responseStudents.subject}</td>
-<td><select name="examNameSelect" id="examNameSelect" required >
+<td><select name="examNameSelect" id="examNameSelect" class="inputTable" required >
                     <option value="Unit Test-1">Unit Test-1</option>
                     <option value="Unit Test-2">Unit Test-2</option>
                     <option value="Term-1">Term-1</option>
                     <option value="Unit Test-3">Unit Test-3</option>
                     <option value="Unit Test-4">Unit Test-4</option>
                     <option value="Term-2">Term-2</option></select></td>
-<td><input type="number" name="totalMarks" max="100" min="1" ></td>
- <td><input type="number" name="totalMarks" max="100" min="1" ></td>`
+<td><input type="number" class="inputTable" name="totalMarks" max="100" min="1"  required></td>
+ <td><input type="number" class="inputTable" name="totalMarks" max="100" min="1"  required></td>`
 marksTable.appendChild(row)
 });
+})
+const marksForm=document.getElementById('marksForm')
+marksForm.addEventListener('submit', async (e)=> {
+    e.preventDefault(); 
+
+    const rows = Array.from(document.querySelectorAll('#marksTable tbody tr'));
+    const data = rows.map(row => {
+        const inputs = row.querySelectorAll('.inputTable');
+        const studentDetails=row.getElementsByTagName('td')
+        return {
+            firstname:studentDetails[0].innerText,
+            lastname:studentDetails[1].innerText,
+            rollnum:studentDetails[2].innerText,
+            studentClass:studentDetails[3].innerText,
+            subject:studentDetails[4].innerText,
+            examName:inputs[0].value,
+            totalMarks:inputs[1].value,
+            obtainedMarks:inputs[2].value
+        };
+    });
+    console.log(data)
 })
