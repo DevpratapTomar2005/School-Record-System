@@ -48,7 +48,13 @@ const studentSchema = new Schema({
     imagepath: {type:String},
    
     lastmarked: {type:String},
-    testscore: {type:Number},
+    testscore: [{
+        subject:{type:String},
+        examName:{type:String},
+        maxMarks:{type:Number},
+        obtainedMarks:{type:Number},
+        markedDate:{type:String}
+    }],
     refreshToken: {type:String},
     presentdays:{type:Number, default:0},
     absentdays:{type:Number, default:0},

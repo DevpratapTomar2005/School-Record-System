@@ -47,6 +47,8 @@ marksForm.addEventListener('submit', async (e)=> {
     const data = rows.map(row => {
         const inputs = row.querySelectorAll('.inputTable');
         const studentDetails=row.getElementsByTagName('td')
+        const date = new Date()
+        const newDate = date.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric'})
         return {
             firstname:studentDetails[0].innerText,
             lastname:studentDetails[1].innerText,
@@ -54,9 +56,11 @@ marksForm.addEventListener('submit', async (e)=> {
             studentClass:studentDetails[3].innerText,
             subject:studentDetails[4].innerText,
             examName:inputs[0].value,
-            totalMarks:inputs[1].value,
-            obtainedMarks:inputs[2].value
+            maxMarks:inputs[1].value,
+            obtainedMarks:inputs[2].value,
+           markedDate:newDate
         };
     });
     console.log(data)
+
 })
