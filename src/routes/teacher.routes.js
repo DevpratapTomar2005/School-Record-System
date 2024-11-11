@@ -22,4 +22,5 @@ router.get('/give-homework', verifyTeacher, teacherControllers.giveHomeworkPage)
 router.post('/give-homework', verifyTeacher, teacherControllers.uploadHomework)
 router.post('/get-students', verifyTeacher, teacherControllers.giveStudents)
 router.get('/upload-testscores', verifyTeacher, teacherControllers.giveTestscorePage)
+router.post('/mark-testscores',verifyTeacher,teacherControllers.markTestscores)
 module.exports = router;

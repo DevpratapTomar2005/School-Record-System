@@ -61,6 +61,14 @@ marksForm.addEventListener('submit', async (e)=> {
            markedDate:newDate
         };
     });
-    console.log(data)
+    
+
+    const saveMarks= await fetch('/teacher/mark-testscores',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({data})
+    })
 
 })
