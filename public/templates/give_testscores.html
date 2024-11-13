@@ -14,7 +14,7 @@
             <a href="/teacher/mark-attendence">Mark Attendence</a>
             <a href="">View Attendence</a>
             <a href="/teacher/give-homework">Give Homework</a>
-            <a href="">Give Testscores</a>
+            <a href="/teacher/upload-testscores">Give Testscores</a>
         </div>
     </div>
     <div class="mark-cont2">
@@ -50,7 +50,16 @@
             <button type="submit" class="submit-marks-button">Save</button>
         </form>
     </div>
-    
+    <div class="success-popup disp-none">
+        <div class="popup-strip">
+            
+        </div>
+        <div class="cross-img">
+           <a href="/teacher/upload-testscores"><img src="../images/cross.svg" alt="close img"></a> 
+        </div>
+        <img src="../images/successimg.svg" alt="success img">
+        <h2 id="popup-h2"></h2>
+    </div>
   
     <script src="../scripts/give_testscores.js"></script>
 </body>

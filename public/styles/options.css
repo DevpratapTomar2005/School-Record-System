@@ -176,6 +176,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
 .upload-marks-table td select{
     appearance: none;
@@ -217,6 +218,54 @@ outline: none;
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
+}
+.success-popup{
+    height: 200px;
+    width: 30%;
+    min-width: 200px;
+    background-color: #2E2E2E; 
+    margin: -185px auto;
+    display: flex;
+    flex-direction: column;
+ align-items: center;
+ border-radius: 10px;
+ overflow: hidden;
+ position: relative;
+ z-index: 10;
+ box-shadow: 0px 1px 4px rgb(71, 71, 71);
+}
+.success-popup img{
+    height: 80px;
+    width: 80px;
+    margin-top: 0px;
+}
+.success-popup h2{
+    margin-top: 10px;
+    
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+}
+
+.success-popup .popup-strip{
+    background: linear-gradient(68deg, rgba(88, 245, 255, 1) 0%, rgba(194, 119, 211, 1) 54%, rgba(255, 137, 111, 1) 100%);
+    width: 100%;
+    height: 4px;
+}
+.success-popup .cross-img{
+
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.success-popup .cross-img img{
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    margin-top: 5px;
+    
+    
 }
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{

@@ -70,5 +70,12 @@ marksForm.addEventListener('submit', async (e)=> {
         },
         body:JSON.stringify({data})
     })
+    const response=await saveMarks.json()
+   
+    const successPopup = document.querySelector('.success-popup');
+if (successPopup.classList.contains('disp-none')) {
+    successPopup.classList.remove('disp-none');
+    document.getElementById('popup-h2').innerText = response.message;
+}
 
 })

@@ -57,18 +57,11 @@ body{
     padding: 8px 10px;
     border-radius: 27px;
 }
-#student-span{
+#student-span,#teacher-span,#admin-span{
     background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
 
 }
-#teacher-span{
-    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
 
-}
-#admin-span{
-    background: linear-gradient(68deg, rgba(88,245,255,1) 0%, rgba(194,119,211,1) 54%, rgba(255,137,111,1) 100%);
-
-}
 
 .row1{
     display: flex;
