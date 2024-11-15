@@ -58,6 +58,7 @@ body{
     margin: 0px 7px;
    
 }
+
 .mark-cont2{
     background-color: #2E2E2E; 
     padding: 10px;
@@ -288,31 +289,54 @@ outline: none;
     }
     @media only screen and (max-width: 600px){
         .mark-cont{
-            min-width:395px;
+            min-width:315px;
         }
+       
+        
         .mark-cont input{
-            width: 15%;
+            width: 38%;
+            font-size: 13px;
+            margin: 0px 2px;
+        }
+       
+        .mark-cont select{
+            width: 59%;
+            font-size: 13px;
+            margin: 0;
+        }
+        #homework{
+            padding: 0px 2px;
+            font-size: 12px;
+        }
+        #studentClass{
+            padding: 0px 4px;
             font-size: 13px;
         }
-        .mark-cont select{
-            width: 20%;
+        #studentRollNum{
+            padding: 0px 4px;
             font-size: 13px;
         }
         .sbmt-btn{
-            width: 20%;
+            width: 25%;
             font-size: 11px;
             text-align: center;
+            margin-left: 19px;
         }
         .updated-attendence-table th, .updated-homework-table th, .upload-marks-table th{
             
             font-size: 10px;
+            padding: 14px 5px;
+            
         }
         .updated-attendence-table td, .updated-homework-table td, .upload-marks-table td{
             font-size: 10px;
         }
-       
+       #attendence{
+        width: 41%;
+       }
         #studentHomeworkClass{
             width: 15%;
+            font-size: 12px;
         }
         .test-sbmt-btn{
             width: 25%;
@@ -323,7 +347,8 @@ outline: none;
         }
         .upload-marks-table td select{
             font-size: 10px;
-           
+           text-wrap: auto;
+           padding: 2px;
             
         }
         .upload-marks-table td select option{
@@ -331,5 +356,9 @@ outline: none;
         }
         .upload-marks-table td input{
             font-size: 10px;
+        }
+        .success-popup h2{
+            font-size: 17px;
+            text-align: center;
         }
     }
