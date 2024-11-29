@@ -17,29 +17,36 @@
             <a href="/teacher/upload-testscores">Give Testscores</a>
         </div>
     </div>
-    <div class="mark-cont attendence-input">
-        <form id="attendenceForm">
-            <input type="number" name="studentClass"  id="studentClass" required placeholder="Class" min="1" max="12">
-            <input type="number" name="studentRollNum"  id="studentRollNum" required placeholder="Roll No.">
-            <select name="attendence" id="attendence" required >
-                <option value="Absent">Absent</option>
-                <option value="Present">Present</option>
-            </select>
-            <button type="submit" class="sbmt-btn">Mark Attendence</button>
+    <div class="mark-cont2">
+        <form id="findStudentsForm">
+            <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
+            
+            <button type="submit" class="sbmt-btn test-sbmt-btn">View Students</button>
         </form>
+       
     </div>
     <div class="updated-attendence-table disp-none">
-        <table>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Roll No.</th>
-                <th>Gender</th>
-                <th>Class</th>
-                <th>Date</th>
-                <th>Attendence</th>
-            </tr>
-        </table>
+        <form id="attendenceForm">
+
+            <table id="attendenceTable">
+                <thead>
+
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Roll No.</th>
+                        <th>Class</th>
+                        <th>Attendence</th>
+        
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              
+            </table>
+            <button type="submit" class="submit-attendence-button">Save</button>
+        </form>
     </div>
     <script src="/scripts/mark_attendence.js"></script>
 </body>

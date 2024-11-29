@@ -30,6 +30,7 @@ body{
     border-bottom: 2px solid white;
 
 }
+
 .mark-cont{
     background-color: #2E2E2E; 
     padding: 20px;
@@ -57,6 +58,26 @@ body{
     width: 20%;
     margin: 0px 7px;
    
+}
+.mark-cont select {
+    appearance: none;
+    height: 40px;
+    background-color: #4e4c4c5a;
+    border: none;
+    border-radius: 6px;
+    padding: 0px 7px;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    width: 14%;
+    background-image: url(../images/arrow-down-01-stroke-rounded.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    margin: 0px 7px;
+}
+
+.mark-cont select option{
+    background-color: #4d4d4d;
 }
 
 .mark-cont2{
@@ -91,29 +112,12 @@ body{
 .mark-cont input:focus, .mark-cont2 input:focus{
         outline: 3px solid #4d4d4d;
 }
-.mark-cont select {
-    appearance: none;
-    height: 40px;
-    background-color: #4e4c4c5a;
-    border: none;
-    border-radius: 6px;
-    padding: 0px 7px;
-    font-size: 15px;
-    color: white;
-    font-weight: 400;
-    width: 14%;
-    background-image: url(../images/arrow-down-01-stroke-rounded.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    margin: 0px 7px;
-}
+
 .mark-cont select:focus,.mark-cont2 select:focus{
     outline: 3px solid #4d4d4d;
 }
 
-.mark-cont select option{
-    background-color: #4d4d4d;
-}
+
 .sbmt-btn{
     width: 15%;
     
@@ -172,14 +176,15 @@ body{
 .test-sbmt-btn{
     width: 30%;
 }
-.upload-marks-table form{
+.upload-marks-table form, .updated-attendence-table form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     
 }
-.upload-marks-table td select{
+
+.upload-marks-table td select,.updated-attendence-table td select{
     appearance: none;
     border: none;
     background-color: #1D1C1C;
@@ -193,7 +198,10 @@ body{
     background-position: right;
     
 }
-.upload-marks-table td select:focus{
+.updated-attendence-table td select{
+    width: 40%;
+}
+.upload-marks-table td select:focus,.updated-attendence-table td select:focus{
 outline: none;
 }
 .upload-marks-table table input{
@@ -209,7 +217,7 @@ outline: none;
 .upload-marks-table table input:focus{
     outline: none;
 }
-.submit-marks-button {
+.submit-marks-button, .submit-attendence-button{
     background: linear-gradient(68deg, rgba(88, 245, 255, 1) 0%, rgba(194, 119, 211, 1) 54%, rgba(255, 137, 111, 1) 100%);
     color: white;
     border: none;
@@ -296,7 +304,7 @@ outline: none;
         .mark-cont input{
             width: 38%;
             font-size: 13px;
-            margin: 0px 2px;
+            margin: 0px 6px;
         }
        
         .mark-cont select{
@@ -304,6 +312,16 @@ outline: none;
             font-size: 13px;
             margin: 0;
         }
+
+        .mark-cont2{
+            width: 220px;
+        }
+        .mark-cont2 form{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
         #homework{
             padding: 0px 2px;
             font-size: 12px;
@@ -320,7 +338,7 @@ outline: none;
             width: 25%;
             font-size: 11px;
             text-align: center;
-            margin-left: 19px;
+            margin-left: 0px;
         }
         .updated-attendence-table th, .updated-homework-table th, .upload-marks-table th{
             
@@ -331,6 +349,10 @@ outline: none;
         .updated-attendence-table td, .updated-homework-table td, .upload-marks-table td{
             font-size: 10px;
         }
+        .updated-attendence-table td select{
+            width: 100%;
+            font-size: 10px;
+        }
        #attendence{
         width: 41%;
        }
@@ -339,7 +361,8 @@ outline: none;
             font-size: 12px;
         }
         .test-sbmt-btn{
-            width: 25%;
+            width: 30%;
+            text-align: center;
         }
         .upload-marks-table td:nth-child(6){
             padding: 0;

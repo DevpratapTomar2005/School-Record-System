@@ -194,40 +194,7 @@ const markAttendencePage = (req, res) => {
     );
 };
 
-const markAttendence = async (req, res) => {
-  const studentData = req.body;
 
-  try {
-    const student = await Student.findOne({
-      rollnum: studentData.studentRollNum,
-      class: studentData.studentClass,
-      schoolname: req.user.schoolname,
-    }).select("-password -refreshToken -testscores -imagepath -contactnum");
-    if (!student) {
-      throw new Error("Student Not Found!!");
-    }
-    const dateOptions = { day: "2-digit", month: "2-digit", year: "numeric" };
-    const currentDate = new Date()
-      .toLocaleDateString("en-IN", dateOptions)
-      .replace("-", "/");
-
-    if (currentDate !== student.lastmarked) {
-      if (studentData.attendenceStatus === "Absent") {
-        student.absentdays = student.absentdays + 1;
-      } else {
-        student.presentdays = student.presentdays + 1;
-      }
-      student.lastmarked = currentDate;
-      const updatedStudent = await student.save({ validateBeforeSave: false });
-
-      return res.status(200).json(updatedStudent);
-    } else {
-      throw new Error("You can't mark attendence twice in a day!");
-    }
-  } catch (error) {
-    throw error;
-  }
-};
 
 const giveHomeworkPage = (req, res) => {
   res
@@ -321,7 +288,7 @@ module.exports = {
   refreshAccessToken,
   updateProfilePath,
   markAttendencePage,
-  markAttendence,
+  
   giveHomeworkPage,
   uploadHomework,
   giveStudents,
