@@ -57,4 +57,18 @@ attendenceForm.addEventListener('submit',async (e)=>{
     })
 
     console.log(attendenceData)
+    const markAttendence= await fetch('/teacher/mark-attendence',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({attendenceData})
+    })
+    const response=await markAttendence.json()
+   
+    const successPopup = document.querySelector('.success-popup');
+if (successPopup.classList.contains('disp-none')) {
+    successPopup.classList.remove('disp-none');
+    document.getElementById('popup-h2').innerText = response.message;
+}
 })

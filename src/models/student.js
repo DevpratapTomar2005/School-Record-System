@@ -47,7 +47,7 @@ const studentSchema = new Schema({
     },
     imagepath: {type:String},
    
-    lastmarked: {type:String},
+   
     testscore: [{
         subject:{type:String},
         examName:{type:String},
@@ -57,8 +57,14 @@ const studentSchema = new Schema({
         
     }],
     refreshToken: {type:String},
-    presentdays:{type:Number, default:0},
-    absentdays:{type:Number, default:0},
+   attendence:[{
+    firstname:{type:String},
+    lastname:{type:String},
+    rollnumber:{type:Number},
+    studentClass:{type:Number},
+    studentAttendence:{type:String},
+    attendenceDate:{type:String}
+   }],
     homeworks:[{
         subject:{type:String},
         teachername:{type:String},

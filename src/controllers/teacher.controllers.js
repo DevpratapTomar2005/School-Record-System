@@ -280,6 +280,47 @@ markTestscores = async (req, res) => {
     throw error
  }
 };
+
+const markAttendence= async(req,res)=>{
+  const attendenceData=req.body.attendenceData;
+
+  try {
+    const students = await Student.find({
+      class: attendenceData[0].studentClass,
+      schoolname: req.user.schoolname,
+    }).select("-password -refreshToken -homeworks -imagepath -contactnum");;
+  if(!students){
+      throw new Error('No students found!!')
+  }
+  
+    for (const student of students) {
+   
+      const attendences = attendenceData
+        .filter((attendence) => student.rollnum == attendence.rollnum)
+        .map((attendence) => {
+          return {
+            firstname:attendence.firstname,
+            lastname:attendence.lastname,
+            rollnumber: attendence.rollnum,
+            studentClass:attendence.studentClass,
+            studentAttendence:attendence.studentAttendence,
+           attendenceDate:attendence.date
+          };
+        });
+    
+      
+      student.attendence.push(...attendences)
+      
+      await student.save({validateBeforeSave:false})
+  }
+ 
+  
+  return res.status(200).json({message:"Attendence Marked SuccessFully!!"})
+} catch (error) {
+   throw error
+}
+  
+}
 module.exports = {
   teacherRegister,
   teacherLogin,
@@ -288,7 +329,7 @@ module.exports = {
   refreshAccessToken,
   updateProfilePath,
   markAttendencePage,
-  
+  markAttendence,
   giveHomeworkPage,
   uploadHomework,
   giveStudents,
