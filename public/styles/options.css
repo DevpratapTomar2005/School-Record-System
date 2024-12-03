@@ -276,6 +276,16 @@ outline: none;
     
     
 }
+.mark-cont3{
+    width: 30%;
+    padding: 18px;
+}
+.mark-cont3 input{
+    width: 12%;
+}
+.mark-cont3 .test-sbmt-btn{
+    width: 18%;
+}
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
         width: 90%;
@@ -383,5 +393,12 @@ outline: none;
         .success-popup h2{
             font-size: 17px;
             text-align: center;
+        }
+        .mark-cont3 input{
+            width: 19%;
+        }
+        .mark-cont3 .test-sbmt-btn{
+            width: 25%;
+            
         }
     }

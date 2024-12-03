@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="../styles/options.css">
+    <link rel="stylesheet" href="../styles/utility.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="/teacher/">Home</a>
+            <a href="/teacher/mark-attendence">Mark Attendence</a>
+            <a href="/teacher/view-attendence">View Attendence</a>
+            <a href="/teacher/give-homework">Give Homework</a>
+            <a href="/teacher/upload-testscores">Give Testscores</a>
+        </div>
+    </div>
+    <div class="mark-cont mark-cont3">
+        <form id="viewAttendenceForm">
+            <input type="number" name="studentClass" id="studentClass" required placeholder="Class" min="1" max="12">
+            <input type="number" name="studentRollNum" id="studentRollNum" required placeholder="Roll No." >
+            
+            <button type="submit" class="sbmt-btn test-sbmt-btn">View Attendence</button>
+        </form>
+       
+    </div>
+    </body>
+    </html>

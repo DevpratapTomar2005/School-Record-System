@@ -321,6 +321,13 @@ const markAttendence= async(req,res)=>{
 }
   
 }
+const viewAttendencePage = (req, res) => {
+  res
+    .status(201)
+    .sendFile(
+      path.join(__dirname, "../../public/templates", "view_attendence.html")
+    );
+};
 module.exports = {
   teacherRegister,
   teacherLogin,
@@ -335,4 +342,5 @@ module.exports = {
   giveStudents,
   giveTestscorePage,
   markTestscores,
+  viewAttendencePage
 };
