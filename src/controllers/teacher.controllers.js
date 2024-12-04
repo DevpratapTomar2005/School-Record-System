@@ -194,8 +194,6 @@ const markAttendencePage = (req, res) => {
     );
 };
 
-
-
 const giveHomeworkPage = (req, res) => {
   res
     .status(201)
@@ -244,89 +242,99 @@ const giveStudents = async (req, res) => {
 
 markTestscores = async (req, res) => {
   const marksData = req.body.data;
- 
- try {
-     const students = await Student.find({
-       class: marksData[0].studentClass,
-       schoolname: req.user.schoolname,
-     }).select("-password -refreshToken -homeworks -imagepath -contactnum");;
-   if(!students){
-       throw new Error('No students found!!')
-   }
-   
-     for (const student of students) {
-    
-       const testscores = marksData
-         .filter((marks) => student.rollnum == marks.rollnum)
-         .map((marks) => {
-           return {
-             subject: marks.subject,
-             examName: marks.examName,
-             maxMarks: marks.maxMarks,
-             obtainedMarks: marks.obtainedMarks,
-             markedDate: marks.markedDate,
-           };
-         });
-     
-       
-       student.testscore.push(...testscores)
-       
-       await student.save({validateBeforeSave:false})
-   }
-  
-   
-   return res.status(200).json({message:"Test Scores Saved SuccessFully!!"})
- } catch (error) {
-    throw error
- }
+
+  try {
+    const students = await Student.find({
+      class: marksData[0].studentClass,
+      schoolname: req.user.schoolname,
+    }).select("-password -refreshToken -homeworks -imagepath -contactnum");
+    if (!students) {
+      throw new Error("No students found!!");
+    }
+
+    for (const student of students) {
+      const testscores = marksData
+        .filter((marks) => student.rollnum == marks.rollnum)
+        .map((marks) => {
+          return {
+            subject: marks.subject,
+            examName: marks.examName,
+            maxMarks: marks.maxMarks,
+            obtainedMarks: marks.obtainedMarks,
+            markedDate: marks.markedDate,
+          };
+        });
+
+      student.testscore.push(...testscores);
+
+      await student.save({ validateBeforeSave: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Test Scores Saved SuccessFully!!" });
+  } catch (error) {
+    throw error;
+  }
 };
 
-const markAttendence= async(req,res)=>{
-  const attendenceData=req.body.attendenceData;
+const markAttendence = async (req, res) => {
+  const attendenceData = req.body.attendenceData;
 
   try {
     const students = await Student.find({
       class: attendenceData[0].studentClass,
       schoolname: req.user.schoolname,
-    }).select("-password -refreshToken -homeworks -imagepath -contactnum");;
-  if(!students){
-      throw new Error('No students found!!')
-  }
-  
+    }).select("-password -refreshToken -homeworks -imagepath -contactnum");
+    if (!students) {
+      throw new Error("No students found!!");
+    }
+
     for (const student of students) {
-   
       const attendences = attendenceData
         .filter((attendence) => student.rollnum == attendence.rollnum)
         .map((attendence) => {
           return {
-            firstname:attendence.firstname,
-            lastname:attendence.lastname,
+            firstname: attendence.firstname,
+            lastname: attendence.lastname,
             rollnumber: attendence.rollnum,
-            studentClass:attendence.studentClass,
-            studentAttendence:attendence.studentAttendence,
-           attendenceDate:attendence.date
+            studentClass: attendence.studentClass,
+            studentAttendence: attendence.studentAttendence,
+            attendenceDate: attendence.date,
           };
         });
-    
-      
-      student.attendence.push(...attendences)
-      
-      await student.save({validateBeforeSave:false})
+
+      student.attendence.push(...attendences);
+
+      await student.save({ validateBeforeSave: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Attendence Marked SuccessFully!!" });
+  } catch (error) {
+    throw error;
   }
- 
-  
-  return res.status(200).json({message:"Attendence Marked SuccessFully!!"})
-} catch (error) {
-   throw error
-}
-  
-}
+};
 const viewAttendencePage = (req, res) => {
   res
     .status(201)
     .sendFile(
       path.join(__dirname, "../../public/templates", "view_attendence.html")
     );
+};
+
+const getAttendence = async (req, res) => {
+  const studentInfo = req.body.studentInfo;
+
+  const student = await Student.findOne({
+    class: studentInfo.studentClass,
+    rollnum: studentInfo.studentRollNum,
+    schoolname: req.user.schoolname,
+  }).select(
+    "-password -refreshToken -homeworks -imagepath -contactnum -testscore"
+  );
+  console.log(student);
 };
 module.exports = {
   teacherRegister,
@@ -342,5 +350,6 @@ module.exports = {
   giveStudents,
   giveTestscorePage,
   markTestscores,
-  viewAttendencePage
+  viewAttendencePage,
+  getAttendence,
 };
