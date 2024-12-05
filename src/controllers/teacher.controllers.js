@@ -6,7 +6,8 @@ const {
   generateTeacherAccessToken,
   generateTeacherRefreshToken,
 } = require("../utils/generateTeacherTokens.js");
-const student = require("../models/student.js");
+const {sortAttendenceAccordingToMonth}=require('../utils/sortingAttendenceMonth.js')
+
 const generateAccessAndRefreshTokens = async (user) => {
   try {
     const accessToken = generateTeacherAccessToken(user);
@@ -334,7 +335,11 @@ const getAttendence = async (req, res) => {
   }).select(
     "-password -refreshToken -homeworks -imagepath -contactnum -testscore"
   );
-  console.log(student);
+  
+
+const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
+console.log(attendenceMonths,attendenceMonthsPercentage)
+
 };
 module.exports = {
   teacherRegister,
