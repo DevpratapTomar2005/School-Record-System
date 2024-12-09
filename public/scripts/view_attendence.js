@@ -16,4 +16,6 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
         body:JSON.stringify({studentInfo})
 
     })
+    const fetchedAttendence=await fetchingAttendence.json();
+    console.log(fetchedAttendence)
 })

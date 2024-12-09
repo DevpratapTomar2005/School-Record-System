@@ -328,17 +328,43 @@ const viewAttendencePage = (req, res) => {
 const getAttendence = async (req, res) => {
   const studentInfo = req.body.studentInfo;
 
-  const student = await Student.findOne({
-    class: studentInfo.studentClass,
-    rollnum: studentInfo.studentRollNum,
-    schoolname: req.user.schoolname,
-  }).select(
-    "-password -refreshToken -homeworks -imagepath -contactnum -testscore"
-  );
-  
-
-const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
-console.log(attendenceMonths,attendenceMonthsPercentage)
+ try {
+   const student = await Student.findOne({
+     class: studentInfo.studentClass,
+     rollnum: studentInfo.studentRollNum,
+     schoolname: req.user.schoolname,
+   }).select(
+     "-password -refreshToken -homeworks -imagepath -contactnum -testscore"
+   );
+   
+ 
+ const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
+ 
+ 
+ const currentYear=new Date().getFullYear();
+ 
+ let yearPresentDays=0;
+ let yearAbsentDays=0;
+ 
+ student.attendence.forEach(e=>{
+   let dateParts = e.attendenceDate.split('/');  
+   let year = dateParts[2]
+   if(year==currentYear){
+     if(e.studentAttendence==='Present'){
+       yearPresentDays= yearPresentDays+1;
+     }
+     if(e.studentAttendence==='Absent'){
+       yearAbsentDays=yearAbsentDays+1;
+     }
+   }
+ })
+ 
+ const attendenceThisYear=(yearPresentDays/(yearPresentDays+yearAbsentDays))*100
+ 
+ return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear})
+ } catch (error) {
+  throw error
+ }
 
 };
 module.exports = {
