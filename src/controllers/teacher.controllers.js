@@ -361,7 +361,7 @@ const getAttendence = async (req, res) => {
  
  const attendenceThisYear=(yearPresentDays/(yearPresentDays+yearAbsentDays))*100
  
- return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear})
+ return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,currentYear})
  } catch (error) {
   throw error
  }

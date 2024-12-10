@@ -286,6 +286,16 @@ outline: none;
 .mark-cont3 .test-sbmt-btn{
     width: 18%;
 }
+.chart {
+    height: 60%;
+    width: 60%;
+    margin: 0px auto;
+}
+.chart2{
+    height: 30%;
+    width: 30%;
+    margin: 0px auto;
+}
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
         width: 90%;
