@@ -286,15 +286,45 @@ outline: none;
 .mark-cont3 .test-sbmt-btn{
     width: 18%;
 }
+.chart-cont{
+    display: flex;
+    gap: 5px;
+}
 .chart {
-    height: 60%;
-    width: 60%;
-    margin: 0px auto;
+    height: 320px;
+    width: 70%;
+    margin: 10px 0;
+    padding: 10px 70px;
+    border-radius: 10px;
+    background-color: #2E2E2E;
+     text-align: center;
+}
+.chart div, .chart2 div{
+    color: rgba(255, 255, 255, 0.467);
+    font-size: 10px;
+    font-weight: 300;
+    font-family: 'Poppins',sans-serif;
+    margin-top: 7px;
 }
 .chart2{
-    height: 30%;
+    height: 320px;
     width: 30%;
-    margin: 0px auto;
+    margin: 10px 0;
+    padding: 10px 80px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #2E2E2E;
+    position: relative;
+}
+#attendencePercent{
+    color: white;
+    font-size: 44px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    z-index: 10;
+    top: 146px;
+    right: 168px;
 }
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{

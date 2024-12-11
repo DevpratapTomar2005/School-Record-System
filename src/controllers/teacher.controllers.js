@@ -334,7 +334,7 @@ const getAttendence = async (req, res) => {
      rollnum: studentInfo.studentRollNum,
      schoolname: req.user.schoolname,
    }).select(
-     "-password -refreshToken -homeworks -imagepath -contactnum -testscore"
+     "-password -refreshToken -homeworks  -testscore"
    );
    
  
@@ -361,7 +361,7 @@ const getAttendence = async (req, res) => {
  
  const attendenceThisYear=(yearPresentDays/(yearPresentDays+yearAbsentDays))*100
  
- return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,currentYear})
+ return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,currentYear,student})
  } catch (error) {
   throw error
  }

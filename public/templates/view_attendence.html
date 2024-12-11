@@ -6,6 +6,7 @@
     <title>School Record System</title>
     <link rel="stylesheet" href="../styles/options.css">
     <link rel="stylesheet" href="../styles/utility.css">
+    <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
     <div class="nav">
@@ -26,17 +27,33 @@
         </form>
        
     </div>
-    <div class="chart">
-        
-         <canvas id="attendenceChart"></canvas>
-          
+    <div class="main-container">
+    <div class="userinfo">
+        <div class="info">
+            <h1 id="name"></h1>
+            <h3 id="class" ></h3>
+            <h3 id="contactnum" ></h3>
+            <h3 id="rollnum"></h3>
+            <h3 id="schoolname"></h3>
+    
+        </div>
+        <div class="img-cont">
+           <img src='' id="pfp" alt="userimg">
+        </div>
     </div>
-    <div class="chart2">
-        
-        <canvas id="attendenceYearChart"></canvas>
-          
+    <div class="chart-cont">
+        <div class="chart">
+             <canvas id="attendenceChart"></canvas>
+            <div>*Attendence In Last Five Months</div>
+        </div>
+        <div class="chart2">
+            <span id="attendencePercent"></span>
+            <canvas id="attendenceYearChart"></canvas>
+            <div>*Attendence This Year</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   </div>
     <script src="../scripts/view_attendence.js"></script>
     </body>
     </html>

@@ -18,6 +18,22 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
     })
     const fetchedAttendence=await fetchingAttendence.json();
     console.log(fetchedAttendence)
+    let name=document.getElementById('name')
+    let studentclass=document.getElementById('class')
+    let contactnum=document.getElementById('contactnum')
+    let rollnum=document.getElementById('rollnum')
+    let schoolname=document.getElementById('schoolname')
+    let pfp=document.getElementById('pfp')
+
+
+    name.innerText='Name: '+(fetchedAttendence.student.firstname.charAt(0).toUpperCase() + fetchedAttendence.student.firstname.slice(1)+ " " + fetchedAttendence.student.lastname.charAt(0).toUpperCase() + fetchedAttendence.student.lastname.slice(1)
+)
+    studentclass.innerText='Class: '+(fetchedAttendence.student.class)
+    contactnum.innerText='Contact No.: '+(fetchedAttendence.student.contactnum)
+    rollnum.innerText='Roll No.: '+(fetchedAttendence.student.rollnum )
+    schoolname.innerText='School: '+(fetchedAttendence.student.schoolname.charAt(0).toUpperCase() + fetchedAttendence.student.schoolname.slice(1) )
+    pfp.src=fetchedAttendence.student.imagepath
+
 
     const ctx1 = document.getElementById('attendenceChart');
 
@@ -57,17 +73,19 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
               datasets: [{
                 label:'Percentage(%)',
                 data: [fetchedAttendence.attendenceThisYear,100-fetchedAttendence.attendenceThisYear],
-                backgroundColor:['#4ab1edeb','#2e2e2eb3'] ,
-                borderWidth:0,
-                borderColor:'#2e2e2e00'
+                backgroundColor:['#4ab1edeb','#3e3b3b'] ,
+                borderWidth:0
+               
                 
               }]
             
         },
         options: {
-            cutout: 115,
+            cutout: 90,
            
         }
         
       });
+      let attendencePercent=document.getElementById('attendencePercent')
+      attendencePercent.innerText=fetchedAttendence.attendenceThisYear.toFixed(1)+'%'
 })
