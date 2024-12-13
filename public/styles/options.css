@@ -289,6 +289,9 @@ outline: none;
 .chart-cont{
     display: flex;
     gap: 5px;
+    width: 90%;
+  margin: 0 auto;
+    
 }
 .chart {
     height: 320px;
@@ -298,13 +301,14 @@ outline: none;
     border-radius: 10px;
     background-color: #2E2E2E;
      text-align: center;
+     padding-bottom: 23px;
 }
 .chart div, .chart2 div{
     color: rgba(255, 255, 255, 0.467);
     font-size: 10px;
     font-weight: 300;
     font-family: 'Poppins',sans-serif;
-    margin-top: 7px;
+    margin-top: 5px;
 }
 .chart2{
     height: 320px;
@@ -315,6 +319,7 @@ outline: none;
     border-radius: 10px;
     background-color: #2E2E2E;
     position: relative;
+    padding-bottom: 23px;
 }
 #attendencePercent{
     color: white;
@@ -325,6 +330,30 @@ outline: none;
     z-index: 10;
     top: 146px;
     right: 168px;
+}
+@media only screen and (max-width: 1327px){
+.chart{
+    width: 60%;
+    padding: 10px 50px;
+    padding-bottom: 23px;
+}
+.chart2{
+    width: 40%;
+    padding: 10px 50px;
+    padding-bottom: 23px;
+}
+}
+@media only screen and (max-width: 1200px){
+    .chart{
+        width: 50%;
+        padding: 10px;
+        padding-bottom: 23px;
+    }
+    .chart2{
+        width: 50%;
+        padding: 10px 0;
+        padding-bottom: 23px;
+    }
 }
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
@@ -344,7 +373,15 @@ outline: none;
         text-align:center ;
         
     }
+    .chart-cont{
+        flex-wrap: wrap;
+        gap: 0px;
     }
+    .chart,.chart2{
+        width: 100%;
+    }
+    }
+   
     @media only screen and (max-width: 600px){
         .mark-cont{
             min-width:315px;
@@ -441,4 +478,9 @@ outline: none;
             width: 25%;
             
         }
+        .chart{
+            padding: 10px 1px;
+            padding-bottom: 23px;
+        }
+        
     }

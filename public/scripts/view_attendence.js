@@ -45,7 +45,7 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
           label:'Attendence',
           data: fetchedAttendence.attendenceMonthsPercentage,
           borderWidth: 0,
-          barThickness:70,
+          barThickness:50,
           borderRadius:5,
         backgroundColor:'#4ab1edeb'
         }]
@@ -62,7 +62,8 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
             },
             
           }
-        }
+        },
+        maintainAspectRatio:false
       }
     });
     const ctx2=document.getElementById('attendenceYearChart');
@@ -82,6 +83,7 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
         },
         options: {
             cutout: 90,
+            maintainAspectRatio:false
            
         }
         
