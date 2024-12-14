@@ -314,7 +314,7 @@ outline: none;
     height: 320px;
     width: 30%;
     margin: 10px 0;
-    padding: 10px 80px;
+    padding: 10px 83px;
     text-align: center;
     border-radius: 10px;
     background-color: #2E2E2E;
@@ -328,8 +328,31 @@ outline: none;
     font-family: 'Poppins', sans-serif;
     position: absolute;
     z-index: 10;
-    top: 146px;
-    right: 168px;
+    top: 153px;
+    right: 170px;
+}
+
+@media only screen and (min-width:2500px){
+    .mark-cont3 input {
+        width: 9%;
+    }
+    
+    .mark-cont3 .test-sbmt-btn {
+        width: 16%;
+    }
+    .sbmt-btn {
+        padding: 12px 4px;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .chart-cont{
+        max-width: 1200px;
+        margin: 0px auto;
+    }
+    #attendencePercent{
+        top: 154px;
+        right: 170px;
+    }
 }
 @media only screen and (max-width: 1327px){
 .chart{
@@ -341,6 +364,10 @@ outline: none;
     width: 40%;
     padding: 10px 50px;
     padding-bottom: 23px;
+}
+#attendencePercent{
+    top: 154px;
+    right: 176px;
 }
 }
 @media only screen and (max-width: 1200px){
@@ -379,6 +406,10 @@ outline: none;
     }
     .chart,.chart2{
         width: 100%;
+    }
+    #attendencePercent{
+        top: 154px;
+        right: 303px;
     }
     }
    
@@ -482,5 +513,15 @@ outline: none;
             padding: 10px 1px;
             padding-bottom: 23px;
         }
+        #attendencePercent{
+            top: 154px;
+            right: 124px;
+        }
         
+    }
+    @media only screen and (max-width:416px) {
+        #attendencePercent{
+            top: 154px;
+            right: 32%;
+        }
     }
