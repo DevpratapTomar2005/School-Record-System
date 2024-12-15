@@ -217,11 +217,9 @@ border-radius: 50%;
     justify-content: center;
     flex-wrap: wrap-reverse;
     gap: 20px;
+    padding: 20px 28px;
 }
-.img-cont{
-    height: 50%;
-    width: 50%;
-}
+
 
 .info h1{
     font-size: 27px;

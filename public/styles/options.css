@@ -409,11 +409,17 @@ outline: none;
     }
     #attendencePercent{
         top: 154px;
-        right: 303px;
+        right: 42%;
     }
     }
-   
+    @media only screen and (max-width: 800px){
+        #attendencePercent{
+            top: 154px;
+            right: 41.5%;
+        }
+    }
     @media only screen and (max-width: 600px){
+        
         .mark-cont{
             min-width:315px;
         }
@@ -439,7 +445,7 @@ outline: none;
             justify-content: space-evenly;
             align-items: center;
         }
-        
+      
         #homework{
             padding: 0px 2px;
             font-size: 12px;
@@ -509,6 +515,7 @@ outline: none;
             width: 25%;
             
         }
+      
         .chart{
             padding: 10px 1px;
             padding-bottom: 23px;
