@@ -11,10 +11,11 @@ body{
     background-color: #2E2E2E; 
     height: 8vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     top: 0px;
+    
 }
 .nav-links a{
     color: rgb(228, 221, 221);
@@ -31,8 +32,40 @@ body{
 
 }
 
+.logout-box{
+    margin:0 30px;
+}
+.logout-box a{
+    color: rgb(228, 221, 221);
+    outline: 2px solid rgb(228, 221, 221); ;
+    text-decoration: none;
+    font-family:"Poppins", sans-serif; 
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 4px;
+}
+.logout-box a:hover{
+    background-color: white;
+    color: black;
+    outline: none;
+}
+.hamburger-container{
+    display: none;
+   padding: 3px 5px;
+   
+   border-radius: 50%;
+   
+}
+.hamburger-container img{
+    width: 29px;
+    filter: invert(1);
+}
+.hamburger-container:hover{
+    background-color:#3e3d3d ;
+}
 .mark-cont{
-    background-color: #2E2E2E; 
+    background-color: #313131; 
     padding: 20px;
     width: 50%;
     min-width: 590px;
@@ -411,6 +444,16 @@ outline: none;
         top: 154px;
         right: 42%;
     }
+    .nav-links a{
+        font-size: 12px;
+        margin: 0 10px;
+    }
+    .logout-box{
+        margin:0 20px;
+    }
+    .logout-box a{
+        font-size: 12px;
+    }
     }
     @media only screen and (max-width: 800px){
         #attendencePercent{
@@ -419,7 +462,21 @@ outline: none;
         }
     }
     @media only screen and (max-width: 600px){
-        
+        .nav-links{
+            display: none;
+        }
+        .logout-box{
+            display: none;
+        }
+        .nav{
+            justify-content: right;
+            align-items: center;
+            
+        }
+        .hamburger-container{
+            display: block;
+            margin: 0 15px;
+        }
         .mark-cont{
             min-width:315px;
         }

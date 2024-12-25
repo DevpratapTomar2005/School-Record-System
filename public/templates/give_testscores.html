@@ -8,14 +8,21 @@
     <link rel="stylesheet" href="../styles/utility.css">
 </head>
 <body>
-    <div class="nav">
+    <div class="nav ">
         <div class="nav-links">
             <a href="/teacher/">Home</a>
             <a href="/teacher/mark-attendence">Mark Attendence</a>
-            <a href="">View Attendence</a>
+            <a href="/teacher/view-attendence">View Attendence</a>
             <a href="/teacher/give-homework">Give Homework</a>
             <a href="/teacher/upload-testscores">Give Testscores</a>
         </div>
+        <div class="hamburger-container">
+            <img id="ham-icon" src="../images/hamburger.svg" alt="hamburger icon">
+        </div>
+        <div class="logout-box">
+            <a href="/teacher/logout">Logout</a>
+        </div>
+        <script src="../scripts/navbar.js"></script>
     </div>
     <div class="mark-cont2">
         <form id="findStudentsForm">
