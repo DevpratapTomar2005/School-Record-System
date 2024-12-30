@@ -14,7 +14,7 @@ body{
     justify-content: space-between;
     align-items: center;
     position: sticky;
-    top: 0px;
+    top: -4px;
     box-shadow: 0px 1px 3px rgb(40, 39, 39);
     
 }
@@ -351,7 +351,7 @@ outline: none;
     height: 320px;
     width: 30%;
     margin: 10px 0;
-    padding: 10px 83px;
+    padding: 10px 54px;
     text-align: center;
     border-radius: 10px;
     background-color: #2E2E2E;
@@ -366,7 +366,7 @@ outline: none;
     position: absolute;
     z-index: 10;
     top: 153px;
-    right: 170px;
+    right: 158px;
 }
 
 @media only screen and (min-width:2500px){
@@ -380,6 +380,7 @@ outline: none;
     .sbmt-btn {
         padding: 12px 4px;
     }
+   
 }
 @media only screen and (min-width: 1500px) {
     .chart-cont{
@@ -388,7 +389,17 @@ outline: none;
     }
     #attendencePercent{
         top: 154px;
-        right: 170px;
+        right: 155px;
+    }
+    .chart{
+        
+        padding: 21px 12px;
+        width: 69%;
+    }
+    .chart2{
+        height: 330px;
+        padding: 10px 7px;
+        padding-bottom: 23px;
     }
 }
 @media only screen and (max-width: 1327px){
@@ -398,8 +409,8 @@ outline: none;
     padding-bottom: 23px;
 }
 .chart2{
-    width: 40%;
-    padding: 10px 50px;
+    width: 30%;
+    padding: 10px 4px;
     padding-bottom: 23px;
 }
 #attendencePercent{
@@ -441,7 +452,10 @@ outline: none;
         flex-wrap: wrap;
         gap: 0px;
     }
-    .chart,.chart2{
+    .chart{
+        width: 97%;
+    }
+    .chart2{
         width: 100%;
     }
     #attendencePercent{
@@ -602,7 +616,7 @@ outline: none;
         }
       
         .chart{
-            padding: 10px 1px;
+            padding: 10px 8px;
             padding-bottom: 23px;
         }
         #attendencePercent{
@@ -625,5 +639,9 @@ outline: none;
         #attendencePercent{
             top: 154px;
             right: 32%;
+        }
+        .chart{
+            padding: 10px 4px;
+            padding-bottom: 23px;
         }
     }

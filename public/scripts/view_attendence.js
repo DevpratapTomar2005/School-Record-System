@@ -90,4 +90,12 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
       });
       let attendencePercent=document.getElementById('attendencePercent')
       attendencePercent.innerText=fetchedAttendence.attendenceThisYear.toFixed(1)+'%'
+      const mainContainer=document.querySelector('.main-container')
+      const chartContainer=document.querySelector('.chart-cont')
+
+      if (mainContainer.classList.contains('disp-none') || chartContainer.classList.contains('disp-none')) {
+        mainContainer.classList.remove('disp-none')
+        chartContainer.classList.remove('disp-none')
+    }
+
 })
