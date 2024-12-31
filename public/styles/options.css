@@ -351,7 +351,7 @@ outline: none;
     height: 320px;
     width: 30%;
     margin: 10px 0;
-    padding: 10px 54px;
+    padding: 10px 14px;
     text-align: center;
     border-radius: 10px;
     background-color: #2E2E2E;
@@ -366,7 +366,7 @@ outline: none;
     position: absolute;
     z-index: 10;
     top: 153px;
-    right: 158px;
+    right: 32%;
 }
 
 @media only screen and (min-width:2500px){
@@ -389,7 +389,7 @@ outline: none;
     }
     #attendencePercent{
         top: 154px;
-        right: 155px;
+        right: 122px;
     }
     .chart{
         
@@ -415,7 +415,7 @@ outline: none;
 }
 #attendencePercent{
     top: 154px;
-    right: 176px;
+    right: 32%;
 }
 }
 @media only screen and (max-width: 1200px){
@@ -428,6 +428,10 @@ outline: none;
         width: 50%;
         padding: 10px 0;
         padding-bottom: 23px;
+    }
+    #attendencePercent{
+        top: 154px;
+        right: 37%;
     }
 }
 @media only screen and (max-width: 950px){
@@ -460,7 +464,7 @@ outline: none;
     }
     #attendencePercent{
         top: 154px;
-        right: 42%;
+        right: 42.5%;
     }
    
     .nav-links a{
@@ -478,7 +482,7 @@ outline: none;
     @media only screen and (max-width: 800px){
         #attendencePercent{
             top: 154px;
-            right: 41.5%;
+            right: 40%;
         }
     }
     @media only screen and (max-width: 600px){
@@ -621,7 +625,7 @@ outline: none;
         }
         #attendencePercent{
             top: 154px;
-            right: 124px;
+            right: 36%;
         }
         
     }
