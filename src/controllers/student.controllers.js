@@ -1,9 +1,12 @@
 const Student = require("../models/student.js");
+
 const {
   generateStudentRefreshToken,
   generateStudentAccessToken,
 } = require("../utils/generateStudentTokens.js");
 const jwt = require("jsonwebtoken");
+
+const {sortAttendenceAccordingToMonth}=require('../utils/sortingAttendenceMonth.js')
 const generateAccessAndRefreshToken = async (studentId) => {
   try {
     const student = await Student.findById(studentId);
@@ -117,6 +120,39 @@ const studentIndex = async (req, res) => {
   }
 };
 
+const studentDashboard = async (req, res) => {
+  const student=req.user
+  try {
+    const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
+   
+   
+    const currentYear=new Date().getFullYear();
+    
+    let yearPresentDays=0;
+    let yearAbsentDays=0;
+    
+    student.attendence.forEach(e=>{
+      let dateParts = e.attendenceDate.split('/');  
+      let year = dateParts[2]
+      if(year==currentYear){
+        if(e.studentAttendence==='Present'){
+          yearPresentDays= yearPresentDays+1;
+        }
+        if(e.studentAttendence==='Absent'){
+          yearAbsentDays=yearAbsentDays+1;
+        }
+      }
+    })
+    
+    const attendenceThisYear=(yearPresentDays/(yearPresentDays+yearAbsentDays))*100
+    
+    return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,student})
+  } catch (error) {
+    throw error;
+  }
+  
+}
+
 const studentLogout = async (req, res) => {
   try {
     await Student.findByIdAndUpdate(
@@ -197,4 +233,5 @@ module.exports = {
   studentLogout,
   refreshAccessToken,
   updateProfilePath,
+  studentDashboard
 };

@@ -17,7 +17,7 @@ viewAttendenceForm.addEventListener('submit', async (e)=>{
 
     })
     const fetchedAttendence=await fetchingAttendence.json();
-    console.log(fetchedAttendence)
+  
     let name=document.getElementById('name')
     let studentclass=document.getElementById('class')
     let contactnum=document.getElementById('contactnum')

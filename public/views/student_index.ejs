@@ -6,7 +6,7 @@
     <title>School Record System</title>
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="/styles/utility.css">
-   
+    <link rel="stylesheet" href="/styles/options.css">
 </head>
 <body>
     <div class="main-container">
@@ -29,21 +29,19 @@
                <img src=<%=studentInfo.imagepath%> alt="userimg">
             </div>
         </div>
-        <div class="options">
-            <div class="opt-cards card">
-
-                <img src="/images/see atendence.png" alt="see attendence">
-                <button class="opt-btn"><span>View</span> <span>Attendence</span></button>
-            </div>
-            <div class="opt-cards card">
-                <img src="/images/give homework.png" alt="see homework">
-                <button class="opt-btn"><span>View</span> <span>Homework</span></button>
-            </div>
-            <div class="opt-cards card">
-                <img src="/images/give test score.png" alt="view testscore">
-                <button class="opt-btn"><span>View</span> <span>Testscores</span></button>
-            </div>
-        </div>
     </div>
+    <div class="chart-cont disp-none">
+        <div class="chart">
+             <canvas id="attendenceChart"></canvas>
+            <div>*Attendence In Last Five Months</div>
+        </div>
+        <div class="chart2">
+            <span id="attendencePercent"></span>
+            <canvas id="attendenceYearChart"></canvas>
+            <div>*Attendence This Year</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </div>
+    <script src="../scripts/student_dashboard.js"></script>
 </body>
 </html>

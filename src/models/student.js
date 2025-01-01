@@ -70,7 +70,8 @@ const studentSchema = new Schema({
         teachername:{type:String},
         date:{type:String},
         task:{type:String}
-    }]
+    }],
+    lastAttendenceMarked:{type:String}
 });
 
 

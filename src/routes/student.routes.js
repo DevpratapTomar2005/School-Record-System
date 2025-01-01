@@ -11,5 +11,5 @@ router.post("/login", studentControllers.studentLogin)
 router.get("/logout", verifyStudent,studentControllers.studentLogout)
 router.get("/refreshtoken",studentControllers.refreshAccessToken)
 router.post('/upload-student-profile',verifyStudent,upload.single('userProfile'),studentControllers.updateProfilePath)
-
+router.get('/student-dashboard',verifyStudent,studentControllers.studentDashboard)
 module.exports=router;

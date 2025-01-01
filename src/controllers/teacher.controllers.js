@@ -287,10 +287,15 @@ const markAttendence = async (req, res) => {
       class: attendenceData[0].studentClass,
       schoolname: req.user.schoolname,
     }).select("-password -refreshToken -homeworks -imagepath -contactnum");
-    if (!students) {
-      throw new Error("No students found!!");
+    if (!students || students.length === 0) {
+      return res.status(404).json({ message: "No students found!!" });
     }
 
+    for (const student of students) {
+      if (student.lastAttendenceMarked === new Date().toLocaleDateString("en-IN")) {
+        return res.status(400).json({ message: "Attendence already marked for today!!" });
+      }
+    }
     for (const student of students) {
       const attendences = attendenceData
         .filter((attendence) => student.rollnum == attendence.rollnum)
@@ -306,6 +311,7 @@ const markAttendence = async (req, res) => {
         });
 
       student.attendence.push(...attendences);
+      student.lastAttendenceMarked = new Date().toLocaleDateString("en-IN");
 
       await student.save({ validateBeforeSave: false });
     }

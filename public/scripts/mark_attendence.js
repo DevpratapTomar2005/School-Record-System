@@ -56,7 +56,7 @@ attendenceForm.addEventListener('submit',async (e)=>{
         }
     })
 
-    console.log(attendenceData)
+   
     const markAttendence= await fetch('/teacher/mark-attendence',{
         method:'POST',
         headers:{
