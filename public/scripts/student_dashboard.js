@@ -69,32 +69,32 @@ async function fetchStudentDashboard() {
       const termTwoScore=document.getElementById('term-two-score');
       if(totalMarksUnitOne!=null){
        
-        unitOneScore.innerText=totalMarksUnitOne+'%';
+        unitOneScore.innerText=totalMarksUnitOne.toFixed(1)+'%';
       } else{
         unitOneScore.innerText='--';
       }
       if(totalMarksUnitTwo!=null){
-        unitTwoScore.innerText=totalMarksUnitTwo+'%';
+        unitTwoScore.innerText=totalMarksUnitTwo.toFixed(1)+'%';
       }else{
         unitTwoScore.innerText='--';
       }
       if(totalMarksUnitThree!=null){
-        unitThreeScore.innerText=totalMarksUnitThree+'%';
+        unitThreeScore.innerText=totalMarksUnitThree.toFixed(1)+'%';
       }else{
         unitThreeScore.innerText='--';
       }
       if(totalMarksUnitFour!=null){
-        unitFourScore.innerText=totalMarksUnitFour+'%';
+        unitFourScore.innerText=totalMarksUnitFour.toFixed(1)+'%';
       }else{
         unitFourScore.innerText='--';
       }
       if(totalMarksTermOne!=null){
-        termOneScore.innerText=totalMarksTermOne+'%';
+        termOneScore.innerText=totalMarksTermOne.toFixed(1)+'%';
       }else{
         termOneScore.innerText='--';
       }
       if(totalMarksTermTwo!=null){
-        termTwoScore.innerText=totalMarksTermTwo+'%';
+        termTwoScore.innerText=totalMarksTermTwo.toFixed(1)+'%';
       }else{
         termTwoScore.innerText='--';
       }

@@ -245,28 +245,28 @@ try {
   
     student.testscore.forEach(e=>{
       if(e.examName==='Unit Test-1'){
-        maxUnitMarksOne=e.maxMarks
-        obtainedMarksOne=e.obtainedMarks
+        maxUnitMarksOne+=e.maxMarks
+        obtainedMarksOne+=e.obtainedMarks
       }
       if(e.examName==='Unit Test-2'){
-        maxUnitMarksTwo=e.maxMarks
-        obtainedMarksTwo=e.obtainedMarks
+        maxUnitMarksTwo+=e.maxMarks
+        obtainedMarksTwo+=e.obtainedMarks
       }
       if(e.examName==='Unit Test-3'){
-        maxUnitMarksThree=e.maxMarks
-        obtainedMarksThree=e.obtainedMarks
+        maxUnitMarksThree+=e.maxMarks
+        obtainedMarksThree+=e.obtainedMarks
       }
       if(e.examName==='Unit Test-4'){
-        maxUnitMarksFour=e.maxMarks
-        obtainedMarksFour=e.obtainedMarks
+        maxUnitMarksFour+=e.maxMarks
+        obtainedMarksFour+=e.obtainedMarks
       }
       if(e.examName==='Term-1'){
-        maxUnitMarksTermOne=e.maxMarks
-        obtainedMarksTermOne=e.obtainedMarks
+        maxUnitMarksTermOne+=e.maxMarks
+        obtainedMarksTermOne+=e.obtainedMarks
       }
       if(e.examName==='Term-2'){
-        maxUnitMarksTermTwo=e.maxMarks
-        obtainedMarksTermTwo=e.obtainedMarks
+        maxUnitMarksTermTwo+=e.maxMarks
+        obtainedMarksTermTwo+=e.obtainedMarks
       }
     })
   
