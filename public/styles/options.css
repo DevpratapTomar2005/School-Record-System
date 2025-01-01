@@ -370,6 +370,34 @@ outline: none;
     right: 32%;
 }
 
+.testscore-cont{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    
+    margin: 0 auto;
+    gap: 5px;
+}
+.unit-one-cont span, .unit-two-cont span, .unit-three-cont span, .unit-four-cont span,.term-one-cont span,.term-two-cont span{
+    color: rgba(255, 255, 255, 0.467);
+    font-size: 20px;
+    font-family: 'Poppins',sans-serif;
+}
+.unit-one-cont, .unit-two-cont, .unit-three-cont, .unit-four-cont,.term-one-cont,.term-two-cont{
+    border-radius: 5px;
+    background-color: #2E2E2E;
+    width: calc(100% / 6);
+    text-align: center;
+    color: white;
+    padding: 2px 0px;
+    font-size: 40px;
+    font-family: 'Poppins',sans-serif;
+   
+}
+.unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div,.term-one-cont div,.term-two-cont div{
+   margin: 40px;
+   font-weight: bold;
+}
 @media only screen and (min-width:2500px){
     .mark-cont3 input {
         width: 9%;

@@ -226,6 +226,62 @@ const updateProfilePath = async (req, res) => {
     throw new Error("Failed to upload profile!!");
   }
 };
+
+const viewTestScore = async (req, res) => {
+  const student = req.user;
+try {
+    let maxUnitMarksOne=0;
+    let obtainedMarksOne=0;
+    let maxUnitMarksTwo=0;
+    let obtainedMarksTwo=0;
+    let maxUnitMarksThree=0;
+    let obtainedMarksThree=0;
+    let maxUnitMarksFour=0;
+    let obtainedMarksFour=0;
+    let maxUnitMarksTermOne=0;
+    let obtainedMarksTermOne=0;
+    let maxUnitMarksTermTwo=0;
+    let obtainedMarksTermTwo=0;
+  
+    student.testscore.forEach(e=>{
+      if(e.examName==='Unit Test-1'){
+        maxUnitMarksOne=e.maxMarks
+        obtainedMarksOne=e.obtainedMarks
+      }
+      if(e.examName==='Unit Test-2'){
+        maxUnitMarksTwo=e.maxMarks
+        obtainedMarksTwo=e.obtainedMarks
+      }
+      if(e.examName==='Unit Test-3'){
+        maxUnitMarksThree=e.maxMarks
+        obtainedMarksThree=e.obtainedMarks
+      }
+      if(e.examName==='Unit Test-4'){
+        maxUnitMarksFour=e.maxMarks
+        obtainedMarksFour=e.obtainedMarks
+      }
+      if(e.examName==='Term-1'){
+        maxUnitMarksTermOne=e.maxMarks
+        obtainedMarksTermOne=e.obtainedMarks
+      }
+      if(e.examName==='Term-2'){
+        maxUnitMarksTermTwo=e.maxMarks
+        obtainedMarksTermTwo=e.obtainedMarks
+      }
+    })
+  
+    const totalMarksUnitOne=(obtainedMarksOne/maxUnitMarksOne)*100 
+    const totalMarksUnitTwo=(obtainedMarksTwo/maxUnitMarksTwo)*100
+    const totalMarksUnitThree=(obtainedMarksThree/maxUnitMarksThree)*100
+    const totalMarksUnitFour=(obtainedMarksFour/maxUnitMarksFour)*100
+    const totalMarksTermOne=(obtainedMarksTermOne/maxUnitMarksTermOne)*100
+    const totalMarksTermTwo=(obtainedMarksTermTwo/maxUnitMarksTermTwo)*100
+  
+    return res.status(201).json({totalMarksUnitOne,totalMarksUnitTwo,totalMarksUnitThree,totalMarksUnitFour,totalMarksTermOne,totalMarksTermTwo})
+} catch (error) {
+  throw error;
+}
+};
 module.exports = {
   studentRegister,
   studentLogin,
@@ -233,5 +289,6 @@ module.exports = {
   studentLogout,
   refreshAccessToken,
   updateProfilePath,
-  studentDashboard
+  studentDashboard,
+  viewTestScore
 };
