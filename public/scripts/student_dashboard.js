@@ -99,6 +99,24 @@ async function fetchStudentDashboard() {
         termTwoScore.innerText='--';
       }
 
+      const homeworkCont=document.querySelector('.homework-cont');
+      student.homeworks.forEach(homework=>{
+        const homeworkDiv=document.createElement('div');
+        homeworkDiv.className='homework';
+        homeworkDiv.innerHTML=` <div class="homework-details-cont">
+        <div class="homework-details">
+                    <span id="subject">Subject: ${homework.subject}</span>
+                    
+                    <span id="date">Date: ${homework.date}</span>
+                </div>
+                <span id="hw-descrpt" class="homework-descpt">${homework.task}</span>
+            </div>
+            </div>
+            <div class="done-btn">
+                <a href="">Done</a>
+            </div>`
+           
+            homeworkCont.appendChild(homeworkDiv);
+})
 }
-
 fetchStudentDashboard();
