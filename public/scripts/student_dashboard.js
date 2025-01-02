@@ -113,10 +113,31 @@ async function fetchStudentDashboard() {
             </div>
             </div>
             <div class="done-btn">
-                <a href="">Done</a>
+                <a class="homeworkDone">Done</a>
             </div>`
            
             homeworkCont.appendChild(homeworkDiv);
 })
+    
+    const homeworkDone = document.querySelectorAll('.homeworkDone');
+    
+    homeworkDone.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const homeworkDisp= e.target.closest('.homework');
+            if (homeworkDisp) {
+                homeworkCont.removeChild(homeworkDisp);
+            }
+    
+            const subject = homeworkDisp.querySelector('#subject').innerText.split(':')[1].trim();
+            const date = homeworkDisp.querySelector('#date').innerText.split(':')[1].trim();
+            const homeworkDesc = homeworkDisp.querySelector('#hw-descrpt').innerText;
+    
+            const homeworkData = { subject, date, homeworkDesc };
+            console.log(homeworkData);
+        });
+    });
+  
+
+     
 }
 fetchStudentDashboard();
