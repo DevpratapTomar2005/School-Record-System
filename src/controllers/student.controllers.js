@@ -282,6 +282,26 @@ try {
   throw error;
 }
 };
+const removeHomework = async (req, res) => {
+  const { subject, date, homeworkDesc } = req.body;
+  const student = req.user;
+
+  try {
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    student.homeworks = student.homeworks.filter(homework => {
+      return !(homework.subject === subject && homework.date === date && homework.task === homeworkDesc);
+    });
+
+    await student.save({ validateBeforeSave: false });
+
+    return res.status(201);
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = {
   studentRegister,
   studentLogin,
@@ -290,5 +310,6 @@ module.exports = {
   refreshAccessToken,
   updateProfilePath,
   studentDashboard,
-  viewTestScore
+  viewTestScore,
+  removeHomework
 };

@@ -117,12 +117,16 @@ async function fetchStudentDashboard() {
             </div>`
            
             homeworkCont.appendChild(homeworkDiv);
+
+            document.querySelector('.no-homework').classList.add('disp-none')
 })
+
+
     
     const homeworkDone = document.querySelectorAll('.homeworkDone');
     
     homeworkDone.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click',async (e) => {
             const homeworkDisp= e.target.closest('.homework');
             if (homeworkDisp) {
                 homeworkCont.removeChild(homeworkDisp);
@@ -133,11 +137,25 @@ async function fetchStudentDashboard() {
             const homeworkDesc = homeworkDisp.querySelector('#hw-descrpt').innerText;
     
             const homeworkData = { subject, date, homeworkDesc };
-            console.log(homeworkData);
-        });
-    });
-  
+           
 
+          await fetch('/student/remove-homework', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(homeworkData)
+          });
+          
+        });
+        
+      });
      
+      if(student.homeworks.length==0){
+      if(document.querySelector('.no-homework').classList.contains('disp-none')){
+        document.querySelector('.no-homework').classList.remove('disp-none')
+      }
+  
+    }
 }
 fetchStudentDashboard();
