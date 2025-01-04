@@ -395,7 +395,7 @@ outline: none;
    
 }
 .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div,.term-one-cont div,.term-two-cont div{
-   margin: 40px;
+   margin: 40px auto;
    font-weight: bold;
 }
 .homework-cont{
@@ -498,6 +498,12 @@ outline: none;
         padding: 10px 7px;
         padding-bottom: 23px;
     }
+    .testscore-cont{
+        max-width: 1200px;
+    }
+    .homework-cont{
+        max-width: 1200px;
+    }
 }
 @media only screen and (max-width: 1327px){
 .chart{
@@ -530,6 +536,12 @@ outline: none;
         top: 154px;
         right: 37%;
     }
+    .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div,.term-one-cont div,.term-two-cont div{
+        margin: 31px auto;
+        font-weight: bold;
+        font-size: 37px;
+    }
+   
 }
 @media only screen and (max-width: 950px){
     .updated-attendence-table table,.updated-homework-table table,.upload-marks-table table{
@@ -575,11 +587,33 @@ outline: none;
     .logout-box a{
         font-size: 12px;
     }
+    .unit-one-cont span, .unit-two-cont span, .unit-three-cont span, .unit-four-cont span, .term-one-cont span, .term-two-cont span {  
+        font-size: 18px;
+    }
+    .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div, .term-one-cont div, .term-two-cont div {
+        font-size: 33px;
+        
+    }
     }
     @media only screen and (max-width: 800px){
         #attendencePercent{
             top: 154px;
             right: 40%;
+        }
+        .testscore-cont{
+            flex-wrap: wrap;
+           
+        }
+        .unit-one-cont, .unit-two-cont, .unit-three-cont, .unit-four-cont, .term-one-cont, .term-two-cont{
+            padding: 4px 29px;
+            flex-grow: 1;
+        }
+        .unit-one-cont span, .unit-two-cont span, .unit-three-cont span, .unit-four-cont span, .term-one-cont span, .term-two-cont span {
+            font-size: 22px;
+        }
+        .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div, .term-one-cont div, .term-two-cont div {
+            font-size: 39px;
+            
         }
     }
     @media only screen and (max-width: 600px){
@@ -724,6 +758,20 @@ outline: none;
             top: 154px;
             right: 36%;
         }
+        .unit-one-cont, .unit-two-cont, .unit-three-cont, .unit-four-cont, .term-one-cont, .term-two-cont {
+            padding: 4px 16px;
+            
+        }
+        .unit-one-cont span, .unit-two-cont span, .unit-three-cont span, .unit-four-cont span, .term-one-cont span, .term-two-cont span {
+            font-size: 20px;
+        }
+        .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div, .term-one-cont div, .term-two-cont div {
+            font-size: 27px;
+            padding: 4px 0px;
+        }
+        .no-homework{
+            margin: 76px auto;
+        }
         
     }
     @media only screen and (max-width:416px) {
@@ -744,5 +792,17 @@ outline: none;
         .chart{
             padding: 10px 4px;
             padding-bottom: 23px;
+        }
+        .unit-one-cont span, .unit-two-cont span, .unit-three-cont span, .unit-four-cont span, .term-one-cont span, .term-two-cont span {
+            font-size: 18px;
+        }
+        .unit-one-cont div, .unit-two-cont div, .unit-three-cont div, .unit-four-cont div, .term-one-cont div, .term-two-cont div {
+            font-size: 24px;
+        }
+        .homework-details span{
+            font-size: 13px;
+        }
+        .homework-descpt{
+            font-size: 12px;
         }
     }
