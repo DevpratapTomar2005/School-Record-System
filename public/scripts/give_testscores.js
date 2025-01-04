@@ -22,11 +22,11 @@ findStudentForm.addEventListener('submit',async (e)=>{
     const marksTable=document.querySelector('#marksTable tbody')
     responseStudents.students.forEach(e => {
         const row=document.createElement('tr')
-row.innerHTML=`<td>${e.firstname}</td>
-<td>${e.lastname}</td>
+row.innerHTML=`<td>${e.firstname.charAt(0).toUpperCase() + e.firstname.slice(1)}</td>
+<td>${e.lastname.charAt(0).toUpperCase() + e.lastname.slice(1)}</td>
 <td>${e.rollnum}</td>
 <td>${e.class}</td>
-<td>${responseStudents.subject}</td>
+<td>${responseStudents.subject.charAt(0).toUpperCase() + responseStudents.subject.slice(1)}</td>
 <td><select name="examNameSelect" id="examNameSelect" class="inputTable" required >
                     <option value="Unit Test-1">Unit Test-1</option>
                     <option value="Unit Test-2">Unit Test-2</option>

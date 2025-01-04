@@ -22,8 +22,8 @@ findStudentForm.addEventListener('submit',async (e)=>{
     const attendenceTable=document.querySelector('#attendenceTable tbody')
     responseStudents.students.forEach(e => {
         const row=document.createElement('tr')
-row.innerHTML=`<td>${e.firstname}</td>
-<td>${e.lastname}</td>
+row.innerHTML=`<td>${e.firstname.charAt(0).toUpperCase() + e.firstname.slice(1)}</td>
+<td>${e.lastname.charAt(0).toUpperCase() + e.lastname.slice(1)}</td>
 <td>${e.rollnum}</td>
 <td>${e.class}</td>
 

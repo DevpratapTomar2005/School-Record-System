@@ -20,7 +20,7 @@ homeworkForm.addEventListener('submit',async (e)=>{
     const homeworkTable=document.querySelector('.updated-homework-table').firstElementChild
 const row=document.createElement('tr')
 row.innerHTML=`<td>${studentClass}</td>
-<td>${response.subject}</td>
+<td>${response.subject.charAt(0).toUpperCase() + response.subject.slice(1)}</td>
 <td>${homework}</td>
 <td>${response.date}</td>`
 
