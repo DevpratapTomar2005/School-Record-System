@@ -2,6 +2,7 @@
 
 const  Admin = require('../models/admin.js')
 const jwt=require('jsonwebtoken')
+const bcrypt=require('bcryptjs')
 const { generateAdminAccessToken, generateAdminRefreshToken } = require('../utils/generateAdminTokens.js')
 const generateAccessAndRefreshTokens = async (user) => {
     try {
@@ -28,13 +29,13 @@ const adminRegister= async (req,res)=>{
         if (password === confirmPassword) {
             const adminExists= await Admin.findOne({schoolname: schoolname.toLowerCase(), emailid: schoolEmail})
             if(!adminExists){
-
+                const hashPassword=await bcrypt.hash(password,10)
                 const adminData = await Admin.create({
     
                     emailid: schoolEmail,
                     contactnum: phonenumber,
                     schoolname: schoolname.toLowerCase(),
-                    password: password,
+                    password: hashPassword,
                     imagepath:imagePath
                 })
                 const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(adminData)
@@ -66,9 +67,11 @@ const adminLogin= async (req,res)=>{
         const schoolName = req.body.schoolname
         const schoolEmail = req.body.schoolemail
         const password = req.body.password
+      
 
         const adminData = await Admin.findOne({ schoolname: schoolName.toLowerCase(), emailid: schoolEmail })
-        if (password === adminData.password) {
+        const decodedPassword = await bcrypt.compare(password, adminData.password)
+        if (adminData && decodedPassword) {
             const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(adminData)
             res.status(200).cookie('accessToken', accessToken, { httpOnly: true, secure: true }).cookie('refreshToken', refreshToken, { httpOnly: true, secure: true }).redirect('/admin/')
         }

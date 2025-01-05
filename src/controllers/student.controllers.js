@@ -5,6 +5,7 @@ const {
   generateStudentAccessToken,
 } = require("../utils/generateStudentTokens.js");
 const jwt = require("jsonwebtoken");
+const bcrypt=require('bcryptjs')
 
 const {sortAttendenceAccordingToMonth}=require('../utils/sortingAttendenceMonth.js')
 const generateAccessAndRefreshToken = async (studentId) => {
@@ -34,6 +35,7 @@ const studentRegister = async (req, res) => {
     const confirmPassword = req.body.confirmpassword;
     const studentClass = req.body.studentclass;
     const imagePath = "/images/userimg.png";
+    
     if (password === confirmPassword) {
       const studentExists = await Student.findOne({
         rollnum,
@@ -41,6 +43,7 @@ const studentRegister = async (req, res) => {
         class: studentClass,
       });
       if (!studentExists) {
+        const hashPassword=await bcrypt.hash(password,10)
         const studentData = await Student.create({
           firstname: firstname.toLowerCase(),
           lastname: lastname.toLowerCase(),
@@ -48,7 +51,7 @@ const studentRegister = async (req, res) => {
           contactnum: phonenumber,
           schoolname: schoolname.toLowerCase(),
           gender,
-          password,
+          password:hashPassword,
           class: studentClass,
           imagepath: imagePath,
         });
@@ -81,15 +84,17 @@ const studentLogin = async (req, res) => {
     const studentClass = req.body.studentclass;
     const rollnum = req.body.rollnum;
     const password = req.body.password;
+    
     const studentData = await Student.findOne({
       rollnum: rollnum,
       class: studentClass,
       schoolname: schoolname.toLowerCase(),
-      password,
+      
     });
-
-    if (!studentData) {
-      return res.send("Invalid Credentials");
+    const decodedPassword=await bcrypt.compare(password,studentData.password)
+    
+    if (!studentData || !decodedPassword) {
+      return res.send("Invalid Credentials!");
     }
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
       studentData._id

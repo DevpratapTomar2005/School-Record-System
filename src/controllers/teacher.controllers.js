@@ -2,6 +2,7 @@ const Teacher = require("../models/teacher.js");
 const Student = require("../models/student.js");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const bcrypt=require('bcryptjs')
 const {
   generateTeacherAccessToken,
   generateTeacherRefreshToken,
@@ -42,6 +43,7 @@ const teacherRegister = async (req, res) => {
         subject: teacherSubject,
       });
       if (!teacherExists) {
+         const hashPassword=await bcrypt.hash(password,10)
         const teacherData = await Teacher.create({
           firstname: firstname.toLowerCase(),
           lastname: lastname.toLowerCase(),
@@ -49,7 +51,7 @@ const teacherRegister = async (req, res) => {
           contactnum: phonenumber,
           schoolname: schoolname.toLowerCase(),
           gender: gender,
-          password: password,
+          password: hashPassword,
           subject: teacherSubject.toLowerCase(),
           imagepath: imagePath,
         });
@@ -90,7 +92,8 @@ const teacherLogin = async (req, res) => {
       emailid: teacherEmail,
       schoolname: schoolname.toLowerCase(),
     });
-    if (password === teacherData.password) {
+    const decodedPassword=await bcrypt.compare(password,teacherData.password)
+    if (teacherData && decodedPassword) {
       const { accessToken, refreshToken } =
         await generateAccessAndRefreshTokens(teacherData);
       res
