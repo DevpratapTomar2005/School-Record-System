@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/utility.css">
+    <link rel="stylesheet" href="/styles/options.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="userinfo">
+            <div class="info">
+                <h1 ><%= student.firstname.charAt(0).toUpperCase() + student.firstname.slice(1)+ " " + student.lastname.charAt(0).toUpperCase() + student.lastname.slice(1)%></h1>
+                <h3 >Class: <%= student.class %></h3>
+                <h3 > <%= student.contactnum %></h3>
+                <h3 >Roll No.: <%= student.rollnum %></h3>
+                <h3 ><%= student.schoolname.charAt(0).toUpperCase() + student.schoolname.slice(1) %></h3>
+                <form action="/student/upload-student-profile" method="post" enctype="multipart/form-data">
+                    <label for="profileInput" >Upload Profile Image</label>
+                    <input  class="disp-none" type="file" name="userProfile" id="profileInput" >
+                     <button type="submit" id="changePfp" class="disp-none upload-btn ">Upload</button>
+                </form>
+                <a href="/admin/logout">Logout</a>
+                <script src="/scripts/pfp-upload.js"></script>
+            </div>
+            <div class="img-cont">
+               <img src=<%=student.imagepath%> alt="userimg">
+            </div>
+        </div>
+    </div>
+    <div class="chart-cont disp-none">
+        <div class="chart">
+             <canvas id="attendenceChart"></canvas>
+            <div>*Attendence In Last Five Months</div>
+        </div>
+        <div class="chart2">
+            <span id="attendencePercent"></span>
+            <canvas id="attendenceYearChart"></canvas>
+            <div>*Attendence This Year</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </div>
+    <div class="testscore-cont">
+        <div class="unit-one-cont">
+            <span>Unit-1</span>
+            <div id="unit-one-score">
+                
+            </div>
+        </div>
+        <div class="unit-two-cont">
+            <span>Unit-2</span>
+            <div id="unit-two-score">
+                
+            </div>
+        </div>
+        <div class="term-one-cont">
+            <span>Term-1</span>
+            <div id="term-one-score">
+                
+            </div>
+        </div>
+        <div class="unit-three-cont">
+            <span>Unit-3</span>
+            <div id="unit-three-score">
+                
+            </div>
+        </div>
+        <div class="unit-four-cont">
+            <span>Unit-4</span>
+            <div id="unit-four-score">
+                
+            </div>
+        </div>
+        <div class="term-two-cont">
+            <span>Term-2</span>
+            <div id="term-two-score">
+                
+            </div>
+        </div>
+    </div>
+<script src="/scripts/admin_student_dashboard.js"></script>
+  
+</body>
+</html>

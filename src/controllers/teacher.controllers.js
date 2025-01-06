@@ -236,6 +236,7 @@ const giveTestscorePage = (req, res) => {
 };
 const giveStudents = async (req, res) => {
   const studentData = req.body;
+  
   const students = await Student.find({
     class: studentData.studentClass,
     schoolname: req.user.schoolname,

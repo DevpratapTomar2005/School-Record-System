@@ -1,9 +1,13 @@
 
 
 const  Admin = require('../models/admin.js')
+const Student=require('../models/student.js')
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcryptjs')
 const { generateAdminAccessToken, generateAdminRefreshToken } = require('../utils/generateAdminTokens.js')
+const path=require('path')
+const {sortAttendenceAccordingToMonth}=require('../utils/sortingAttendenceMonth.js')
+
 const generateAccessAndRefreshTokens = async (user) => {
     try {
         const accessToken = generateAdminAccessToken(user)
@@ -152,11 +156,148 @@ const adminIndex= async (req,res)=>{
       throw new Error("Failed to upload profile!!");
     }
   };
+
+  const adminViewStudentsPage=  (req,res)=>{
+    return res.sendFile(path.join(__dirname, '../../public/templates', 'view_students.html'))
+  }
+  const giveStudents = async (req, res) => {
+    const studentData = req.body;
+ 
+    const students = await Student.find({
+      class: studentData.studentClass,
+      schoolname: req.user.schoolname,
+    }).select("-password -refreshToken");
+  
+    res.status(201).json({ students });
+  };
+
+  const adminViewStudentDashboard= async (req,res)=>{
+    const studentName=req.params.studentName
+    const studentData=studentName.split('-')
+  try {
+      const student=await Student.findOne({rollnum:studentData[1],class:studentData[2],schoolname:req.user.schoolname}).select('-password -refreshToken')
+      if(!student){
+        return  res.status(404).send('Student not found')
+      }   
+     const studentDetails={
+        rollnum:studentData[1],class:studentData[2]
+     }
+      return res.status(201).cookie('currentStudent',studentDetails,{httpOnly:true}).render('admin_student_dashboard',{student})
+  } catch (error) {
+    throw error;
+  }
+  }
+  const viewAttendence=async (req,res)=>{
+    const studentData= req.cookies?.currentStudent
+    
+  
+ try {
+        const student=await Student.findOne({rollnum:studentData.rollnum,class:studentData.class,schoolname:req.user.schoolname}).select('-password -refreshToken')
+     if(!student){
+         return  res.status(404).send('Student not found')
+     }
+       const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
+      
+      
+       const currentYear=new Date().getFullYear();
+       
+       let yearPresentDays=0;
+       let yearAbsentDays=0;
+       
+       student.attendence.forEach(e=>{
+         let dateParts = e.attendenceDate.split('/');  
+         let year = dateParts[2]
+         if(year==currentYear){
+           if(e.studentAttendence==='Present'){
+             yearPresentDays= yearPresentDays+1;
+           }
+           if(e.studentAttendence==='Absent'){
+             yearAbsentDays=yearAbsentDays+1;
+           }
+         }
+       })
+       
+       const attendenceThisYear=(yearPresentDays/(yearPresentDays+yearAbsentDays))*100
+       
+       return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,student})
+ } catch (error) {
+   throw error;
+    
+ }
+  }
+ const viewTestScores=async (req,res)=>{
+    const student= req.cookies?.currentStudent
+  
+   try {
+     const student=await Student.findOne({rollnum:studentData[1],class:studentData[2],schoolname:req.user.schoolname}).select('-password -refreshToken')
+     if(!student){
+       return  res.status(404).send('Student not found')
+     }
+     let maxUnitMarksOne=0;
+     let obtainedMarksOne=0;
+     let maxUnitMarksTwo=0;
+     let obtainedMarksTwo=0;
+     let maxUnitMarksThree=0;
+     let obtainedMarksThree=0;
+     let maxUnitMarksFour=0;
+     let obtainedMarksFour=0;
+     let maxUnitMarksTermOne=0;
+     let obtainedMarksTermOne=0;
+     let maxUnitMarksTermTwo=0;
+     let obtainedMarksTermTwo=0;
+   
+     student.testscore.forEach(e=>{
+       if(e.examName==='Unit Test-1'){
+         maxUnitMarksOne+=e.maxMarks
+         obtainedMarksOne+=e.obtainedMarks
+       }
+       if(e.examName==='Unit Test-2'){
+         maxUnitMarksTwo+=e.maxMarks
+         obtainedMarksTwo+=e.obtainedMarks
+       }
+       if(e.examName==='Unit Test-3'){
+         maxUnitMarksThree+=e.maxMarks
+         obtainedMarksThree+=e.obtainedMarks
+       }
+       if(e.examName==='Unit Test-4'){
+         maxUnitMarksFour+=e.maxMarks
+         obtainedMarksFour+=e.obtainedMarks
+       }
+       if(e.examName==='Term-1'){
+         maxUnitMarksTermOne+=e.maxMarks
+         obtainedMarksTermOne+=e.obtainedMarks
+       }
+       if(e.examName==='Term-2'){
+         maxUnitMarksTermTwo+=e.maxMarks
+         obtainedMarksTermTwo+=e.obtainedMarks
+       }
+     })
+   
+     const totalMarksUnitOne=(obtainedMarksOne/maxUnitMarksOne)*100 
+     const totalMarksUnitTwo=(obtainedMarksTwo/maxUnitMarksTwo)*100
+     const totalMarksUnitThree=(obtainedMarksThree/maxUnitMarksThree)*100
+     const totalMarksUnitFour=(obtainedMarksFour/maxUnitMarksFour)*100
+     const totalMarksTermOne=(obtainedMarksTermOne/maxUnitMarksTermOne)*100
+     const totalMarksTermTwo=(obtainedMarksTermTwo/maxUnitMarksTermTwo)*100
+   
+     return res.status(201).clearCookie('currentStudent',{httpOnly:true}).json({totalMarksUnitOne,totalMarksUnitTwo,totalMarksUnitThree,totalMarksUnitFour,totalMarksTermOne,totalMarksTermTwo})
+   } catch (error) {
+     throw error;
+    
+   }
+ }
+   
+    
 module.exports={
     adminRegister,
     adminLogin,
     adminLogout,
     adminIndex,
     refreshAccessToken,
-    updateProfilePath
+    updateProfilePath,
+    adminViewStudentsPage,
+    giveStudents,
+    adminViewStudentDashboard,
+    viewAttendence,
+    viewTestScores
 }
