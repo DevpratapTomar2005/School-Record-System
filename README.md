@@ -17,3 +17,4 @@ The School Record System is a comprehensive web application designed to manage a
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
 - **Password Security**: Bcrypt.js
+- **Upload Profile Picture**: Multer
