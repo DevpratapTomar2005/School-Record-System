@@ -18,10 +18,9 @@ const generateAccessAndRefreshTokens = async (user) => {
        
         return { accessToken, refreshToken }
     } catch (error) {
-        throw new Error("Some thing went wrong while generating tokens");
-    }
+        res.status(500).send('Error in generating tokens')
 }
-
+}
 const adminRegister= async (req,res)=>{
     
     try {
@@ -61,7 +60,7 @@ const adminRegister= async (req,res)=>{
         }
 
     } catch (error) {
-        throw new Error('Internal Server Error')
+      return res.status(500).send('Internal Server Error')
     }
 }
 
@@ -84,7 +83,7 @@ const adminLogin= async (req,res)=>{
             res.send('Invalid Credentials')
         }
     } catch (error) {
-       throw new Error('Internal Server Error')
+      return res.status(500).send('Internal Server Error')
     }
 }
 const adminIndex= async (req,res)=>{
@@ -93,7 +92,7 @@ const adminIndex= async (req,res)=>{
       res.status(201).render('admin_index', { adminInfo })
       
     } catch (error) {
-      throw new Error('Internal Server Error');
+      return res.status(500).send('Internal Server Error')
     }
   }
   const adminLogout = async (req, res) => {
@@ -106,7 +105,7 @@ const adminIndex= async (req,res)=>{
           }
           return res.status(201).clearCookie("accessToken", options).clearCookie("refreshToken", options).redirect('/admin-login')
       } catch (error) {
-          throw new Error('Internal Server Error');
+        return res.status(500).send('Internal Server Error')
       }
   }
   const refreshAccessToken = async (req, res) => {
@@ -138,7 +137,7 @@ const adminIndex= async (req,res)=>{
         
         return  res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`${destUrl}`)
       } catch (error) {
-         throw new Error('Internal Server Error')
+        return res.status(500).send('Internal Server Error')
       }
   
   }
@@ -154,7 +153,7 @@ const adminIndex= async (req,res)=>{
       ).select("-password -refreshToken");
       return res.status(201).redirect("/admin/");
     } catch (error) {
-      throw new Error("Failed to upload profile!!");
+      return res.status(500).send('Internal Server Error')
     }
   };
 
@@ -174,7 +173,7 @@ const adminIndex= async (req,res)=>{
      }
      res.status(201).json({ students });
    } catch (error) {
-    throw new Error('Internal Server Error');
+    return res.status(500).send('Internal Server Error')
    }
   };
 
@@ -191,7 +190,7 @@ const adminIndex= async (req,res)=>{
      }
       return res.status(201).cookie('currentStudent',studentDetails,{httpOnly:true}).render('admin_student_dashboard',{student})
   } catch (error) {
-    throw new Error('Internal Server Error');
+    return res.status(500).send('Internal Server Error')
   }
   }
   const viewAttendence=async (req,res)=>{
@@ -228,7 +227,7 @@ const adminIndex= async (req,res)=>{
        
        return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,student})
  } catch (error) {
-   throw new Error('Internal Server Error');
+  return res.status(500).send('Internal Server Error')
     
  }
   }
@@ -289,8 +288,8 @@ const adminIndex= async (req,res)=>{
    
      return res.status(201).clearCookie('currentStudent',{httpOnly:true}).json({totalMarksUnitOne,totalMarksUnitTwo,totalMarksUnitThree,totalMarksUnitFour,totalMarksTermOne,totalMarksTermTwo})
    } catch (error) {
-     throw new Error('Internal Server Error');
     
+    return res.status(500).send('Internal Server Error')
    }
  }
  const giveTeachersPage= (req,res)=>{
@@ -304,7 +303,7 @@ const adminIndex= async (req,res)=>{
         }
         return res.status(201).json({teachers})
     } catch (error) {
-        throw new Error('Internal Server Error')
+       return res.status(500).send('Internal Server Error')
     }
    
 }

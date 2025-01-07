@@ -75,7 +75,7 @@ const teacherRegister = async (req, res) => {
       res.send("Ivalid Credentials");
     }
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -105,7 +105,7 @@ const teacherLogin = async (req, res) => {
       res.send("Invalid Credentials");
     }
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -119,7 +119,7 @@ const teacherIndex = async (req, res) => {
     }
     res.status(201).render("teacher_index", { teacherInfo });
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 const teacherLogout = async (req, res) => {
@@ -139,7 +139,7 @@ const teacherLogout = async (req, res) => {
       .clearCookie("refreshToken", options)
       .redirect("/teacher-login");
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 const refreshAccessToken = async (req, res) => {
@@ -176,7 +176,7 @@ const refreshAccessToken = async (req, res) => {
       .cookie("refreshToken", refreshToken, options)
       .redirect(`${destUrl}`);
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 const updateProfilePath = async (req, res) => {
@@ -190,7 +190,7 @@ const updateProfilePath = async (req, res) => {
     ).select("-password -refreshToken");
     return res.status(201).redirect("/teacher/");
   } catch (error) {
-    throw new Error("Failed to upload profile!!");
+    return res.status(500).send('Failed to update profile picture!!')
   }
 };
 const markAttendencePage = (req, res) => {
@@ -219,7 +219,7 @@ try {
       "-password -refreshToken -gender -contactnum -imagepath -absentdays -presentdays -lastmarked"
     );
     if(!classStudents){
-      throw new Error('No students found!!')
+     return res.status(404).send('No students found!!')
     }
     const date = new Date().toLocaleDateString("en-IN");
     classStudents.forEach(async (e) => {
@@ -234,7 +234,7 @@ try {
   
     res.status(201).json({ subject: req.user.subject, date: date });
 } catch (error) {
-  throw new Error('Internal Server Error!!')
+  return res.status(500).send('Internal Server Error')
 }
 };
 const giveTestscorePage = (req, res) => {
@@ -258,7 +258,7 @@ const giveStudents = async (req, res) => {
  
    res.status(201).json({ subject: req.user.subject, students });
  } catch (error) {
-  throw new Error('Internal Server Error!!')
+  return res.status(500).send('Internal Server Error')
  }
 };
 
@@ -296,7 +296,7 @@ markTestscores = async (req, res) => {
       .status(200)
       .json({ message: "Test Scores Saved SuccessFully!!" });
   } catch (error) {
-    throw new Error("Internal Server Error!!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -341,7 +341,7 @@ const markAttendence = async (req, res) => {
       .status(200)
       .json({ message: "Attendence Marked SuccessFully!!" });
   } catch (error) {
-    throw new Error("Internal Server Error!!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 const viewAttendencePage = (req, res) => {
@@ -393,7 +393,7 @@ const getAttendence = async (req, res) => {
  
  return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,currentYear,student})
  } catch (error) {
-  throw new Error('Internal Server Error!!')
+  return res.status(500).send('Internal Server Error')
  }
 
 };

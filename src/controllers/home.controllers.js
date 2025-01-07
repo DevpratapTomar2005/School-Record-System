@@ -67,15 +67,9 @@ const refreshAccessToken = async (req, res) => {
             studentRefresh.refreshToken = refreshToken;
             await studentRefresh.save({ validateBeforeSave: false })
           return  res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`/`)
-        }
-
-
-        
-
-
-        
+        }       
     } catch (error) {
-        throw new Error('Something went wrong!')
+       return res.status(500).send('Internal Server Error!')
     }
 
 }

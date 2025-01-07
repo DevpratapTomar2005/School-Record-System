@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/schoolManagement');
+mongoose.connect(process.env.DB_URL);
 const cookieParser=require('cookie-parser')
-
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));

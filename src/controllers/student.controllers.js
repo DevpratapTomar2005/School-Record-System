@@ -19,7 +19,7 @@ const generateAccessAndRefreshToken = async (studentId) => {
     await student.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new Error("Some thing went wrong!");
+    res.status(500).send("Something went wrong!");
   }
 };
 
@@ -74,7 +74,7 @@ const studentRegister = async (req, res) => {
       return res.send("Invalid Credential!!");
     }
   } catch (error) {
-    throw new Error('Internal Server Error!')
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -110,7 +110,7 @@ const studentLogin = async (req, res) => {
       .cookie("refreshToken", refreshToken, options)
       .redirect("/student/");
   } catch (error) {
-   throw new Error('Internal Server Error!')
+    return res.status(500).send("Internal Server Error!");
   }
 };
 const studentIndex = async (req, res) => {
@@ -120,7 +120,7 @@ const studentIndex = async (req, res) => {
     );
     res.status(201).render("student_index", { studentInfo });
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -152,7 +152,7 @@ const studentDashboard = async (req, res) => {
     
     return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,student})
   } catch (error) {
-    throw new Error('Internal Server Error!')
+    return res.status(500).send('Internal Server Error')
   }
   
 }
@@ -174,7 +174,7 @@ const studentLogout = async (req, res) => {
       .clearCookie("refreshToken", options)
       .redirect("/student-login");
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -212,7 +212,7 @@ const refreshAccessToken = async (req, res) => {
       .cookie("refreshToken", refreshToken, options)
       .redirect(`${destUrl}`);
   } catch (error) {
-    throw new Error("Internal Server Error!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 const updateProfilePath = async (req, res) => {
@@ -227,7 +227,7 @@ const updateProfilePath = async (req, res) => {
     ).select("-password -refreshToken");
     return res.status(201).redirect("/student/");
   } catch (error) {
-    throw new Error("Failed to upload profile!!");
+    return res.status(500).send('Internal Server Error')
   }
 };
 
@@ -303,7 +303,7 @@ const removeHomework = async (req, res) => {
 
     return res.status(201);
   } catch (error) {
-    throw new Error('Internal Server Error!');
+    return res.status(500).send('Internal Server Error')
   }
 };
 module.exports = {

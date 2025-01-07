@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
-
+const dotenv = require('dotenv')
+dotenv.config()
 const generateAdminRefreshToken = (user) => {
-    return jwt.sign({ _id: user._id,role:'Admin' }, 'mynameisdev', { expiresIn: '1d' })
+    return jwt.sign({ _id: user._id,role:'Admin' }, process.env.TOKEN_SECRET_KEY, { expiresIn: '1d' })
 }
 const generateAdminAccessToken = (user) => {
     return jwt.sign({ 
@@ -9,7 +10,7 @@ const generateAdminAccessToken = (user) => {
         email:user.emailid,
         schoolName:user.schoolname,
         role:'Admin'
-     }, 'mynameisdev', { expiresIn: '30m' })
+     }, process.env.TOKEN_SECRET_KEY, { expiresIn: '30m' })
 }
 
 module.exports={generateAdminAccessToken,generateAdminRefreshToken};

@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'mynameisdev';
+const dotenv = require('dotenv')
+dotenv.config()
 const generateStudentRefreshToken =function (user){
-    return jwt.sign({ _id: user._id,  role:'Student' }, SECRET_KEY, { expiresIn: "1d" });
+    return jwt.sign({ _id: user._id,  role:'Student' }, process.env.TOKEN_SECRET_KEY, { expiresIn: "1d" });
 };
 const generateStudentAccessToken =function (user){
     return jwt.sign({
@@ -10,7 +11,7 @@ const generateStudentAccessToken =function (user){
         schoolname: user.schoolname,
         studentClass: user.class,
         role:'Student'
-    }, SECRET_KEY, { expiresIn: "30m" })
+    }, process.env.TOKEN_SECRET_KEY, { expiresIn: "30m" })
 };
 
 module.exports={generateStudentRefreshToken,generateStudentAccessToken};
