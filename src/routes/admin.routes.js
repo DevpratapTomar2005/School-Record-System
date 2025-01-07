@@ -15,4 +15,6 @@ router.get('/view-students',verifyAdmin,adminControllers.adminViewStudentsPage)
 router.get('/student-dashboard/:studentName',verifyAdmin,adminControllers.adminViewStudentDashboard)
 router.get('/student/student-attendence',verifyAdmin,adminControllers.viewAttendence)
 router.get('/student/student-testscores',verifyAdmin,adminControllers.viewTestScores)
+router.get('/view-teachers',verifyAdmin,adminControllers.giveTeachersPage)
+router.get('/get-teachers',verifyAdmin,adminControllers.viewTeachers)
 module.exports=router;

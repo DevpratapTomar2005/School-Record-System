@@ -14,7 +14,7 @@ findStudentForm.addEventListener('submit',async (e)=>{
     })
     
     const responseStudents=await getStudents.json()
-    console.log(responseStudents)
+    
     if(document.querySelector('.updated-attendence-table').classList.contains('disp-none')){
         document.querySelector('.updated-attendence-table').classList.remove('disp-none')
 

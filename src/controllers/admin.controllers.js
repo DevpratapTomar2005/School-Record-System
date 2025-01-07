@@ -2,6 +2,7 @@
 
 const  Admin = require('../models/admin.js')
 const Student=require('../models/student.js')
+const Teacher=require('../models/teacher.js')
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcryptjs')
 const { generateAdminAccessToken, generateAdminRefreshToken } = require('../utils/generateAdminTokens.js')
@@ -60,7 +61,7 @@ const adminRegister= async (req,res)=>{
         }
 
     } catch (error) {
-        res.status(400).send(`Error occured:${error} `)
+        throw new Error('Internal Server Error')
     }
 }
 
@@ -83,7 +84,7 @@ const adminLogin= async (req,res)=>{
             res.send('Invalid Credentials')
         }
     } catch (error) {
-        res.status(400).send(`Error occured:${error} `)
+       throw new Error('Internal Server Error')
     }
 }
 const adminIndex= async (req,res)=>{
@@ -92,7 +93,7 @@ const adminIndex= async (req,res)=>{
       res.status(201).render('admin_index', { adminInfo })
       
     } catch (error) {
-      throw error;
+      throw new Error('Internal Server Error');
     }
   }
   const adminLogout = async (req, res) => {
@@ -105,7 +106,7 @@ const adminIndex= async (req,res)=>{
           }
           return res.status(201).clearCookie("accessToken", options).clearCookie("refreshToken", options).redirect('/admin-login')
       } catch (error) {
-          throw error;
+          throw new Error('Internal Server Error');
       }
   }
   const refreshAccessToken = async (req, res) => {
@@ -135,9 +136,9 @@ const adminIndex= async (req,res)=>{
           }
           
         
-          res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`${destUrl}`)
+        return  res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options).redirect(`${destUrl}`)
       } catch (error) {
-          res.status(400).send(error)
+         throw new Error('Internal Server Error')
       }
   
   }
@@ -163,12 +164,18 @@ const adminIndex= async (req,res)=>{
   const giveStudents = async (req, res) => {
     const studentData = req.body;
  
-    const students = await Student.find({
-      class: studentData.studentClass,
-      schoolname: req.user.schoolname,
-    }).select("-password -refreshToken");
-  
-    res.status(201).json({ students });
+   try {
+     const students = await Student.find({
+       class: studentData.studentClass,
+       schoolname: req.user.schoolname,
+     }).select("-password -refreshToken");
+     if (!students) {
+       return res.status(404).send("No Students Found");
+     }
+     res.status(201).json({ students });
+   } catch (error) {
+    throw new Error('Internal Server Error');
+   }
   };
 
   const adminViewStudentDashboard= async (req,res)=>{
@@ -184,7 +191,7 @@ const adminIndex= async (req,res)=>{
      }
       return res.status(201).cookie('currentStudent',studentDetails,{httpOnly:true}).render('admin_student_dashboard',{student})
   } catch (error) {
-    throw error;
+    throw new Error('Internal Server Error');
   }
   }
   const viewAttendence=async (req,res)=>{
@@ -221,7 +228,7 @@ const adminIndex= async (req,res)=>{
        
        return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,student})
  } catch (error) {
-   throw error;
+   throw new Error('Internal Server Error');
     
  }
   }
@@ -282,12 +289,25 @@ const adminIndex= async (req,res)=>{
    
      return res.status(201).clearCookie('currentStudent',{httpOnly:true}).json({totalMarksUnitOne,totalMarksUnitTwo,totalMarksUnitThree,totalMarksUnitFour,totalMarksTermOne,totalMarksTermTwo})
    } catch (error) {
-     throw error;
+     throw new Error('Internal Server Error');
     
    }
  }
+ const giveTeachersPage= (req,res)=>{
+    return res.sendFile(path.join(__dirname, '../../public/templates', 'view_teachers.html'))
+ }
+ const viewTeachers=async (req,res)=>{
+    try {
+        const teachers=await Teacher.find({schoolname:req.user.schoolname}).select('-password -refreshToken')
+        if(!teachers){
+            return res.status(404).send('No Teachers Found')
+        }
+        return res.status(201).json({teachers})
+    } catch (error) {
+        throw new Error('Internal Server Error')
+    }
    
-    
+}
 module.exports={
     adminRegister,
     adminLogin,
@@ -299,5 +319,7 @@ module.exports={
     giveStudents,
     adminViewStudentDashboard,
     viewAttendence,
-    viewTestScores
+    viewTestScores,
+    viewTeachers,
+    giveTeachersPage
 }

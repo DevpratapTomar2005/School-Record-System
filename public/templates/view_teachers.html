@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Record System</title>
+    <link rel="stylesheet" href="../styles/options.css">
+    <link rel="stylesheet" href="../styles/utility.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="/admin/">Home</a>
+            <a href="/admin/view-teachers">View Teachers</a>
+            <a href="/admin/view-students">View Students</a>
+           
+        </div>
+        <div class="logout-box">
+            <a href="/admin/logout">Logout</a>
+        </div>
+        <div class="hamburger-container">
+            <img id="ham-icon" src="../images/hamburger.svg" alt="hamburger icon">
+        </div>
+        <script src="../scripts/navbar.js"></script>
+    </div>
+    
+    <div class="updated-attendence-table disp-none">
+       
+
+            <table id="attendenceTable">
+                <thead>
+
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Contact No.</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              
+            </table>
+       
+       
+    </div>
+      
+    <script src="../scripts/view_teachers.js"></script>
+</body>
+</html>

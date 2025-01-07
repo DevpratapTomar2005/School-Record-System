@@ -18,7 +18,7 @@ const generateAccessAndRefreshTokens = async (user) => {
 
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new Error("Some thing went wrong while generating tokens");
+    throw new Error("Some thing went wrong!");
   }
 };
 const teacherRegister = async (req, res) => {
@@ -75,7 +75,7 @@ const teacherRegister = async (req, res) => {
       res.send("Ivalid Credentials");
     }
   } catch (error) {
-    res.send(`Error occured:${error} `);
+    throw new Error("Internal Server Error!");
   }
 };
 
@@ -105,7 +105,7 @@ const teacherLogin = async (req, res) => {
       res.send("Invalid Credentials");
     }
   } catch (error) {
-    res.status(400).send(`Error occured:${error} `);
+    throw new Error("Internal Server Error!");
   }
 };
 
@@ -114,9 +114,12 @@ const teacherIndex = async (req, res) => {
     const teacherInfo = await Teacher.findById(req.user._id).select(
       "-password -refreshToken"
     );
+    if(!teacherInfo){
+      throw new Error('No teacher found!!')
+    }
     res.status(201).render("teacher_index", { teacherInfo });
   } catch (error) {
-    throw error;
+    throw new Error("Internal Server Error!");
   }
 };
 const teacherLogout = async (req, res) => {
@@ -136,7 +139,7 @@ const teacherLogout = async (req, res) => {
       .clearCookie("refreshToken", options)
       .redirect("/teacher-login");
   } catch (error) {
-    throw error;
+    throw new Error("Internal Server Error!");
   }
 };
 const refreshAccessToken = async (req, res) => {
@@ -173,7 +176,7 @@ const refreshAccessToken = async (req, res) => {
       .cookie("refreshToken", refreshToken, options)
       .redirect(`${destUrl}`);
   } catch (error) {
-    res.status(400).send(error);
+    throw new Error("Internal Server Error!");
   }
 };
 const updateProfilePath = async (req, res) => {
@@ -208,24 +211,31 @@ const giveHomeworkPage = (req, res) => {
 const uploadHomework = async (req, res) => {
   const homeworkData = req.body;
 
-  const classStudents = await Student.find({
-    class: homeworkData.studentClass,
-    schoolname: req.user.schoolname,
-  }).select(
-    "-password -refreshToken -gender -contactnum -imagepath -absentdays -presentdays -lastmarked"
-  );
-  const date = new Date().toLocaleDateString("en-IN");
-  classStudents.forEach(async (e) => {
-    e.homeworks.push({
-      subject: req.user.subject,
-      teachername: req.user.firstname + " " + req.user.lastname,
-      date: date,
-      task: homeworkData.homework,
+try {
+    const classStudents = await Student.find({
+      class: homeworkData.studentClass,
+      schoolname: req.user.schoolname,
+    }).select(
+      "-password -refreshToken -gender -contactnum -imagepath -absentdays -presentdays -lastmarked"
+    );
+    if(!classStudents){
+      throw new Error('No students found!!')
+    }
+    const date = new Date().toLocaleDateString("en-IN");
+    classStudents.forEach(async (e) => {
+      e.homeworks.push({
+        subject: req.user.subject,
+        teachername: req.user.firstname + " " + req.user.lastname,
+        date: date,
+        task: homeworkData.homework,
+      });
+      await e.save({ validateBeforeSave: false });
     });
-    await e.save({ validateBeforeSave: false });
-  });
-
-  res.status(201).json({ subject: req.user.subject, date: date });
+  
+    res.status(201).json({ subject: req.user.subject, date: date });
+} catch (error) {
+  throw new Error('Internal Server Error!!')
+}
 };
 const giveTestscorePage = (req, res) => {
   res
@@ -237,12 +247,19 @@ const giveTestscorePage = (req, res) => {
 const giveStudents = async (req, res) => {
   const studentData = req.body;
   
-  const students = await Student.find({
-    class: studentData.studentClass,
-    schoolname: req.user.schoolname,
-  }).select("-password -refreshToken");
-
-  res.status(201).json({ subject: req.user.subject, students });
+ try {
+   const students = await Student.find({
+     class: studentData.studentClass,
+     schoolname: req.user.schoolname,
+   }).select("-password -refreshToken");
+   if(!students){
+     throw new Error('No students found!!')
+   }
+ 
+   res.status(201).json({ subject: req.user.subject, students });
+ } catch (error) {
+  throw new Error('Internal Server Error!!')
+ }
 };
 
 markTestscores = async (req, res) => {
@@ -279,7 +296,7 @@ markTestscores = async (req, res) => {
       .status(200)
       .json({ message: "Test Scores Saved SuccessFully!!" });
   } catch (error) {
-    throw error;
+    throw new Error("Internal Server Error!!");
   }
 };
 
@@ -324,7 +341,7 @@ const markAttendence = async (req, res) => {
       .status(200)
       .json({ message: "Attendence Marked SuccessFully!!" });
   } catch (error) {
-    throw error;
+    throw new Error("Internal Server Error!!");
   }
 };
 const viewAttendencePage = (req, res) => {
@@ -347,6 +364,9 @@ const getAttendence = async (req, res) => {
      "-password -refreshToken -homeworks  -testscore"
    );
    
+   if (!student) {
+     throw new Error("No student found!!");
+   }
  
  const {attendenceMonths,attendenceMonthsPercentage}=sortAttendenceAccordingToMonth(student)
  
@@ -373,7 +393,7 @@ const getAttendence = async (req, res) => {
  
  return res.status(201).json({attendenceMonths,attendenceMonthsPercentage,attendenceThisYear,currentYear,student})
  } catch (error) {
-  throw error
+  throw new Error('Internal Server Error!!')
  }
 
 };

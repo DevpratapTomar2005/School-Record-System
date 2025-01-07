@@ -75,7 +75,7 @@ const refreshAccessToken = async (req, res) => {
 
         
     } catch (error) {
-        res.status(400).send(error)
+        throw new Error('Something went wrong!')
     }
 
 }
