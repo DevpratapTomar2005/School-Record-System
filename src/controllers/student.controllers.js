@@ -74,16 +74,17 @@ const studentRegister = async (req, res) => {
       return res.send("Invalid Credential!!");
     }
   } catch (error) {
+    
     return res.status(500).send('Internal Server Error')
   }
 };
 
 const studentLogin = async (req, res) => {
+  const schoolname = req.body.schoolname;
+  const studentClass = req.body.studentclass;
+  const rollnum = req.body.rollnum;
+  const password = req.body.password;
   try {
-    const schoolname = req.body.schoolname;
-    const studentClass = req.body.studentclass;
-    const rollnum = req.body.rollnum;
-    const password = req.body.password;
     
     const studentData = await Student.findOne({
       rollnum: rollnum,
@@ -110,6 +111,8 @@ const studentLogin = async (req, res) => {
       .cookie("refreshToken", refreshToken, options)
       .redirect("/student/");
   } catch (error) {
+    
+    
     return res.status(500).send("Internal Server Error!");
   }
 };

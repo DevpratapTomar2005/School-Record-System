@@ -17,7 +17,7 @@ const studentSchema = new Schema({
     },
     rollnum: {
         type: Number,
-        unique: true,
+       
         required: true
     },
     schoolname: {

@@ -232,12 +232,12 @@ const adminIndex= async (req,res)=>{
  }
   }
  const viewTestScores=async (req,res)=>{
-    const student= req.cookies?.currentStudent
-  
+    const studentData= req.cookies?.currentStudent
+    
    try {
-     const student=await Student.findOne({rollnum:studentData[1],class:studentData[2],schoolname:req.user.schoolname}).select('-password -refreshToken')
+     const student=await Student.findOne({rollnum:studentData.rollnum,class:studentData.class,schoolname:req.user.schoolname}).select('-password -refreshToken')
      if(!student){
-       return  res.status(404).send('Student not found')
+       throw new Error('Student not found')
      }
      let maxUnitMarksOne=0;
      let obtainedMarksOne=0;

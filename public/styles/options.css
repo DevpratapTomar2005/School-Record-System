@@ -446,6 +446,7 @@ outline: none;
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    cursor: pointer;
 }
 .done-btn a{
    
